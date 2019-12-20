@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<skin version="1.0" load="1" type="string|font" language="zh_CN">
+
+  <!--  Font相关内容不需要翻译  -->
+  <Font>
+    <Font id ="DefaultFont" face ="微软雅黑" height ="12" />
+    <Font id="font8"  face ="微软雅黑" height ="8" bold="0"/>
+    <Font id="font10"  face ="微软雅黑" height ="10" bold="1"/>
+    <Font id="font10Arial"  face ="Arial Unicode MS" height ="10" bold="0"/>
+    <Font id="font10ArialUMS"  face ="Arial Unicode MS" height ="10" bold="0"/>
+    <Font id="font11"  face ="微软雅黑" height ="11" />
+    <Font id="font11b" face ="微软雅黑" height ="11" underline="0" bold="1"/>
+    <Font id="font12"  face ="微软雅黑" height ="12" underline="0" bold="0"/>
+    <Font id="font12b" face ="微软雅黑" height ="12" underline="0" bold="1"/>
+    <Font id="font13"  face ="微软雅黑" height ="13" underline="0" bold="0"/>
+    <Font id="font13b" face ="微软雅黑" height ="13" underline="0" bold="1"/>
+    <Font id="font14"  face ="微软雅黑" height ="14" underline="0" bold="0"/>
+    <Font id="font14b" face ="微软雅黑" height ="14" underline="0" bold="1"/>
+    <Font id="font14s" face ="微软雅黑" height ="14" underline="0" bold="0"  strikeout="1"/>
+    <Font id="font14u" face ="微软雅黑" height ="14" underline="1" bold="0"  />
+    <Font id="font15"  face ="微软雅黑" height ="15" underline="0" bold="0"/>
+    <Font id="font15b" face ="微软雅黑" height ="15" underline="0" bold="1"/>
+    <Font id="font16"  face ="微软雅黑" height ="16" underline="0" bold="0"/>
+    <Font id="font16b" face ="微软雅黑" height ="16" underline="0" bold="1"/>
+    <Font id="font17b" face ="微软雅黑" height ="17" underline="0" bold="1"/>
+    <Font id="font18"  face ="微软雅黑" height ="18" underline="0" bold="0"/>
+    <Font id="font18b" face ="微软雅黑" height ="18" underline="0" bold="1"/>
+    <Font id="font20b" face ="微软雅黑" height ="20" underline="0" bold="1"/>
+    <Font id="font20" face ="微软雅黑" height ="20" underline="0"/>
+    <Font id="font21" face ="微软雅黑" height ="21" unlineline="0"/>
+    <Font id="font21b" face ="微软雅黑" height ="21" unlineline="0" bold="1"/>
+    <Font id="font22"  face ="微软雅黑" height ="22" underline="0" bold="0"/>
+    <Font id="font22b" face ="微软雅黑" height ="22" underline="0" bold="1"/>
+    <Font id="font23b" face ="微软雅黑" height ="23" underline="0" bold="1"/>
+    <Font id="font24" face ="微软雅黑" height ="24" underline="0" bold="0" TextRenderHint="3"/>
+    <Font id="font24b" face ="微软雅黑" height ="24" underline="0" bold="1"/>
+    <Font id="font26" face ="微软雅黑" height ="26" underline="0" bold="0" />
+    <Font id="font26b" face ="微软雅黑" height ="26" underline="0" bold="1" />
+    <Font id="font28" face ="微软雅黑" height ="28" underline="0" bold="0" />
+    <Font id="font28b" face ="微软雅黑" height ="28" underline="0" bold="1" />
+    <Font id="font30"  face ="微软雅黑" height ="30" underline="0" bold="0"/>
+    <Font id="font30b"  face ="微软雅黑" height ="30" underline="0" bold="1"/>
+    <Font id="font32"  face ="微软雅黑" height ="32" unlineline="0" bold="0"/>
+    <Font id="font32b"  face ="微软雅黑" height ="32" unlineline="0" bold="1"/>
+    <Font id="font34"  face ="微软雅黑" height ="34" underline="0" bold="0"/>
+    <Font id="font35"  face ="微软雅黑" height ="35" underline="0" bold="0"/>
+    <Font id="font36"  face ="微软雅黑" height ="36" unlineline="0" bold="0"/>
+    <Font id="font36b"  face ="微软雅黑" height ="36" unlineline="0" bold="1"/>
+    <Font id="font40"  face="微软雅黑" height="40" underline="0" bold="0" TextRenderHint="3"/>
+    <Font id="font40b"  face="微软雅黑" height="40" underline="0" bold="1"/>
+    <Font id="font42"  face ="微软雅黑" height ="42" underline="0" bold="0"/>
+    <Font id="font45"  face="微软雅黑" height="45" underline="0" bold="0"/>
+    <Font id="font48"  face="微软雅黑" height="48" unlineline="0" bold="0"/>
+    <Font id="font48b"  face="微软雅黑" height="48" unlineline="0" bold="1"/>
+    <Font id="font50"  face="微软雅黑" height="50" underline="0" bold="0"/>
+    <Font id="font60"  face="微软雅黑" height="60" underline="0" bold="0"/>
+    <Font id="font60b"  face="微软雅黑" height="60" unlineline="0" bold="1"/>
+    <Font id="font72b"  face="微软雅黑" height="72" unlineline="0" bold="1"/>
+    <Font id="font230"  face="楷体" height="230" unlineline="0" bold="0"/>
+  </Font>
+  
+  <!--  id不要修改  把中文成对应的语言即可 
+  
+    1.格式化关键字  %d, %s 等带百分号的字符不要删除
+    2.看到类似 中括号 相关的格式，请勿删除。 比如{c #a47d55}xxxx{/c} 说明需要"xxxx"这段话需要指定为#a47d55 这个颜色
+  -->
+  <String>
+    <String id="StrClose">关闭</String>
+    <String id="StrRestore">向下还原</String>
+    <String id="StrMax">最大化</String>
+    <String id="StrMini">最小化</String>
+    <String id="StrPause">暂停计时器</String>
+    <String id="StrResume">恢复计时器</String>
+    <String id="StrRestart">重新启动计时器</String>
+    <String id="StrBrush">画笔工具</String>
+    <String id="StrSlideBlack">幻灯片黑屏</String>
+    <String id="StrSwitchMonitor">交换演讲者视图和幻灯片放映</String>
+    <String id="StrTaskBar">显示任务栏</String>
+    <String id="StrMiddleSlideLabel">第%d张幻灯片(共%d张)</String>
+    <String id="StrZoom">放大字号</String>
+    <String id="StrZoomOut">缩小字号</String>
+    <String id="StrNoRemark">无备注。</String>
+    <String id="StrCurrentSlide">当前幻灯片</String>
+    <String id="StrNextSlide">下一张幻灯片</String>
+    <String id="StrAllSlide">所有幻灯片</String>
+    <String id="StrMiddlePrePage">上一页</String>
+    <String id="StrMiddleNextPage">下一页</String>
+  </String>
+</skin>

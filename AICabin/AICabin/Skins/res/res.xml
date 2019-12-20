@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<skin version="1.0" load="1">
+  <Image>
+    <Image id="btn_pre_page_nor"                   path="common\btn_pre_page_nor.png"/>
+    <Image id="btn_pre_page_hov"                   path="common\btn_pre_page_hov.png"/>
+    <Image id="btn_pre_page_click"                   path="common\btn_pre_page_click.png"/>
+    <Image id="btn_pre_page_disable"                   path="common\btn_pre_page_disable.png"/>
+    <Image id="btn_next_page_nor"                   path="common\btn_next_page_nor.png"/>
+    <Image id="btn_next_page_hov"                   path="common\btn_next_page_hov.png"/>
+    <Image id="btn_next_page_click"                   path="common\btn_next_page_click.png"/>
+    <Image id="btn_next_page_disable"                   path="common\btn_next_page_disable.png"/>
+    <Image id="thumbnail_animation_loading"         path="|C16|common\loading.png"/>
+    <Image id="thumbnail_bk_loading"                path="|S5,5,5,5|common\loading_bg.png"/>
+    <Image id="thumbnail_bk_bound_sel"          path="|S5,5,5,5|common\bound_sel.png" />
+    <Image id="thumbnail_bk_bound_over"         path="|S5,5,5,5|common\bound_over.png" />
+    <Image id="btn_close_click"                 path="common\btn_close_click.png" />
+    <Image id="btn_close_hov"                   path="common\btn_close_hov.png" />
+    <Image id="btn_close_nor"                   path="common\btn_close_nor.png" />
+    <Image id="btn_max_click"                   path="common\btn_max_click.png" />
+    <Image id="btn_max_hov"                     path="common\btn_max_hov.png" />
+    <Image id="btn_max_nor"                     path="common\btn_max_nor.png" />
+    <Image id="btn_mini_click"                  path="common\btn_mini_click.png" />
+    <Image id="btn_mini_hov"                    path="common\btn_mini_hov.png" />
+    <Image id="btn_mini_nor"                    path="common\btn_mini_nor.png" />
+    <Image id="btn_restore_click"               path="common\btn_restore_click.png" />
+    <Image id="btn_restore_hov"                 path="common\btn_restore_hov.png" />
+    <Image id="btn_restore_nor"                 path="common\btn_restore_nor.png" />
+    <Image id="h_split"                         path="common\h_split.png" />
+    <Image id="v_split"                         path="common\v_split.png" />
+    <Image id="btn_pause_click"               path="common\btn_pause_click.png" />
+    <Image id="btn_pause_hov"                 path="common\btn_pause_hov.png" />
+    <Image id="btn_pause_nor"                 path="common\btn_pause_nor.png" />
+    <Image id="btn_restart_click"               path="common\btn_restart_click.png" />
+    <Image id="btn_restart_hov"                 path="common\btn_restart_hov.png" />
+    <Image id="btn_restart_nor"                 path="common\btn_restart_nor.png" />
+    <Image id="btn_play_click"               path="common\btn_play_click.png" />
+    <Image id="btn_play_hov"                 path="common\btn_play_hov.png" />
+    <Image id="btn_play_nor"                 path="common\btn_play_nor.png" />
+    <Image id="btn_brush_click"               path="common\btn_brush_click.png" />
+    <Image id="btn_brush_hov"                 path="common\btn_brush_hov.png" />
+    <Image id="btn_brush_nor"                 path="common\btn_brush_nor.png" />
+    <Image id="btn_slide_black_click"               path="common\btn_slide_black_click.png" />
+    <Image id="btn_slide_black_hov"                 path="common\btn_slide_black_hov.png" />
+    <Image id="btn_slide_black_nor"                 path="common\btn_slide_black_nor.png" />
+    <Image id="btn_task_bar_click"               path="common\btn_task_bar_click.png" />
+    <Image id="btn_task_bar_hov"                 path="common\btn_task_bar_hov.png" />
+    <Image id="btn_task_bar_nor"                 path="common\btn_task_bar_nor.png" />
+    <Image id="btn_switch_monitor_click"               path="common\btn_switch_monitor_click.png" />
+    <Image id="btn_switch_monitor_hov"                 path="common\btn_switch_monitor_hov.png" />
+    <Image id="btn_switch_monitor_nor"                 path="common\btn_switch_monitor_nor.png" />
+    <Image id="btn_A_minus_click"               path="common\btn_A_minus_click.png" />
+    <Image id="btn_A_minus_hov"                 path="common\btn_A_minus_hov.png" />
+    <Image id="btn_A_minus_nor"                 path="common\btn_A_minus_nor.png" />
+    <Image id="btn_A_minus_disable"             path="common\btn_A_minus_disable.png" />
+    <Image id="btn_A_plus_click"               path="common\btn_A_plus_click.png" />
+    <Image id="btn_A_plus_hov"                 path="common\btn_A_plus_hov.png" />
+    <Image id="btn_A_plus_nor"                 path="common\btn_A_plus_nor.png" />
+    <Image id="btn_A_plus_disable"                 path="common\btn_A_plus_disable.png" />
+    <Image id="num_line"                        path="common\num_line.png"></Image>
+    <Image id="thumb_mask"                        path="common\thumb_mask.png"></Image>
+    <Image id="icon_logo"                       path="common\icon_logo.ico"/>
+  </Image>
+
+
+  <Color>
+
+    <Color id="N01"                       value="ffffff"/>
+    <Color id="N04"                       value="986a3d"/>
+    <Color id="H03"                       value="dd6a1c"/>
+    <Color id="P03"                       value="aa5015"/>
+    <Color id="N23"                       value="986a3d"/>
+    <Color id="NRED"                      value="FF0000"/>
+    <Color id="NBLACK"                    value="000000"/>
+    <Color id="N07"                       value="333333"/>
+    <Color id="N08"                       value="ffdc73"/>
+    <Color id="N09"                       value="E6C79B"/>
+  </Color>
+
+</skin>
+
+

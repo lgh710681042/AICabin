@@ -1,0 +1,88 @@
+<skin version="1.0">
+  <Window id="AICabinWnd" minWidth="1600" minHeight="900" icon="#icon_logo" windowbigicon="#icon_logo" move="1" resize="1" >
+    
+  </Window>
+
+  <Style>
+    <Style id="PresenterThumbnailPanel">
+      <PresenterThumbnailPanelLayout id="layout_thumbnail_panel" pos ="LTRB|52,50,52,0 ">
+        <Button style="ImageButton" id="btn_pre_page" pos="LT|0,29,36,36" 
+                bk.image="#btn_pre_page_nor" 
+                bk_over.image="#btn_pre_page_hov" 
+                bk_down.image="#btn_pre_page_click" 
+                bk_disable.image="#btn_pre_page_disable"></Button>
+        <DragOptionLayout id="layout_list_thumbnail" pos="LTRB|50,0,50,0"  mode="lefttoright" spaceX="2" inset="0,2,0,0" HScroll="1" showhscroll="0"  EnableMouse="1">
+        </DragOptionLayout>
+        <Button style="ImageButton" id="btn_next_page" pos="RT|0,29,36,36" 
+                bk.image="#btn_next_page_nor" 
+                bk_over.image="#btn_next_page_hov" 
+                bk_down.image="#btn_next_page_click" 
+                bk_disable.image="#btn_next_page_disable"></Button>
+      </PresenterThumbnailPanelLayout>
+    </Style>
+
+    <Style id="PPTItem">
+      <PresenterThumbnailItemLayout id="thumbnail_item_layout_id" EnableMouse="1" pos="LT|0,-1,159,138" model="vertfill">
+        <PPTThumbnailItem id="thumbnail_item_id" EnableMouse="1" pos="LT|0,0,159,94" style="PPTItemStyleEx">
+          <!--<AnimationCtrl id="ani_loading" pos="LT|-1,-1,58,58"  image="#Thumbnail_animation_loading" Gif="0" autostart="1"/>-->
+        </PPTThumbnailItem>
+
+        <Button id="thumbnail_text_id" style="ImageButtonEx"
+                text="1" txt.font="font16" txt.textcolor="#N01" txt.valign="center" txt.halign="center" pos="LBRB|0,50,0,0">
+        </Button>
+        
+      </PresenterThumbnailItemLayout>
+    </Style>
+    
+    <Style id="RemarkItem">
+      <!--<Label pos="LT|0,0,436,20" text="#StrNoRemark" txt.font="font18"/>-->
+      <!--<HtmlLabel id="htmllabel_remark" pos="LTRB|0,0,0," txt.textcolor="#FFFFFF" text.font="font20" text=""></HtmlLabel>-->
+      <RichEdit id="richedit_remark" pos="LTRB|0,0,0,0" txt.textcolor="#N01" txt.valign="left" txt.halign="top" txt.font="font20" showcaret="0" readonly="1"></RichEdit>
+    </Style>
+
+    <Style id="PPTItemStyleEx">
+      <Image id="bk_default" state="non" pos="LTRB|6,6,6,6" image="#thumbnail_bk_loading" />
+      <Image id="anim" state="non" pos="LT|-1,-1,45,60" image="#thumbnail_animation_loading" />
+      <Image id="bk" cache="0" paintmode="fit" state="non" pos="LTRB|6,6,6,6" image=""/>
+      <Image id="mask" paintmode="centercrop" state="non" pos="LTRB|6,6,6,6" image="" />
+      <Image id="boundsel" state="ckall" pos="LTRB|0,0,0,0" image="#thumbnail_bk_bound_sel" />
+      <Image id="boundover" state="over" pos="LTRB|3,3,3,3" image="#thumbnail_bk_bound_over" />
+    </Style>
+
+    <Style id="PPTItemStyle">
+      <Image id="bk_shadow" state="non" pos="LTRB|0,0,0,0" image="#Thumbnail_bk_shadow" />
+      <Image id="bk_default" state="non" pos="LTRB|4,1,4,7" image="#Thumbnail_bk_loading" />
+      <Image id="anim" state="non" pos="LT|-1,-1,58,58" image="#Thumbnail_animation_loading" />
+      <Image id="bk" paintmode="centercrop" state="non" pos="LTRB|4,1,4,7" image=""/>
+      <Image id="boundsel" state="ckall" pos="LTRB|4,1,4,7" image="#Thumbnail_bk_bound_sel" />
+      <Image id="boundover" state="over" pos="LTRB|4,1,4,7" image="#Thumbnail_bk_bound_over" />
+      <Image id="imgpreviewindex"  image="#Thumbnail_item_bk_pageindex" imgseq="0,0,0,0" state="all" pos="LT|16,16,24,14" />
+      <Image id="imgpreviewindexsel" image="#Thumbnail_item_bk_pageindex"  imgseq="1,1,1,1" state="ckall" pos="LT|16,16,24,14" />
+      <Text id="previewindex"  text="4" state="ckall|all" halign="center" color="#WN08||||#WS08" font="font12" pos="LT|16,16,24,14" />
+    </Style>
+
+    <Style id="ImageButton">
+      <Image id="bk" state="normal" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_over" state="over|focus" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_down" state="down|ckall" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_disable" state="disable" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+    </Style>
+
+    <Style id="ImageButtonEx">
+      <Image id="bk" state="all" imgseq="0,1,2,3" pos="LT|-1,-1,12,14"/>
+      <Text id="txt" state="all" pos="LTRB|0,0,0,0" font="font16" halign="center" valign="center" color="#Color_White"/>
+    </Style>
+    
+    <Style id="ImageLabel">
+        <Image id="bk" state="normal" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+    </Style>
+    
+    <Style id="TextImageButton">
+      <Image id="bk" state="normal" image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_over" state="over"  image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_down" state="down|ckall"  image="" pos="LTRB|0,0,0,0"/>
+      <Text id="txt" state="all" pos="LTRB|0,0,0,0" font="font14" halign="center" valign="center" color="#N01"/>
+    </Style>
+  </Style>
+  
+</skin>

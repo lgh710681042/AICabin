@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<skin version="1.0" type="style">
+  <Style>
+     <Style id="BkWindow">
+      <Image state="non"  image="#bk_window_main" pos="LTRB|0,0,0,0"/>
+      <Image state="non"  image="#bk_window_title" pos="LTRT|0,0,0,52"/>
+    </Style>
+  </Style>
+</skin>
