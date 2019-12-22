@@ -64,6 +64,7 @@
       <Command>xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
 xcopy "$(SolutionDir)\DirectUI\framework" "$(BinDir)\$(Configuration)\framework\" /E /Y /D
 xcopy "$(SolutionDir)DirectUI\tool" "$(BinDir)\$(Configuration)\" /E /Y /D
+xcopy "$(ProjectDir)bin_ud" "$(BinDir)\$(Configuration)" /E /Y /D
 
 
 cd   "$(BinDir)\$(Configuration)\"
@@ -92,16 +93,19 @@ call  "skin_complie.bat"</Command>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIActivityWnd.h" />
     <ClInclude Include="AICabin.h" />
     <ClInclude Include="AICabinWnd.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="CommonUtil.h" />
     <ClInclude Include="MainWnd.h" />
+    <ClInclude Include="NDHttp_Wrapper.hpp" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIActivityWnd.cpp" />
     <ClCompile Include="AICabin.cpp" />
     <ClCompile Include="AICabinWnd.cpp" />
     <ClCompile Include="Application.cpp" />
@@ -117,6 +121,11 @@ call  "skin_complie.bat"</Command>
   <ItemGroup>
     <Image Include="AICabin.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Skins\layout\AICabinWnd\AIActivity.xml" />
+    <Xml Include="Skins\layout\AICabinWnd\AICabinWnd.xml" />
+    <Xml Include="Skins\res\res.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

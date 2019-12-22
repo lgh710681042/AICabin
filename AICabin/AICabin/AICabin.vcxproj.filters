@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="skin">
+      <UniqueIdentifier>{5eccce3f-31bb-42ee-b650-58f4e15c6454}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -42,6 +45,12 @@
     <ClInclude Include="AICabinWnd.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AIActivityWnd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NDHttp_Wrapper.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -59,6 +68,9 @@
     <ClCompile Include="AICabinWnd.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AIActivityWnd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AICabin.rc">
@@ -72,5 +84,16 @@
     <Image Include="AICabin.ico">
       <Filter>资源文件</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Skins\layout\AICabinWnd\AICabinWnd.xml">
+      <Filter>skin</Filter>
+    </Xml>
+    <Xml Include="Skins\res\res.xml">
+      <Filter>skin</Filter>
+    </Xml>
+    <Xml Include="Skins\layout\AICabinWnd\AIActivity.xml">
+      <Filter>skin</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

@@ -1,0 +1,17 @@
+<skin version="1.0">
+  <Window id="AIActivityWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1">
+    <XML id="AIActivityStyle"/>
+  </Window>
+
+  <Style>
+    <!--活动界面-->
+    <Style id="AIActivityStyle">
+      <Layout id="AIActivityLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_activity_bg">
+        <Button id="btn_activity_leave" style="ImageButton" pos="RT|50,49,501,261"
+                bk.image="#btn_activity_leave_nor"
+                bk_over.image="#btn_activity_leave_nor"
+                bk_down.image="#btn_activity_leave_click"></Button>
+      </Layout>
+    </Style>
+  </Style>
+</skin>

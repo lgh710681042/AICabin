@@ -11,6 +11,8 @@ public:
 
 	bool	Run();
 
+	HWND	GetMainHwnd();
+
 private:
 	bool	InitDirectUI(HINSTANCE hInstance);
 

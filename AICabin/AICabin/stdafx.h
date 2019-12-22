@@ -20,12 +20,15 @@
 
 // TODO:  在此处引用程序需要的其他头文件
 #include "DirectUI.h"
+#include "NDHttp/curl/curl.h"
 
 //由于DUI导出类用到stl相关模板类，简单禁用掉此类警告
 #pragma warning( disable: 4251 )
 
 #ifdef _DEBUG
 #pragma comment( lib,"DirectUI_ud.lib" ) 
+#pragma comment(lib, "NDHttp_ud.lib")
 #else
 #pragma comment( lib,"DirectUI_u.lib" )
+#pragma comment(lib, "NDHttp_u.lib")
 #endif

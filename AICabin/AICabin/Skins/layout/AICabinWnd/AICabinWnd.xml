@@ -1,9 +1,19 @@
 <skin version="1.0">
-  <Window id="AICabinWnd" minWidth="1600" minHeight="900" icon="#icon_logo" windowbigicon="#icon_logo" move="1" resize="1" >
-    
+  <Window id="AICabinWnd" title="AICabinWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1" >
+    <XML id="AIHelloLayoutStyle"/>
   </Window>
+  
 
   <Style>
+    <!--初始界面-->
+    <Style id="AIHelloLayoutStyle">
+      <Layout id="AIHelloLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_hello_bg">
+        <Layout pos="LT|-1,-1,750,750" style="FillColor" color.fillcolor="#00FF00" >
+
+        </Layout>
+      </Layout>
+    </Style>
+    
     <Style id="PresenterThumbnailPanel">
       <PresenterThumbnailPanelLayout id="layout_thumbnail_panel" pos ="LTRB|52,50,52,0 ">
         <Button style="ImageButton" id="btn_pre_page" pos="LT|0,29,36,36" 
