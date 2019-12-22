@@ -87,7 +87,19 @@ call  "skin_complie.bat"</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <CustomBuildStep>
+      <Command>xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
+xcopy "$(SolutionDir)\DirectUI\framework" "$(BinDir)\$(Configuration)\framework\" /E /Y /D
+xcopy "$(SolutionDir)DirectUI\tool" "$(BinDir)\$(Configuration)\" /E /Y /D
+xcopy "$(ProjectDir)bin_release" "$(BinDir)\$(Configuration)" /E /Y /D
+
+
+cd   "$(BinDir)\$(Configuration)\"
+call  "skin_complie.bat"</Command>
+      <Outputs>copy skins</Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
