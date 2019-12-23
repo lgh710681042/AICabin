@@ -29,11 +29,9 @@
 #ifdef _DEBUG
 #pragma comment( lib,"DirectUI_ud.lib" ) 
 #pragma comment(lib, "NDHttp_ud.lib")
-#pragma comment( lib,"SpeechTech_ud.lib" )
 #else
 #pragma comment( lib,"DirectUI_u.lib" )
 #pragma comment(lib, "NDHttp_u.lib")
-#pragma comment( lib,"SpeechTech.lib" ) 
 #endif
 
 #pragma comment(lib, "WINMM.LIB")
