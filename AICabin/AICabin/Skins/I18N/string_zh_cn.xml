@@ -55,6 +55,8 @@
     <Font id="font50"  face="微软雅黑" height="50" underline="0" bold="0"/>
     <Font id="font60"  face="微软雅黑" height="60" underline="0" bold="0"/>
     <Font id="font60b"  face="微软雅黑" height="60" unlineline="0" bold="1"/>
+	<Font id="font70"  face="微软雅黑" height="70" underline="0" bold="0"/>
+	<Font id="font70b"  face="微软雅黑" height="70" underline="0" bold="1"/>
     <Font id="font72b"  face="微软雅黑" height="72" unlineline="0" bold="1"/>
     <Font id="font230"  face="楷体" height="230" unlineline="0" bold="0"/>
   </Font>
@@ -85,5 +87,17 @@
     <String id="StrAllSlide">所有幻灯片</String>
     <String id="StrMiddlePrePage">上一页</String>
     <String id="StrMiddleNextPage">下一页</String>
+    <String id="StrTipStart">hey，%s，欢迎来到学习舱！</String>
+    <String id="StrTipEnd1">你已经结束了今天的学习</String>
+    <String id="StrTipEnd2">bye，%s，我们下次见~</String>
+    <String id="StrTipActivity">选择你今天的学习活动吧</String>
+    <String id="StrActivityOne">活动一</String>
+    <String id="StrActivityTwo">活动二</String>
+    <String id="StrActivityThree">活动三</String>
+    <String id="StrActivityityContent1">学习身体部位</String>
+    <String id="StrTipActivityContent2">听说读写与理解</String>
+    <String id="StrTipActivityContent3">VR与AI</String>
+    <String id="StrLeave">离开</String>
+    
   </String>
 </skin>

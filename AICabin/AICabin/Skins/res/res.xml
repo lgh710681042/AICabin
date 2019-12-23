@@ -2,9 +2,17 @@
 <skin version="1.0" load="1">
   <Image>
     <Image id="ai_hello_bg"                   path="common\ai_hello_bg.png"/>
-    <Image id="ai_activity_bg"                   path="common\ai_activity_bg.png"/>
+    <Image id="ai_activity_bg"                path="common\ai_activity_bg.png"/>
     <Image id="btn_activity_leave_nor"        path="common\btn_activity_leave_nor.png"/>
-    <Image id="btn_activity_leave_click"        path="common\btn_activity_leave_click.png"/>
+    <Image id="btn_activity_leave_click"      path="common\btn_activity_leave_click.png"/>
+
+    <Image id="ai_paint"                      path="common\ai_paint.png"/>
+    <Image id="ai_end_bg"                     path="common\ai_end_bg.png"/>
+    <Image id="ai_activity_paint"             path="common\ai_activity_paint.png"/>
+    <Image id="activity_one_bg"               path="common\activity_one_bg.png"/>
+    <Image id="activity_two_bg"               path="common\activity_two_bg.png"/>
+    <Image id="activity_three_bg"             path="common\activity_three_bg.png"/>
+
   </Image>
 
 

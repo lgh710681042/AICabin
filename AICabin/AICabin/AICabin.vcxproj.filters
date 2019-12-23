@@ -16,6 +16,9 @@
     <Filter Include="skin">
       <UniqueIdentifier>{5eccce3f-31bb-42ee-b650-58f4e15c6454}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NewUI">
+      <UniqueIdentifier>{8dcbc882-047c-48eb-b6e6-963069bc5a33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -51,6 +54,9 @@
     <ClInclude Include="NDHttp_Wrapper.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="NewUI\UIAutoSizeButton.h">
+      <Filter>NewUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -70,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="AIActivityWnd.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NewUI\UIAutoSizeButton.cpp">
+      <Filter>NewUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

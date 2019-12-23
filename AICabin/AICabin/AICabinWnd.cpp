@@ -42,7 +42,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		case VK_ESCAPE:
 		{
-			return FALSE;
+			break;
 		}
 		case VK_F5:
 		{

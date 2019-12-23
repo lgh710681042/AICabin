@@ -7,6 +7,7 @@
 #include "NDHttp/NDHttpBiz.h"
 #include "NDHttp_Wrapper.hpp"
 #include "Application.h"
+#include "NewUI/UIAutoSizeButton.h"
 
 
 CApplication::CApplication()
@@ -78,6 +79,7 @@ bool CApplication::InitDirectUI(HINSTANCE hInstance)
 {
 	GetUIEngine()->InitSkin();
 	GetUIRes()->SetDefaultImageType(UITYPE_IMAGE::UIIAMGE_BITMAP);
+    GetUIRes()->SetLanguage(_T("zh_CN"));
 
 	tstring strLocalPath = CommonUtil::GetLocalPath();
 
@@ -86,6 +88,8 @@ bool CApplication::InitDirectUI(HINSTANCE hInstance)
 
 	tstring strSkinsPath = strLocalPath + _T("\\Skins\\");
 	GetUIRes()->InitResDir(strSkinsPath.c_str(), true);
+
+    UI_OBJECT_REGISTER(CAutoSizeButtonUI);
 
 	return true;
 }
