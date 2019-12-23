@@ -1,30 +1,35 @@
 #pragma once
 
-#include <string>
-#include <windows.h>
-#include <tchar.h>
-
-using namespace std;
 
 namespace CommonUtil
 {
+	wstring
+		GetLocalPath();
 
+	wstring
+		Utf8ToUnicode(const string& strUtf8);
 
-wstring GetLocalPath()
-{
-	TCHAR szPath[MAX_PATH * 2 + 1];
-	if (!GetModuleFileName(NULL, szPath, _countof(szPath) - 1))
-	{
-		return _T("");
-	}
+	wstring
+		Utf8ToUnicode(const char* pszUtf8);
 
-	TCHAR* p = wcsrchr(szPath, _T('\\'));
-	if (p)
-	{
-		*p = _T('\0');
-	}
+	string
+		UnicodeToUtf8(const wstring& strUnicode);
 
-	return szPath;
-}
+	string
+		UnicodeToUtf8(const wchar_t* pszUnicode);
 
+	wstring
+		GetSystemAppDataFolder();
+
+	bool
+		IsDirExist(const wstring& path);
+
+	vector<wstring>
+		SplitW(const wstring& src, const wstring& pattern);
+
+	bool
+		CreateDirectories(const wstring& path);
+
+	wstring
+		GetLogDir();
 }

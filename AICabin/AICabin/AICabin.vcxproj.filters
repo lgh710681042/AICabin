@@ -51,6 +51,12 @@
     <ClInclude Include="NDHttp_Wrapper.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\third-party\spdlog\include\spdlog_wrapper.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeechTechControl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -69,6 +75,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="AIActivityWnd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third-party\spdlog\include\spdlog_wrapper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeechTechControl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

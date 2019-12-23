@@ -16,7 +16,7 @@
       <ImportLibrary>..\Lib\$(TargetName).lib</ImportLibrary>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(ProjectDir);$(SolutionDir)DirectUI\include;$(SolutionDir)UIPlugins;$(SolutionDir)PluginFramework\include;$(SolutionDir)util\include;$(SolutionDir)LoSdk\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)third-party;$(SolutionDir);$(ProjectDir);$(SolutionDir)DirectUI\include;$(SolutionDir)UIPlugins;$(SolutionDir)PluginFramework\include;$(SolutionDir)util\include;$(SolutionDir)LoSdk\include</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

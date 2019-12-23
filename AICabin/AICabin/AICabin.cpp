@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "Singleton.h"
+#include "CommonUtil.h"
 #include "MainWnd.h"
 #include "Application.h"
 #include "AICabin.h"
@@ -20,16 +21,24 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
  	// TODO:  在此放置代码。
+
+	logwrapper::Init(CommonUtil::GetLogDir());
+
+	do 
+	{
+		s_spApp = CApplication::GetInstance();
+		if (s_spApp == nullptr)
+			break;
+
+		if (s_spApp->Initialize(hInstance, lpCmdLine) == false)
+			break;
+
+		if (s_spApp->Run() == false)
+			break;
+
+	} while (false);
 	
-	s_spApp = CApplication::GetInstance();
-	if (s_spApp == nullptr)
-		return 0;
-
-	if (s_spApp->Initialize(hInstance, lpCmdLine) == false)
-		return 0;
-
-	if (s_spApp->Run() == false)
-		return 0;
+	logwrapper::Exit();
 
 	return 0;
 }
