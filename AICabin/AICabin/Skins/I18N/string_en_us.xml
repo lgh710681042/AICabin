@@ -59,6 +59,8 @@
     <Font id="font50"  face="Arial" height="50" underline="0" bold="0"/>
     <Font id="font60"  face="Arial" height="60" underline="0" bold="0"/>
     <Font id="font60b"  face="Arial" height="60" unlineline="0" bold="1"/>
+	<Font id="font70"  face="Arial" height="70" unlineline="0" bold="0"/>
+	<Font id="font70b"  face="Arial" height="70" unlineline="0" bold="1"/>	
     <Font id="font72b"  face="Arial" height="72" unlineline="0" bold="1"/>
     <Font id="font78b"  face="Arial" height="78b" unlineline="0" bold="1"/>
     <Font id="font230"  face="楷体" height="230" unlineline="0" bold="0"/>

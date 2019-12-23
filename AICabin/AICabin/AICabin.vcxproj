@@ -114,6 +114,7 @@ call  "skin_complie.bat"</Command>
     <ClInclude Include="CommonUtil.h" />
     <ClInclude Include="MainWnd.h" />
     <ClInclude Include="NDHttp_Wrapper.hpp" />
+    <ClInclude Include="NewUI\UIAutoSizeButton.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SpeechTechControl.h" />
     <ClInclude Include="stdafx.h" />
@@ -127,6 +128,7 @@ call  "skin_complie.bat"</Command>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="CommonUtil.cpp" />
     <ClCompile Include="MainWnd.cpp" />
+    <ClCompile Include="NewUI\UIAutoSizeButton.cpp" />
     <ClCompile Include="SpeechTechControl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='UnicodeDebug|Win32'">Create</PrecompiledHeader>

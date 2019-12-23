@@ -6,11 +6,33 @@
   <Style>
     <!--活动界面-->
     <Style id="AIActivityStyle">
-      <Layout id="AIActivityLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_activity_bg">
-        <Button id="btn_activity_leave" style="ImageButton" pos="RT|50,49,501,261"
+      <Layout id="AIActivityLayout" pos="LTRB|0,0,0,0" mode="vertfill" style="Picture" bk.image="#ai_activity_bg">
+        <!--标题区域-->
+        <Layout pos="LTRT|0,0,0,204" style="FillColor" color.fillcolor="1000FF00">
+          <AutoSizeButton style="Label" pos="LT|-1,124,1000,68" maxwidth="1400" text="#StrTipActivity" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+          <Button id="btn_activity_leave" pos="RT|26,28,244,126" style="ImageButton"
                 bk.image="#btn_activity_leave_nor"
                 bk_over.image="#btn_activity_leave_nor"
-                bk_down.image="#btn_activity_leave_click"></Button>
+                bk_down.image="#btn_activity_leave_click" />
+        </Layout>
+
+        <!--主区域-->
+        <Layout pos="LTRT|55,0,107,804" mode="horzfill" style="Picture" bk.image="#ai_activity_paint">
+          <Control pos="LTLB|0,0,150,0"/>   
+          <Layout pos="LTLB|0,110,492,30" style="Picture" bk.image="#activity_one_bg">
+            
+          </Layout>
+          <Layout pos="LTLB|0,46,568,9" style="Picture" bk.image="#activity_two_bg">
+            
+          </Layout>
+          <Control pos="LTLB|0,0,49,0"/>
+          <Layout pos="LTLB|0,110,492,30" style="Picture" bk.image="#activity_three_bg">
+            
+          </Layout>
+          <Control />
+        </Layout>
+
+        <Control />
       </Layout>
     </Style>
   </Style>
