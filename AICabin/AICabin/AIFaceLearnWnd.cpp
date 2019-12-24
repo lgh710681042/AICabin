@@ -56,6 +56,13 @@ void CAIFaceLearnWnd::OnCreate()
 	m_pBtnFaceCommonTitle = dynamic_cast<CButtonUI*> (FindControl(_T("btn_face_common_title")));
 	m_pBtnFaceTitleTop = dynamic_cast<CButtonUI*> (FindControl(_T("btn_face_title_top")));
 	m_pBtnFaceTitleBottom = dynamic_cast<CButtonUI*> (FindControl(_T("btn_face_title_bottom")));
+
+	if (m_pAILeftBtnPanel
+		&& m_pAILeftBtnPanelUnExpend)
+	{
+		m_pAILeftBtnPanel->SetVisible(true);
+		m_pAILeftBtnPanelUnExpend->SetVisible(false);
+	}
 }
 
 void CAIFaceLearnWnd::OnClose()

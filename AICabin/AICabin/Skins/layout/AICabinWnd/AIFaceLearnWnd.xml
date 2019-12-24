@@ -1,12 +1,12 @@
 <skin version="1.0">
-  <Window id="AIFaceLearnWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1">
+  <Window id="AIFaceLearnWnd" minWidth="1600" minHeight="900" move="0" resize="0" shadow="1">
     <XML id="AIFaceLearnStyle"/>
   </Window>
 
   <Style>
     <!--活动界面-->
     <Style id="AIFaceLearnStyle">
-      <Layout id="AIFaceLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_face_bg">
+      <Layout id="AIFaceLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_face_bg" showhscroll="0">
         <AutoSizeButton id="btn_face_common_title" 
                         style="Label" 
                         pos="LT|-1,125,1920,75" 

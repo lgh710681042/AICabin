@@ -67,6 +67,8 @@ HWND CAISpeakLearnWnd::CreateWnd(HWND hParent)
 
 void CAISpeakLearnWnd::OnCreate()
 {
+	__super::OnCreate();
+
     m_pBtnCardText = dynamic_cast<CAutoSizeButtonUI*> (FindControl(_T("card_text_lebel")));
     m_pBtnSpeakLearnRecord = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_learn_record")));
     if (m_pBtnSpeakLearnRecord)
@@ -101,7 +103,12 @@ void CAISpeakLearnWnd::OnCreate()
 		m_pBtnCardText->SetText(m_strSpeakQuestion.c_str());
 	}
 
-	__super::OnCreate();
+	if (m_pAILeftBtnPanel
+		&& m_pAILeftBtnPanelUnExpend)
+	{
+		m_pAILeftBtnPanel->SetVisible(true);
+		m_pAILeftBtnPanelUnExpend->SetVisible(false);
+	}
 }
 
 void CAISpeakLearnWnd::OnClose()

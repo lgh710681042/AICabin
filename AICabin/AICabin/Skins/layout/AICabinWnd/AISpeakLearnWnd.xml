@@ -1,5 +1,5 @@
 <skin version="1.0">
-  <Window id="AISpeakLearnWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1">
+  <Window id="AISpeakLearnWnd" minWidth="1600" minHeight="900" move="0" resize="0" shadow="1">
     <XML id="AISpeakLearnStyle"/>
   </Window>
 
@@ -52,7 +52,7 @@
     </Style>
 
     <Style id="AILeftBtnPanelStyle">
-      <Layout id="AILeftBtnPanel" pos="LB|0,40,333,220" style="Picture" bk.image="#ai_left_btn_panel" visible="1">
+      <Layout id="AILeftBtnPanel" pos="LB|0,40,333,220" style="Picture" bk.image="#ai_left_btn_panel" visible="0">
         <Button id="btn_left_panel_leave" pos="LTRB|40,20,69,120" style="ImageButton"
                 logo.image="#ai_btn_leave_logo"
                 bk.image="#ai_btn_panel_nor"

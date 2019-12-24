@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "AILearnBaseWnd.h"
 #include "AIActivityWnd.h"
 #include "AISpeakLearnWnd.h"
 
@@ -38,12 +39,20 @@ HWND CAIActivityWnd::CreateWnd(HWND hParent)
 
 void CAIActivityWnd::OnCreate()
 {
+	__super::OnCreate();
+
     CLayoutUI *pLayActivityTwo = dynamic_cast<CLayoutUI*>(FindControl(_T("activity_two_layout")));
     if (pLayActivityTwo)
         pLayActivityTwo->OnEvent += MakeDelegate(this, &CAIActivityWnd::OnLayoutListenReadEvent);
 
 
-	__super::OnCreate();
+	if (m_pAILeftBtnPanel
+		&& m_pAILeftBtnPanelUnExpend)
+	{
+		m_pAILeftBtnPanel->SetVisible(false);
+		m_pAILeftBtnPanelUnExpend->SetVisible(true);
+	}
+	
 }
 
 void CAIActivityWnd::OnClose()

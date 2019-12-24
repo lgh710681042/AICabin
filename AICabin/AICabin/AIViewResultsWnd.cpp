@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "AILearnBaseWnd.h"
 #include "AIViewResultsWnd.h"
 
 
@@ -50,6 +51,8 @@ HWND CAIViewResultsWnd::CreateWnd(HWND hParent)
 
 void CAIViewResultsWnd::OnCreate()
 {
+	__super::OnCreate();
+
     m_pBtnReturn = dynamic_cast<CButtonUI*> (FindControl(_T("btn_view_results_return")));
     m_pBtnLeave = dynamic_cast<CButtonUI*> (FindControl(_T("btn_view_results_leave")));
     m_pCtrlPaint50 = dynamic_cast<CControlUI*> (FindControl(_T("ctrl_panel_paint_50")));
@@ -61,9 +64,14 @@ void CAIViewResultsWnd::OnCreate()
     m_pLayLeftBtnPanel = dynamic_cast<CLayoutUI*> (FindControl(_T("AILeftBtnPanel")));
     m_pLayRightBtnPanel = dynamic_cast<CLayoutUI*> (FindControl(_T("AIRightBtnPanel")));
 
-    UpdateViewData();
+    UpdateViewData();	
 
-	__super::OnCreate();
+	if (m_pAILeftBtnPanel
+		&& m_pAILeftBtnPanelUnExpend)
+	{
+		m_pAILeftBtnPanel->SetVisible(true);
+		m_pAILeftBtnPanelUnExpend->SetVisible(false);
+	}
 }
 
 void CAIViewResultsWnd::OnClose()
