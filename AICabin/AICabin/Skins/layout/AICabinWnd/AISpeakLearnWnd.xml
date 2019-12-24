@@ -12,12 +12,11 @@
         <Layout id="SpeakLearnCardLayout" pos="LTRB|471,321,431,251" style="Picture" bk.image="#ai_speak_learn_card">
           
         </Layout>
-        <Layout id="SpeakLearnTimeLayout" pos="LTRB|520,370,520,370" style="Picture" bk.image="#ai_speak_learn_time" visible="0">
+        <Layout id="SpeakLearnTimeLayout" pos="LT|520,370,880,341" style="Picture" bk.image="#ai_speak_learn_time" visible="1">
           
         </Layout>
 
-        <AutoSizeButton style="Label" pos="LTRB|520,370,520,370" text="#StrSpeakLearnCardText" txt.font="font175b" txt.textcolor="#N01" txt.halign="center" />
-
+        <AutoSizeButton id="card_text_lebel" style="Label" pos="LTRB|520,370,520,370" text="#StrSpeakLearnCardText" txt.font="font175b" txt.textcolor="#N01" txt.halign="center" />
 
         <XML id="AILeftBtnPanelStyle"/>
 
@@ -26,12 +25,12 @@
         <Button id="btn_speak_learn_record" pos="LT|-1,851,154,154" style="ImageButton" 
                 bk.image="#ai_speak_learn_record_nor"
                 bk_over.image="#ai_speak_learn_record_nor"
-                bk_down.image="#ai_speak_learn_record_click" visible="0"/>
+                bk_down.image="#ai_speak_learn_record_click" visible="1"/>
 
         <Button id="btn_speak_learn_recording" pos="LT|-1,878,250,100" style="Picture"
                 bk.image="#ai_speak_learn_recording" visible="0"/>
         
-        <Layout id="layout_speak_learn_retry" pos="LTRB|680,830,655,65" style="FillColor" color.fillcolor="FFFFFF">
+        <Layout id="layout_speak_learn_retry" pos="LTRB|680,830,655,65" style="FillColor" color.fillcolor="FFFFFF" visible="0">
           
         </Layout>
 
@@ -45,13 +44,15 @@
                 logo.image="#ai_btn_leave_logo"
                 bk.image="#ai_btn_panel_nor"
                 bk_over.image="#ai_btn_panel_nor"
-                bk_down.image="#ai_btn_panel_click" />
+                bk_down.image="#ai_btn_panel_click"
+                text="#StrLeave" txt.pos="LT|100,23,82,36" />
 
         <Button id="btn_left_panel_return" pos="LTRB|40,120,69,20" style="ImageButton"
                 logo.image="#ai_btn_return_logo"
                 bk.image="#ai_btn_panel_nor"
                 bk_over.image="#ai_btn_panel_nor"
-                bk_down.image="#ai_btn_panel_click" />
+                bk_down.image="#ai_btn_panel_click"
+                text="#StrReturn" txt.pos="LT|100,23,82,36" />
 
         <Button id="btn_left_panel_arraw" pos="LTRB|294,94,20,94" style="Picture"
                 bk.image="#ai_btn_left_arrow"/>
@@ -71,7 +72,7 @@
                 logo.image="#ai_btn_return_logo"
                 bk.image="#ai_btn_panel_nor"
                 bk_over.image="#ai_btn_panel_nor"
-                bk_down.image="#ai_btn_panel_click" />
+                bk_down.image="#ai_btn_panel_click"/>
 
         <Button id="btn_right_panel_arraw" pos="LTRB|20,94,294,94" style="Picture"
                 bk.image="#ai_btn_right_arrow"/>

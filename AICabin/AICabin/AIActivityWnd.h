@@ -13,6 +13,10 @@ protected:
 	virtual void		OnCreate();
 	virtual void		OnClose();
 
+private:
+    bool OnLayoutBodyPartsEvent(TEventUI& evt);
+    bool OnLayoutListenReadEvent(TEventUI& evt);
+    bool OnLayoutVrAiEvent(TEventUI& evt);
 
 };
 

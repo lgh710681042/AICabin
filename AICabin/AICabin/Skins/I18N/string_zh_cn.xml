@@ -114,6 +114,7 @@
     <String id="StrComplete">恭喜你完成本次学习，让我们继续学习吧~</String>
     <String id="StrNo">不 了</String>
     <String id="StrOkGo">好的，继续</String>
+    <String id="StrReturn">返回</String>
 
 
     <String id="StrSpeakLearnTitle">请读出屏幕上的英文单词</String>

@@ -161,7 +161,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             }
             break;
         }
-		case VK_F9:
+/*		case VK_F9:
 		{
 			CAISpeakLearnWnd* pAISpeakLearnWnd = new CAISpeakLearnWnd;
 			if (pAISpeakLearnWnd)
@@ -170,7 +170,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				pAISpeakLearnWnd->ShowWindow();
 			}
 			break;
-		}
+		}*/
 		case VK_F4:
 		{
 			CAIFaceLearnWnd* pAIFaceLearnWnd = new CAIFaceLearnWnd;

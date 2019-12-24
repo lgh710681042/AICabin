@@ -6,26 +6,23 @@
   <Style>
     <!--活动界面-->
     <Style id="AIActivityStyle">
-      <Layout id="AIActivityLayout" pos="LTRB|0,0,0,0" mode="vertfill" style="Picture" bk.image="#ai_activity_bg">
-        <!--标题区域-->
-        <Layout pos="LTRT|0,0,0,204">
-          <AutoSizeButton style="Label" pos="LT|-1,124,1000,68" maxwidth="1400" text="#StrTipActivity" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
-          <Button id="btn_activity_leave" pos="RT|26,28,244,126" style="ImageButton"
-                bk.image="#btn_activity_leave_nor" bk_over.image="#btn_activity_leave_nor" bk_down.image="#btn_activity_leave_click" text="#StrLeave"/>
-        </Layout>     
-        
+      <Layout id="AIActivityLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_activity_bg">
+        <AutoSizeButton style="Label" pos="LT|-1,124,1000,68" maxwidth="1400" text="#StrTipActivity" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+        <Button id="btn_activity_leave" pos="RT|26,28,244,126" style="ImageButton"
+              bk.image="#btn_activity_leave_nor" bk_over.image="#btn_activity_leave_nor" bk_down.image="#btn_activity_leave_click" text="#StrLeave"/>
+ 
         <!--活动选择主区域-->
-        <Layout pos="LTRT|55,0,107,804" mode="horzfill" style="Picture" bk.image="#ai_activity_paint">
+        <Layout id="activity_main_layout" pos="LTRB|55,204,107,72" mode="horzfill" style="Picture" bk.image="#ai_activity_paint">
           <Control pos="LTLB|0,0,150,0"/>   
-          <Layout pos="LTLB|0,110,492,30" mode="vertfill" style="Picture" bk.image="#activity_one_bg">
+          <Layout id="activity_one_layout" pos="LTLB|0,110,492,30" mode="vertfill" style="Picture" bk.image="#activity_one_bg" EnableMouse="1" >
             <Control pos="LTRT|0,0,0,37"/>
             <AutoSizeButton style="Label" pos="LT|50,0,74,25" maxwidth="360" text="#StrActivityOne" txt.font="font24" txt.textcolor="80FFFFFF" txt.halign="center"/>
             <Control pos="LTRT|0,0,0,198"/>
             <AutoSizeButton style="Label" pos="LT|51,0,294,49" maxwidth="360" text="#StrActivityityContent1" txt.font="font48" txt.textcolor="80FFFFFF" txt.halign="center"/>
             <Control />
           </Layout>
-          
-          <Layout pos="LTLB|0,46,568,9" mode="vertfill" style="Picture" bk.image="#activity_two_bg">
+
+          <Layout id="activity_two_layout" pos="LTLB|0,46,568,9" mode="vertfill" style="Picture" bk.image="#activity_two_bg" EnableMouse="1" >
             <Control pos="LTRT|0,0,0,89"/>
             <AutoSizeButton style="Label" pos="LT|106,0,77,26" maxwidth="360" text="#StrActivityTwo" txt.font="font25" txt.textcolor="CCFFFFFF" txt.halign="center"/>
             <Control pos="LTRT|0,0,0,210"/>
@@ -34,7 +31,7 @@
           </Layout>
           
           <Control pos="LTLB|0,0,49,0"/>
-          <Layout pos="LTLB|0,110,492,30" mode="vertfill" style="Picture" bk.image="#activity_three_bg">
+          <Layout id="activity_three_layout" pos="LTLB|0,110,492,30" mode="vertfill" style="Picture" bk.image="#activity_three_bg" EnableMouse="1" >
             <Control pos="LTRT|0,0,0,37"/>
             <AutoSizeButton style="Label" pos="LT|51,0,74,25" maxwidth="360" text="#StrActivityThree" txt.font="font24" txt.textcolor="80FFFFFF" txt.halign="center"/>
             <Control pos="LTRT|0,0,0,198"/>
@@ -44,7 +41,6 @@
           <Control />
         </Layout>
 
-        <Control />
       </Layout>
     </Style>
   </Style>

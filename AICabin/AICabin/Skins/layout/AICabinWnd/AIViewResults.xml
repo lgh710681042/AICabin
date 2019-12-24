@@ -81,6 +81,8 @@
           <Button id="btn_view_results_go" pos="RT|637,687,341,126" style="ImageButton"
                 bk.image="#view_results_btn_go_nor" bk_over.image="#view_results_btn_go_nor" bk_down.image="#view_results_btn_go_pre" text="#StrOkGo"/>     
         </Layout>
+
+        <XML id="AILeftBtnPanelStyle"/>
       </Layout>
 
         <!--<Layout pos="LT|-1,-1,750,750" style="FillColor" color.fillcolor="00FF00" >-->   
