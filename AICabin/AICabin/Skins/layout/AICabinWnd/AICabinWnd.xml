@@ -98,6 +98,7 @@
 
     <Style id="ImageButton">
       <Image id="bk" state="normal" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+      <Image id="logo" state="all" paintmode="center" image="" pos="LT|0,0,80,80"/>
       <Image id="bk_over" state="over|focus" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
       <Image id="bk_down" state="down|ckall" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
       <Image id="bk_disable" state="disable" paintmode="center" image="" pos="LTRB|0,0,0,0"/>

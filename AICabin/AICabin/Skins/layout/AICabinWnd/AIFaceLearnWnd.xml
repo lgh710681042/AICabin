@@ -1,0 +1,44 @@
+<skin version="1.0">
+  <Window id="AIFaceLearnWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1">
+    <XML id="AIFaceLearnStyle"/>
+  </Window>
+
+  <Style>
+    <!--活动界面-->
+    <Style id="AIFaceLearnStyle">
+      <Layout id="AIFaceLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_face_bg">
+        <AutoSizeButton id="btn_face_common_title" 
+                        style="Label" 
+                        pos="LT|-1,125,1920,75" 
+                        text="#StrFaceLearnCommonTitle" 
+                        txt.font="font70" 
+                        txt.textcolor="#N01" 
+                        txt.halign="center" 
+                        visible="0" />
+
+        <Layout id="face_title_two" pos="LTRB|-1,125,-1,813">
+          <AutoSizeButton style="Label" pos="LTRB|0,0,0,82" text="#StrFaceLearnTitleTop" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
+          <AutoSizeButton style="Label" pos="LTRB|0,82,0,0" text="#StrFaceLearnCommonTitle" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
+        </Layout>
+
+        <Layout pos="LTRB|649,277,517,173" style="Picture" bk.image="#ai_face_decorate">
+          <Layout pos="LT|36,18,550,550" style="Picture" bk.image="#ai_face_recongnition">
+            
+          </Layout>
+        </Layout>
+
+        <XML id="AILeftBtnPanelStyle"/>
+
+        <XML id="AIRightPanelStyle"/>
+        
+        <!--<Button id="btn_speak_learn_record" pos="LT|-1,851,154,154" style="ImageButton" 
+                bk.image="#ai_speak_learn_record_nor"
+                bk_over.image="#ai_speak_learn_record_nor"
+                bk_down.image="#ai_speak_learn_record_click" visible="0"/>-->
+
+        <Control />
+      </Layout>
+    </Style>
+
+  </Style>
+</skin>

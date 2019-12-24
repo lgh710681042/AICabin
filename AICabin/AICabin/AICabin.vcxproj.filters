@@ -63,6 +63,12 @@
     <ClInclude Include="SpeechTechControl.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AISpeakLearnWnd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AIFaceLearnWnd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -95,6 +101,12 @@
     <ClCompile Include="SpeechTechControl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AISpeakLearnWnd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AIFaceLearnWnd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AICabin.rc">
@@ -117,6 +129,15 @@
       <Filter>skin</Filter>
     </Xml>
     <Xml Include="Skins\layout\AICabinWnd\AIActivity.xml">
+      <Filter>skin</Filter>
+    </Xml>
+    <Xml Include="Skins\layout\AICabinWnd\AISpeakLearnWnd.xml">
+      <Filter>skin</Filter>
+    </Xml>
+    <Xml Include="Skins\I18N\string_zh_cn.xml">
+      <Filter>skin</Filter>
+    </Xml>
+    <Xml Include="Skins\layout\AICabinWnd\AIFaceLearnWnd.xml">
       <Filter>skin</Filter>
     </Xml>
   </ItemGroup>

@@ -17,6 +17,9 @@
 #include <memory.h>
 #include <tchar.h>
 #include <mmsystem.h>
+#include <atlbase.h>
+#include <atlcom.h>
+#include <shobjidl.h>
 
 // TODO:  在此处引用程序需要的其他头文件
 #include "DirectUI.h"

@@ -36,15 +36,17 @@ bool CApplication::Initialize(HINSTANCE hInstance, LPTSTR lpCmdLine)
 
 bool CApplication::Run()
 {
-	CHttpRequestDataModel Model;
-	Model.strHost = "127.0.0.1";
-	Model.strUrl = "/";
-	Model.strMethod = "GET";
-	Model.strHeader = "Content-Type: application/json;charset=UTF-8";
-	Model.nPort = 3001;
+	// ¿ª²Õ½Ó¿Ú²âÊÔ
+	/*CHttpRequestDataModel Model;
+	Model.strHost = "ai-learning-box-service.beta.101.com";
+	Model.strUrl = "/v0.1/visitor/opening_infos?cabin_code=ai_learning_box";
+	Model.strMethod = "PUT";
+	Model.strHeader = "Accept: application/json\r\nContent-Type: application/json\r\nsdp-app-id:44cebc7f-7b35-4e4d-95d0-3c7af9db955e";
+	Model.nPort = 443;
 
 	string strData;
 	DWORD code = NDhttp_Wrapper::Excute(&Model, strData);
+	wstring strUnicode = CommonUtil::Utf8ToUnicode(strData.c_str());*/
 
 	m_pMainWnd = new CMainWnd();
 	if (m_pMainWnd)
@@ -63,6 +65,8 @@ bool CApplication::Run()
 
 	//pAICabinWnd->CenterWindow();
 	pAICabinWnd->ShowWindow();
+
+	pAICabinWnd->SetFullScreen(true);
 
 	//message loop
 	m_pMainWnd->LoopMessage();

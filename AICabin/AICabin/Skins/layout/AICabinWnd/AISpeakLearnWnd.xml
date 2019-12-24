@@ -1,0 +1,81 @@
+<skin version="1.0">
+  <Window id="AISpeakLearnWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1">
+    <XML id="AISpeakLearnStyle"/>
+  </Window>
+
+  <Style>
+    <!--活动界面-->
+    <Style id="AISpeakLearnStyle">
+      <Layout id="AISpeakLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_speak_learn_bg">
+        <AutoSizeButton style="Label" pos="LT|-1,124,785,68" text="#StrSpeakLearnTitle" txt.font="font70" txt.textcolor="#N01" txt.halign="center" />
+
+        <Layout id="SpeakLearnCardLayout" pos="LTRB|471,321,431,251" style="Picture" bk.image="#ai_speak_learn_card">
+          
+        </Layout>
+        <Layout id="SpeakLearnTimeLayout" pos="LTRB|520,370,520,370" style="Picture" bk.image="#ai_speak_learn_time" visible="0">
+          
+        </Layout>
+
+        <AutoSizeButton style="Label" pos="LTRB|520,370,520,370" text="#StrSpeakLearnCardText" txt.font="font175b" txt.textcolor="#N01" txt.halign="center" />
+
+
+        <XML id="AILeftBtnPanelStyle"/>
+
+        <XML id="AIRightPanelStyle"/>
+        
+        <Button id="btn_speak_learn_record" pos="LT|-1,851,154,154" style="ImageButton" 
+                bk.image="#ai_speak_learn_record_nor"
+                bk_over.image="#ai_speak_learn_record_nor"
+                bk_down.image="#ai_speak_learn_record_click" visible="0"/>
+
+        <Button id="btn_speak_learn_recording" pos="LT|-1,878,250,100" style="Picture"
+                bk.image="#ai_speak_learn_recording" visible="0"/>
+        
+        <Layout id="layout_speak_learn_retry" pos="LTRB|680,830,655,65" style="FillColor" color.fillcolor="FFFFFF">
+          
+        </Layout>
+
+        <Control />
+      </Layout>
+    </Style>
+
+    <Style id="AILeftBtnPanelStyle">
+      <Layout id="AILeftBtnPanel" pos="LB|0,40,333,220" style="Picture" bk.image="#ai_left_btn_panel">
+        <Button id="btn_left_panel_leave" pos="LTRB|40,20,69,120" style="ImageButton"
+                logo.image="#ai_btn_leave_logo"
+                bk.image="#ai_btn_panel_nor"
+                bk_over.image="#ai_btn_panel_nor"
+                bk_down.image="#ai_btn_panel_click" />
+
+        <Button id="btn_left_panel_return" pos="LTRB|40,120,69,20" style="ImageButton"
+                logo.image="#ai_btn_return_logo"
+                bk.image="#ai_btn_panel_nor"
+                bk_over.image="#ai_btn_panel_nor"
+                bk_down.image="#ai_btn_panel_click" />
+
+        <Button id="btn_left_panel_arraw" pos="LTRB|294,94,20,94" style="Picture"
+                bk.image="#ai_btn_left_arrow"/>
+        
+      </Layout>
+    </Style>
+    
+    <Style id="AIRightPanelStyle">
+      <Layout id="AIRightBtnPanel" pos="RB|0,40,333,220" style="Picture" bk.image="#ai_right_btn_panel">
+        <Button id="btn_right_panel_leave" pos="LTRB|69,20,40,120" style="ImageButton"
+                logo.image="#ai_btn_leave_logo"
+                bk.image="#ai_btn_panel_nor"
+                bk_over.image="#ai_btn_panel_nor"
+                bk_down.image="#ai_btn_panel_click" />
+
+        <Button id="btn_right_panel_return" pos="LTRB|69,120,40,20" style="ImageButton"
+                logo.image="#ai_btn_return_logo"
+                bk.image="#ai_btn_panel_nor"
+                bk_over.image="#ai_btn_panel_nor"
+                bk_down.image="#ai_btn_panel_click" />
+
+        <Button id="btn_right_panel_arraw" pos="LTRB|20,94,294,94" style="Picture"
+                bk.image="#ai_btn_right_arrow"/>
+      </Layout>
+    </Style>
+  </Style>
+</skin>

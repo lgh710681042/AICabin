@@ -110,6 +110,8 @@ call  "skin_complie.bat"</Command>
     <ClInclude Include="AIActivityWnd.h" />
     <ClInclude Include="AICabin.h" />
     <ClInclude Include="AICabinWnd.h" />
+    <ClInclude Include="AIFaceLearnWnd.h" />
+    <ClInclude Include="AISpeakLearnWnd.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="CommonUtil.h" />
     <ClInclude Include="MainWnd.h" />
@@ -125,6 +127,8 @@ call  "skin_complie.bat"</Command>
     <ClCompile Include="AIActivityWnd.cpp" />
     <ClCompile Include="AICabin.cpp" />
     <ClCompile Include="AICabinWnd.cpp" />
+    <ClCompile Include="AIFaceLearnWnd.cpp" />
+    <ClCompile Include="AISpeakLearnWnd.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="CommonUtil.cpp" />
     <ClCompile Include="MainWnd.cpp" />
@@ -143,8 +147,13 @@ call  "skin_complie.bat"</Command>
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Skins\I18N\string_zh_cn.xml" />
     <Xml Include="Skins\layout\AICabinWnd\AIActivity.xml" />
     <Xml Include="Skins\layout\AICabinWnd\AICabinWnd.xml" />
+    <Xml Include="Skins\layout\AICabinWnd\AIFaceLearnWnd.xml" />
+    <Xml Include="Skins\layout\AICabinWnd\AISpeakLearnWnd.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="Skins\res\res.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

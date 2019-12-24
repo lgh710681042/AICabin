@@ -55,9 +55,10 @@
     <Font id="font50"  face="微软雅黑" height="50" underline="0" bold="0"/>
     <Font id="font60"  face="微软雅黑" height="60" underline="0" bold="0"/>
     <Font id="font60b"  face="微软雅黑" height="60" unlineline="0" bold="1"/>
-	<Font id="font70"  face="微软雅黑" height="70" underline="0" bold="0"/>
-	<Font id="font70b"  face="微软雅黑" height="70" underline="0" bold="1"/>
+	  <Font id="font70"  face="微软雅黑" height="70" underline="0" bold="0"/>
+	  <Font id="font70b"  face="微软雅黑" height="70" underline="0" bold="1"/>
     <Font id="font72b"  face="微软雅黑" height="72" unlineline="0" bold="1"/>
+    <Font id="font175b"  face="微软雅黑" height="175" unlineline="0" bold="1"/>
     <Font id="font230"  face="楷体" height="230" unlineline="0" bold="0"/>
   </Font>
   
@@ -98,6 +99,9 @@
     <String id="StrTipActivityContent2">听说读写与理解</String>
     <String id="StrTipActivityContent3">VR与AI</String>
     <String id="StrLeave">离开</String>
-    
+    <String id="StrSpeakLearnTitle">请读出屏幕上的英文单词</String>
+    <String id="StrSpeakLearnCardText">HAPPY</String>
+    <String id="StrFaceLearnCommonTitle">请做一个"%"的表情吧</String>
+    <String id="StrFaceLearnTitleTop">棒极了，发音非常准确！</String>
   </String>
 </skin>
