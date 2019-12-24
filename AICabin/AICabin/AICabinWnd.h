@@ -45,5 +45,8 @@ private:
 	bool fullscreen_ = false;
 
 	CButtonUI* m_pButtonTipsStart = nullptr;
+	CControlUI* m_pAnimateControl = nullptr;
+	int	m_nCurFrame = 0;
+
 };
 

@@ -11,7 +11,8 @@
       <Layout id="AIHelloLayout" pos="LTRB|0,0,0,0" mode="vertfill" style="Picture" bk.image="#ai_hello_bg" visible="1">
         <Control pos="LTRT|0,0,0,180"/>
         <Layout mode="vertfill" pos="LTRT|0,0,0,395">
-          <Control pos="LT|-1,-1,392,395" style="Picture" bk.image="#ai_paint"/>
+          <!--<Control id="" pos="LT|-1,-1,392,395" style="Picture" bk.image="#ai_paint"/>-->
+          <XML id="AIAnimateControlStyle" />
         </Layout>
         <Control pos="LTRT|0,0,0,30"/>
         <Layout mode="vertfill" pos="LTRT|100,0,100,77">
@@ -37,6 +38,10 @@
         <Control />
       </Layout>
       
+    </Style>
+
+    <Style id="AIAnimateControlStyle">
+      <Control id="AIAnimateControl" pos="LT|-1,-1,392,395" style="Picture" bk.image="#ai_paint"/>
     </Style>
     
     <Style id="PresenterThumbnailPanel">

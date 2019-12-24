@@ -9,7 +9,15 @@
 #include "Application.h"
 
 #define SHOW_ACTIVITY_TIMER			1001
+#ifdef _DEBUG
+#define SHOW_ACTIVITY_INTERVAL		1000
+#else
 #define SHOW_ACTIVITY_INTERVAL		8000
+#endif
+
+
+#define TIMER_EARTH_ID			1003					// 转动定时器
+#define TIMER_EARTH_TIME		50						// 每66ms切换图片
 
 CAICabinWnd::CAICabinWnd()
 {
@@ -130,6 +138,23 @@ bool CAICabinWnd::OnTimer(TEventUI& event)
 
 			KillTimer(GetRoot(), SHOW_ACTIVITY_TIMER);
 		}
+		else if (event.wParam == TIMER_EARTH_ID)
+		{
+			if (m_pAnimateControl == nullptr)
+				return true;
+
+			if (m_nCurFrame >= 99)
+			{
+				m_nCurFrame = 0;
+			}
+
+			TCHAR szPath[MAX_PATH];
+			_stprintf_s(szPath, _T("#ai_animate_%d"), m_nCurFrame);
+			m_pAnimateControl->SetAttribute(_T("bk.image"), szPath);
+			m_pAnimateControl->GetParent()->Invalidate();
+
+			m_nCurFrame++;
+		}
 	}
 
 	return true;
@@ -141,6 +166,7 @@ void CAICabinWnd::OnCreate()
 	__super::OnCreate();
 
 	m_pButtonTipsStart = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_start")));
+	m_pAnimateControl = this->FindControl(_T("AIAnimateControl"));
 
 	GetRoot()->OnEvent += MakeDelegate(this, &CAICabinWnd::OnTimer);
 }
@@ -158,6 +184,8 @@ bool CAICabinWnd::ShowWindow(int nCmdShow /*= SW_SHOW*/)
 		return bResult;
 
 	this->SetTimer(GetRoot(), SHOW_ACTIVITY_TIMER, SHOW_ACTIVITY_INTERVAL);
+
+	this->SetTimer(GetRoot(), TIMER_EARTH_ID, TIMER_EARTH_TIME);
 
 	return bResult;
 }
