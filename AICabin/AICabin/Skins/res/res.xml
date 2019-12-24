@@ -13,6 +13,26 @@
     <Image id="activity_two_bg"               path="common\activity_two_bg.png"/>
     <Image id="activity_three_bg"             path="common\activity_three_bg.png"/>
 
+
+    <Image id="view_results_bg"               path="common\view_results_bg.png"/>
+    <Image id="view_results_panel_bg"         path="common\view_results_panel_bg.png"/>
+    <Image id="view_results_panel_light"      path="common\view_results_panel_light.png"/>
+    <Image id="view_results_paint_50"         path="common\view_results_paint_50.png"/>
+    <Image id="view_results_paint_100"        path="common\view_results_paint_100.png"/>
+    <Image id="view_results_btn_go_nor"       path="common\view_results_btn_go_nor.png"/>
+    <Image id="view_results_btn_go_pre"       path="common\view_results_btn_go_pre.png"/>
+    <Image id="view_results_btn_leave_nor"    path="common\view_results_btn_leave_nor.png"/>
+    <Image id="view_results_btn_leave_pre"    path="common\view_results_btn_leave_pre.png"/>
+    <Image id="view_results_btn_no_nor"       path="common\view_results_btn_no_nor.png"/>
+    <Image id="view_results_btn_no_pre"       path="common\view_results_btn_no_pre.png"/>
+    <Image id="view_results_icon_return_nor"  path="common\view_results_icon_return_nor.png"/>
+    <Image id="view_results_icon_return_pre"  path="common\view_results_icon_return_pre.png"/>
+    <Image id="view_results_icon_0"           path="common\view_results_icon_0.png"/>
+    <Image id="view_results_icon_50"          path="common\view_results_icon_50.png"/>
+    <Image id="view_results_icon_100"         path="common\view_results_icon_100.png"/>
+
+    
+
     <Image id="ai_speak_learn_bg"             path="common\ai_speak_learn_bg.png"/>
     <Image id="ai_speak_learn_card"             path="common\ai_speak_learn_card.png"/>
     <Image id="ai_speak_learn_time"           path="common\ai_speak_learn_time.png"/>

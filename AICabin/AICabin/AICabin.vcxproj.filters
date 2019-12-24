@@ -63,6 +63,9 @@
     <ClInclude Include="SpeechTechControl.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AIViewResultsWnd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="AISpeakLearnWnd.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -99,6 +102,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SpeechTechControl.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AIViewResultsWnd.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="AISpeakLearnWnd.cpp">
@@ -140,5 +146,10 @@
     <Xml Include="Skins\layout\AICabinWnd\AIFaceLearnWnd.xml">
       <Filter>skin</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skins\layout\AICabinWnd\AIViewResults.xml">
+      <Filter>skin</Filter>
+    </None>
   </ItemGroup>
 </Project>

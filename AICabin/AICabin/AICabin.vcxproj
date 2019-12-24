@@ -110,6 +110,7 @@ call  "skin_complie.bat"</Command>
     <ClInclude Include="AIActivityWnd.h" />
     <ClInclude Include="AICabin.h" />
     <ClInclude Include="AICabinWnd.h" />
+    <ClInclude Include="AIViewResultsWnd.h" />
     <ClInclude Include="AIFaceLearnWnd.h" />
     <ClInclude Include="AISpeakLearnWnd.h" />
     <ClInclude Include="Application.h" />
@@ -127,6 +128,7 @@ call  "skin_complie.bat"</Command>
     <ClCompile Include="AIActivityWnd.cpp" />
     <ClCompile Include="AICabin.cpp" />
     <ClCompile Include="AICabinWnd.cpp" />
+    <ClCompile Include="AIViewResultsWnd.cpp" />
     <ClCompile Include="AIFaceLearnWnd.cpp" />
     <ClCompile Include="AISpeakLearnWnd.cpp" />
     <ClCompile Include="Application.cpp" />
@@ -155,6 +157,11 @@ call  "skin_complie.bat"</Command>
       <SubType>Designer</SubType>
     </Xml>
     <Xml Include="Skins\res\res.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skins\layout\AICabinWnd\AIViewResults.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
