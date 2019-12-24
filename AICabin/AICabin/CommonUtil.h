@@ -39,4 +39,7 @@ namespace CommonUtil
 
 	wstring
 		GetLeaveMp3Path();
+
+	int
+		ToolRandInt(int min, int max);
 }

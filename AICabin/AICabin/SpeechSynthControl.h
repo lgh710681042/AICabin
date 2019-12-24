@@ -12,9 +12,9 @@ public:
 	bool		Init();
 
 	//入舱语音合成，回掉直接播放
-	void		SpeechSynthStartEnter(wstring& strText);
+	void		ControlSpeechSynthStartEnter(wstring& strText);
 
 	//离开语音合成，回掉直接播放
-	void		SpeechSynthStartLeave(wstring& strText);
+	void		ControlSpeechSynthStartLeave(wstring& strText);
 };
 

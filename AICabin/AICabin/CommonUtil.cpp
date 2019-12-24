@@ -159,4 +159,12 @@ namespace CommonUtil
 		return strDir + _T("\\leave.mp3");
 	}
 
+	int ToolRandInt(int min, int max)
+	{
+		srand((unsigned)time(NULL));
+		int r = rand() % (max - min + 1) + min;
+
+		return r;
+	}
+
 }

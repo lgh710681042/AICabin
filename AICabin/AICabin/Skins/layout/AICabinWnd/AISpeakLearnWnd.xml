@@ -27,8 +27,9 @@
                 bk_over.image="#ai_speak_learn_record_nor"
                 bk_down.image="#ai_speak_learn_record_click" visible="1"/>
 
-        <Button id="btn_speak_learn_recording" pos="LT|-1,878,250,100" style="Picture"
-                bk.image="#ai_speak_learn_recording" visible="0"/>
+        <Animation id="btn_speak_learn_recording" pos="LTRB|835,878,835,102" FrameRate="100"  image="#ai_speak_learn_recording_gif" Gif="0" autostart="1" />
+        <!--<Button id="btn_speak_learn_recording" pos="LT|-1,878,250,100" style="Picture"
+                bk.image="#ai_speak_learn_recording" visible="0"/>-->
         
         <Layout id="layout_speak_learn_retry" pos="LTRB|680,830,655,65" style="FillColor" color.fillcolor="FFFFFF" visible="0">
           
@@ -54,7 +55,7 @@
                 bk_down.image="#ai_btn_panel_click"
                 text="#StrReturn" txt.pos="LT|100,23,82,36" />
 
-        <Button id="btn_left_panel_arraw" pos="LTRB|294,94,20,94" style="Picture"
+        <Button id="btn_left_panel_arraw" pos="LTRB|270,75,0,74" style="Picture"
                 bk.image="#ai_btn_left_arrow"/>
         
       </Layout>
@@ -74,7 +75,7 @@
                 bk_over.image="#ai_btn_panel_nor"
                 bk_down.image="#ai_btn_panel_click"/>
 
-        <Button id="btn_right_panel_arraw" pos="LTRB|20,94,294,94" style="Picture"
+        <Button id="btn_right_panel_arraw" pos="LTRB|0,75,270,74" style="Picture"
                 bk.image="#ai_btn_right_arrow"/>
       </Layout>
     </Style>

@@ -119,6 +119,7 @@ call  "skin_complie.bat"</Command>
     <ClInclude Include="NDHttp_Wrapper.hpp" />
     <ClInclude Include="NewUI\UIAutoSizeButton.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SpeechRecordControl.h" />
     <ClInclude Include="SpeechSynthControl.h" />
     <ClInclude Include="SpeechTechControl.h" />
     <ClInclude Include="stdafx.h" />
@@ -136,6 +137,7 @@ call  "skin_complie.bat"</Command>
     <ClCompile Include="CommonUtil.cpp" />
     <ClCompile Include="MainWnd.cpp" />
     <ClCompile Include="NewUI\UIAutoSizeButton.cpp" />
+    <ClCompile Include="SpeechRecordControl.cpp" />
     <ClCompile Include="SpeechSynthControl.cpp" />
     <ClCompile Include="SpeechTechControl.cpp" />
     <ClCompile Include="stdafx.cpp">

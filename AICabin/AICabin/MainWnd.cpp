@@ -143,7 +143,7 @@ void CMainWnd::HandAICabinOpen(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 
 	wstring strTipsStart = m_pAICabinWnd->SetTipsStart(CApplication::GetInstance()->GetUserName());
 	//ÓïÒôºÏ³É²¥·Å
-	CSpeechSynthControl::GetInstance()->SpeechSynthStartEnter(strTipsStart);
+	CSpeechSynthControl::GetInstance()->ControlSpeechSynthStartEnter(strTipsStart);
 
 	m_pAICabinWnd->ShowWindow();
 	m_pAICabinWnd->SetFullScreen(true);

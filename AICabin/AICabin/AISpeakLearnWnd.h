@@ -31,7 +31,7 @@ private:
     bool                OnCheckRecordTime(TEventUI &evt);//涨条定时器
 
 private:
-    vector<std::string> m_vecExample;
+    vector<std::wstring> m_vecExample;
     int m_nTotalTimeWidth;//涨条总长度
     int m_nEveryTimeWidth;//每次涨条长度
     int m_nTatalTimes;//总次数
@@ -40,7 +40,7 @@ private:
 
     CAutoSizeButtonUI*  m_pBtnCardText;
     CButtonUI*          m_pBtnSpeakLearnRecord;
-    CButtonUI*          m_pBtnSpeakLearnRecording;
+	CAnimationUI*       m_pBtnSpeakLearnRecording;
     CLayoutUI*          m_pLayoutSpeakLearnTime;
 };
 

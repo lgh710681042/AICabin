@@ -51,7 +51,7 @@ bool CSpeechSynthControl::Init()
 	return CSpeechTechControl::GetInstance()->SpeechSynthInit();
 }
 
-void CSpeechSynthControl::SpeechSynthStartEnter(wstring& strText)
+void CSpeechSynthControl::ControlSpeechSynthStartEnter(wstring& strText)
 {
 	bool bResult = CSpeechTechControl::GetInstance()->SpeechSynthStartAsyn(CommonUtil::UnicodeToUtf8(strText.c_str()).c_str(),
 		CommonUtil::UnicodeToUtf8(CommonUtil::GetEnterMp3Path().c_str()).c_str(),
@@ -59,7 +59,7 @@ void CSpeechSynthControl::SpeechSynthStartEnter(wstring& strText)
 		onSynthResultEnter);
 }
 
-void CSpeechSynthControl::SpeechSynthStartLeave(wstring& strText)
+void CSpeechSynthControl::ControlSpeechSynthStartLeave(wstring& strText)
 {
 	bool bResult = CSpeechTechControl::GetInstance()->SpeechSynthStartAsyn(CommonUtil::UnicodeToUtf8(strText.c_str()).c_str(),
 		CommonUtil::UnicodeToUtf8(CommonUtil::GetLeaveMp3Path().c_str()).c_str(),

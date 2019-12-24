@@ -1,16 +1,20 @@
 #include "stdafx.h"
+#include "Singleton.h"
+#include "CommonUtil.h"
+#include "SpeechRecordControl.h"
 #include "AISpeakLearnWnd.h"
 
 #define	SPEAK_LEARN_TIMERID			1001
+#define SPEAK_RECORD_TIMERID		2001
 
 
 CAISpeakLearnWnd::CAISpeakLearnWnd()
 {
-    m_vecExample.push_back("Happy");
-    m_vecExample.push_back("Excited");
-    m_vecExample.push_back("Surprised");
-    m_vecExample.push_back("Sad");
-    m_vecExample.push_back("Angry");
+    m_vecExample.push_back(_T("Happy"));
+    m_vecExample.push_back(_T("Excited"));
+    m_vecExample.push_back(_T("Surprised"));
+    m_vecExample.push_back(_T("Sad"));
+    m_vecExample.push_back(_T("Angry"));
 
     m_nTotalTimeWidth = 0;//涨条总长度
     m_nEveryTimeWidth = 0;//每次涨条长度
@@ -61,7 +65,7 @@ void CAISpeakLearnWnd::OnCreate()
     if (m_pBtnSpeakLearnRecord)
         m_pBtnSpeakLearnRecord->SetVisible(true);
 
-    m_pBtnSpeakLearnRecording = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_learn_recording")));
+	m_pBtnSpeakLearnRecording = dynamic_cast<CAnimationUI*> (FindControl(_T("btn_speak_learn_recording")));
     if (m_pBtnSpeakLearnRecording)
         m_pBtnSpeakLearnRecording->SetVisible(false);
 
@@ -74,7 +78,15 @@ void CAISpeakLearnWnd::OnCreate()
         m_pLayoutSpeakLearnTime->SetVisible(false);
     }
 
-    GetRoot()->OnEvent += MakeDelegate(this, &CAISpeakLearnWnd::OnCheckRecordTime);  
+    GetRoot()->OnEvent += MakeDelegate(this, &CAISpeakLearnWnd::OnCheckRecordTime);
+
+	//获取vec随机数
+	int nIndex = CommonUtil::ToolRandInt(0, m_vecExample.size() - 1);
+	if (nIndex < m_vecExample.size())
+	{
+		wstring strText = m_vecExample[nIndex];
+		m_pBtnCardText->SetText(strText.c_str());
+	}
 
 	__super::OnCreate();
 }
@@ -86,16 +98,14 @@ void CAISpeakLearnWnd::OnClose()
 
 bool CAISpeakLearnWnd::OnEventLeave(TNotifyUI* pTNotify)
 {
-    if (m_pBtnCardText)
-        m_pBtnCardText->SetText(_T("Sad"));
+    
 
     return true;
 }
 
 bool CAISpeakLearnWnd::OnEventReturn(TNotifyUI* pTNotify)
 {
-    if (m_pBtnCardText)
-        m_pBtnCardText->SetText(_T("Surprised"));
+    
 
     return true;
 }
@@ -121,6 +131,10 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
     }
     m_nCurTimes = 0;
     SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, 200);
+
+	CSpeechRecordControl::GetInstance()->ControlSpeechRecoStart();
+
+
     return true;
 }
 

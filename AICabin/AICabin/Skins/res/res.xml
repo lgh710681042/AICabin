@@ -47,6 +47,7 @@
     <Image id="ai_speak_learn_record_click"             path="common\ai_speak_learn_record_click.png"/>
     <Image id="ai_speak_learn_record_nor"             path="common\ai_speak_learn_record_nor.png"/>
     <Image id="ai_speak_learn_recording"             path="common\ai_speak_learn_recording.png"/>
+    <Image id="ai_speak_learn_recording_gif"             path="common\ai_speak_learn_recording.gif"/>
 
     <Image id="ai_face_bg"             path="common\ai_face_bg.png"/>
     <Image id="ai_face_bg_success"             path="common\ai_face_bg_success.png"/>
