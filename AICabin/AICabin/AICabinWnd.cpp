@@ -216,7 +216,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
             if (pAIViewResultsWnd)
             {
-                pAIViewResultsWnd->SetViewResultsState(Resultsstate_Zero);
+                pAIViewResultsWnd->SetPercentage(0, 30);
                 pAIViewResultsWnd->CreateWnd(GetHWND());
                 pAIViewResultsWnd->ShowWindow();
             }
@@ -227,7 +227,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
             if (pAIViewResultsWnd)
             {
-                pAIViewResultsWnd->SetViewResultsState(Resultsstate_Other);
+                pAIViewResultsWnd->SetPercentage(35, 70);
                 pAIViewResultsWnd->CreateWnd(GetHWND());
                 pAIViewResultsWnd->ShowWindow();
             }
@@ -238,7 +238,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
             if (pAIViewResultsWnd)
             {
-                pAIViewResultsWnd->SetViewResultsState(Resultsstate_Hundred);
+                pAIViewResultsWnd->SetPercentage(100, 99);
                 pAIViewResultsWnd->CreateWnd(GetHWND());
                 pAIViewResultsWnd->ShowWindow();
             }
