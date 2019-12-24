@@ -8,12 +8,7 @@
     <Style id="AIViewResultsStyle">
       <Layout id="AIViewResultsLayoutZero" pos="LTRB|0,0,0,0" style="Picture" bk.image="#view_results_bg">
         <AutoSizeButton style="Label" pos="LT|-1,123,1000,68" maxwidth="1200" text="#StrAchievement" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
-   
-        <Button id="btn_view_results_return" pos="LT|26,26,125,126" style="ImageButton"
-              bk.image="#view_results_icon_return_nor" bk_over.image="#view_results_icon_return_nor" bk_down.image="#view_results_icon_return_pre"  visible="1"/>     
-        <Button id="btn_view_results_leave" pos="RT|26,26,244,126" style="ImageButton"
-              bk.image="#view_results_btn_leave_nor" bk_over.image="#view_results_btn_leave_nor" bk_down.image="#view_results_btn_leave_pre" text="#StrLeave"  visible="1"/>
-        
+      
         <Control pos="LT|-1,194,1436,690" style="Picture" bk.image="#view_results_panel_bg"/>
         <Control id="ctrl_panel_paint_50" pos="LT|-1,251,1697,459" style="Picture" bk.image="#view_results_paint_50" visible="0"/>
         <Control id="ctrl_panel_paint_100" pos="LT|114,90,1744,812" style="Picture" bk.image="#view_results_paint_100" visible="0"/>
