@@ -21,6 +21,10 @@
         <XML id="AILeftBtnPanelStyle"/>
 
         <XML id="AIRightPanelStyle"/>
+
+        <XML id="AILeftBtnPanelUnExpendStyle"/>
+
+        <XML id="AIRightBtnPanelUnExpendStyle"/>
         
         <Button id="btn_speak_learn_record" pos="LT|-1,851,154,154" style="ImageButton" 
                 bk.image="#ai_speak_learn_record_nor"
@@ -68,9 +72,16 @@
         
       </Layout>
     </Style>
+
+    <Style id="AILeftBtnPanelUnExpendStyle">
+      <Layout id="AILeftBtnPanelUnExpend" pos="LB|0,40,70,220" style="Picture" bk.image="#ai_left_panel_unexpend" visible="0">
+        <Button id="btn_left_panel_arraw_un" pos="LTRB|0,75,0,74" style="Picture"
+                bk.image="#ai_btn_right_arrow"/>
+      </Layout>
+    </Style>
     
     <Style id="AIRightPanelStyle">
-      <Layout id="AIRightBtnPanel" pos="RB|0,40,333,220" style="Picture" bk.image="#ai_right_btn_panel">
+      <Layout id="AIRightBtnPanel" pos="RB|0,40,333,220" style="Picture" bk.image="#ai_right_btn_panel" visible="0">
         <Button id="btn_right_panel_leave" pos="LTRB|69,20,40,120" style="ImageButton"
                 logo.image="#ai_btn_leave_logo"
                 bk.image="#ai_btn_panel_nor"
@@ -89,5 +100,13 @@
                 bk.image="#ai_btn_right_arrow"/>
       </Layout>
     </Style>
+
+    <Style id="AIRightBtnPanelUnExpendStyle">
+      <Layout id="AIRightBtnPanelUnExpend" pos="RB|0,40,70,220" style="Picture" bk.image="#ai_right_panel_unexpend">
+        <Button id="btn_right_panel_arraw_un" pos="LTRB|0,75,0,74" style="Picture"
+                bk.image="#ai_btn_left_arrow"/>
+      </Layout>
+    </Style>
+    
   </Style>
 </skin>

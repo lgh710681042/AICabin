@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "AILearnBaseWnd.h"
 #include "AIFaceLearnWnd.h"
 
 
@@ -35,9 +36,26 @@ HWND CAIFaceLearnWnd::CreateWnd(HWND hParent)
 	return hWnd;
 }
 
+void CAIFaceLearnWnd::SetFaceQuestion(wstring strFaceQuestion)
+{
+	if (m_pBtnFaceCommonTitle
+		&& m_pBtnFaceTitleTop)
+	{
+		WCHAR szBuf[1024];
+		_stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrFaceLearnCommonTitle")), strFaceQuestion.c_str());
+
+		m_pBtnFaceCommonTitle->SetText(szBuf);
+		m_pBtnFaceTitleBottom->SetText(szBuf);
+	}
+}
+
 void CAIFaceLearnWnd::OnCreate()
 {
 	__super::OnCreate();
+
+	m_pBtnFaceCommonTitle = dynamic_cast<CButtonUI*> (FindControl(_T("btn_face_common_title")));
+	m_pBtnFaceTitleTop = dynamic_cast<CButtonUI*> (FindControl(_T("btn_face_title_top")));
+	m_pBtnFaceTitleBottom = dynamic_cast<CButtonUI*> (FindControl(_T("btn_face_title_bottom")));
 }
 
 void CAIFaceLearnWnd::OnClose()

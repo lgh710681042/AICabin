@@ -38,6 +38,8 @@
     <Image id="ai_speak_learn_time"           path="common\ai_speak_learn_time.png"/>
     <Image id="ai_left_btn_panel"             path="common\ai_left_btn_panel.png"/>
     <Image id="ai_right_btn_panel"            path="common\ai_right_btn_panel.png"/>
+    <Image id="ai_left_panel_unexpend"        path="common\ai_left_panel_unexpend.png"/>
+    <Image id="ai_right_panel_unexpend"       path="common\ai_right_panel_unexpend.png"/>
     <Image id="ai_btn_panel_nor"              path="common\ai_btn_panel_nor.png"/>
     <Image id="ai_btn_panel_click"            path="common\ai_btn_panel_click.png"/>
     <Image id="ai_btn_leave_logo"             path="common\ai_btn_leave_logo.png"/>
@@ -62,7 +64,7 @@
     <Image id="ai_btn_face_two_nor"             path="common\ai_btn_face_two_nor.png"/>
     <Image id="ai_face_decorate"             path="common\ai_face_decorate.png"/>
     <Image id="ai_face_recongnition"             path="common\ai_face_recongnition.png"/>
-
+    
     <Image id="ai_animate_0"             path="animate\1_00000.png"/>
     <Image id="ai_animate_1"             path="animate\1_00001.png"/>
     <Image id="ai_animate_2"             path="animate\1_00002.png"/>

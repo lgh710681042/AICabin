@@ -1,6 +1,8 @@
 #pragma once
 
 #define WM_AICABIN_OPEN		WM_USER + 101
+#define WM_SPEAK_RESULT		WM_USER + 102
+
 
 namespace CommonUtil
 {

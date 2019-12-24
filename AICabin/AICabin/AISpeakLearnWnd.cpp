@@ -2,10 +2,14 @@
 #include "Singleton.h"
 #include "CommonUtil.h"
 #include "SpeechRecordControl.h"
+#include "AILearnBaseWnd.h"
+#include "AIFaceLearnWnd.h"
 #include "AISpeakLearnWnd.h"
+#include <algorithm>
 
 #define	SPEAK_LEARN_TIMERID			1001
 #define SPEAK_RECORD_TIMERID		2001
+#define SPEAK_RECORD_INTERVAL		5000		//语音识别5秒
 
 
 CAISpeakLearnWnd::CAISpeakLearnWnd()
@@ -73,16 +77,10 @@ void CAISpeakLearnWnd::OnCreate()
         m_pBtnSpeakLearnRecording->SetVisible(false);
 
     m_pBtnSpeakJump = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_jump")));
-    if (m_pBtnSpeakJump)
-        m_pBtnSpeakJump->SetVisible(false);
-
     m_pBtnSpeakReadAgain = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_read_again")));
-    if (m_pBtnSpeakReadAgain)
-        m_pBtnSpeakReadAgain->SetVisible(false);
-    
     m_pBtnSpeakTimesTips = dynamic_cast<CAutoSizeButtonUI*> (FindControl(_T("speak_times_tips")));
-    if (m_pBtnSpeakTimesTips)
-        m_pBtnSpeakTimesTips->SetVisible(false);
+
+	SetSpeakFailLayoutVisible(false);
 
     m_pLayoutSpeakLearnTime = dynamic_cast<CLayoutUI*> (FindControl(_T("SpeakLearnTimeLayout")));
     if (m_pLayoutSpeakLearnTime)
@@ -99,8 +97,8 @@ void CAISpeakLearnWnd::OnCreate()
 	int nIndex = CommonUtil::ToolRandInt(0, m_vecExample.size() - 1);
 	if (nIndex < m_vecExample.size())
 	{
-		wstring strText = m_vecExample[nIndex];
-		m_pBtnCardText->SetText(strText.c_str());
+		m_strSpeakQuestion = m_vecExample[nIndex];
+		m_pBtnCardText->SetText(m_strSpeakQuestion.c_str());
 	}
 
 	__super::OnCreate();
@@ -109,6 +107,62 @@ void CAISpeakLearnWnd::OnCreate()
 void CAISpeakLearnWnd::OnClose()
 {
     
+}
+
+LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	if (message == WM_SPEAK_RESULT )
+	{
+		do
+		{
+			SpeakResultStruct* pSpeakResult = (SpeakResultStruct*)lParam;
+			if (pSpeakResult == nullptr
+				|| pSpeakResult->strMsgUnicode.empty())
+				break;
+
+			wstring strMstUnicodeTmp = pSpeakResult->strMsgUnicode;
+			wstring strSpeakQuestionTmp = m_strSpeakQuestion;
+
+			transform(strMstUnicodeTmp.begin(), strMstUnicodeTmp.end(), strMstUnicodeTmp.begin(), ::tolower);
+			transform(strSpeakQuestionTmp.begin(), strSpeakQuestionTmp.end(), strSpeakQuestionTmp.begin(), ::tolower);
+
+			wstring::size_type nPos = strMstUnicodeTmp.find(strSpeakQuestionTmp);
+
+			if (nPos == wstring::npos)
+			{
+				delete pSpeakResult;
+				break;
+			}
+
+			//语音识别成功，人脸识别窗口显示
+			CAIFaceLearnWnd* pAIFaceLearnWnd = new CAIFaceLearnWnd;
+			if (pAIFaceLearnWnd)
+			{
+				pAIFaceLearnWnd->CreateWnd(GetParent(GetHWND()));
+				pAIFaceLearnWnd->SetFaceQuestion(m_strSpeakQuestion);
+				pAIFaceLearnWnd->ShowWindow();
+			}
+
+			delete pSpeakResult;
+
+			return __super::WindowProc(message, wParam, lParam);
+
+		} while (false);
+
+		if (m_nSpeakCurTimes >= m_nSpeakTotalTimes)
+		{
+			//失败次数当于总次数,直接显示成绩界面
+			//CAIViewResultsWnd
+
+			return __super::WindowProc(message, wParam, lParam);
+		}
+
+		//识别失败
+		ShowSpeakFailResult();
+		m_nSpeakCurTimes++;
+	}
+
+	return __super::WindowProc(message, wParam, lParam);
 }
 
 bool CAISpeakLearnWnd::OnEventLeave(TNotifyUI* pTNotify)
@@ -143,8 +197,10 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
     m_nCurTimes = 0;
     SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, 100);
 
+	//begin record
 	CSpeechRecordControl::GetInstance()->ControlSpeechRecoStart();
-
+	CSpeechRecordControl::GetInstance()->SetMsgHwnd(GetHWND());
+	SetTimer(GetRoot(), SPEAK_RECORD_TIMERID, SPEAK_RECORD_INTERVAL);
 
     return true;
 }
@@ -152,14 +208,7 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
 bool CAISpeakLearnWnd::OnEventReadJump(TNotifyUI* pTNotify)
 {
     //下一个
-    if (m_pBtnSpeakTimesTips)
-        m_pBtnSpeakTimesTips->SetVisible(false);
-
-    if (m_pBtnSpeakJump)
-        m_pBtnSpeakJump->SetVisible(false);
-
-    if (m_pBtnSpeakReadAgain)
-        m_pBtnSpeakReadAgain->SetVisible(false);
+	SetSpeakFailLayoutVisible(false);
 
     if (m_pBtnSpeakLearnRecording)
         m_pBtnSpeakLearnRecording->SetVisible(false);
@@ -175,14 +224,7 @@ bool CAISpeakLearnWnd::OnEventReadJump(TNotifyUI* pTNotify)
 
 bool CAISpeakLearnWnd::OnEventReadAgain(TNotifyUI* pTNotify)
 {
-    if (m_pBtnSpeakTimesTips)
-        m_pBtnSpeakTimesTips->SetVisible(false);
-
-    if (m_pBtnSpeakJump)
-        m_pBtnSpeakJump->SetVisible(false);
-
-    if (m_pBtnSpeakReadAgain)
-        m_pBtnSpeakReadAgain->SetVisible(false);
+	SetSpeakFailLayoutVisible(false);
 
     if (m_pBtnSpeakLearnRecording)
         m_pBtnSpeakLearnRecording->SetVisible(false);
@@ -208,7 +250,14 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
             rc.right = rc.left + m_nCurTimes * m_nEveryTimeWidth;
             if (rc.right > m_rc.right || m_nCurTimes > m_nTatalTimes)
             {
-                ShowSpeakResult();
+				if (m_pLayoutSpeakLearnTime)
+				{
+					m_pLayoutSpeakLearnTime->SetRect(m_rc);
+					m_pLayoutSpeakLearnTime->OnlyResizeChild();
+					m_pLayoutSpeakLearnTime->Invalidate();
+				}
+
+				KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
                 return true;
             }
 
@@ -222,6 +271,12 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
             m_nCurTimes++;
         }
         break;
+		case SPEAK_RECORD_TIMERID:
+		{
+			CSpeechRecordControl::GetInstance()->ControlSpeechRecoStop();
+			KillTimer(GetRoot(), SPEAK_RECORD_TIMERID);
+			break;
+		}
         default:
             break;
         }
@@ -229,10 +284,9 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
     return true;
 }
 
-void CAISpeakLearnWnd::ShowSpeakResult()
+//语音识别失败，UI展示
+void CAISpeakLearnWnd::ShowSpeakFailResult()
 {
-    KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
-
     if (m_pBtnSpeakLearnRecord)
         m_pBtnSpeakLearnRecord->SetVisible(false);
 
@@ -242,12 +296,40 @@ void CAISpeakLearnWnd::ShowSpeakResult()
     if (m_pLayoutSpeakLearnTime)
         m_pLayoutSpeakLearnTime->SetVisible(false);
 
-    if (m_pBtnSpeakTimesTips)
-        m_pBtnSpeakTimesTips->SetVisible(true);
+	SetSpeakFailLayoutVisible(true);
+}
 
-    if (m_pBtnSpeakJump)
-        m_pBtnSpeakJump->SetVisible(true);
+//不要灰心，跳过按钮，重新朗读，显示隐藏
+void CAISpeakLearnWnd::SetSpeakFailLayoutVisible(bool bVisible)
+{
+	if (m_pBtnSpeakTimesTips)
+	{
+		m_pBtnSpeakTimesTips->SetVisible(bVisible);
+		if (bVisible)
+		{
+			wstring strLeftTimes = _T("");
+			switch (m_nSpeakTotalTimes - m_nSpeakCurTimes)
+			{
+			case 2:
+				strLeftTimes = I18NSTR(_T("#StrHanYuTwo"));
+				break;
+			case 1:
+				strLeftTimes = I18NSTR(_T("#StrHanYuOne"));
+				break;
+			default:
+				break;
+			}
 
-    if (m_pBtnSpeakReadAgain)
-        m_pBtnSpeakReadAgain->SetVisible(true);
+			WCHAR szBuf[1024];
+			_stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrSpeakNotGood")), strLeftTimes.c_str());
+
+			m_pBtnSpeakTimesTips->SetText(szBuf);
+		}
+	}
+		
+	if (m_pBtnSpeakJump)
+		m_pBtnSpeakJump->SetVisible(bVisible);
+
+	if (m_pBtnSpeakReadAgain)
+		m_pBtnSpeakReadAgain->SetVisible(bVisible);
 }

@@ -121,8 +121,11 @@
     <String id="StrSpeakLearnCardText">HAPPY</String>
     <String id="StrFaceLearnCommonTitle">请做一个"%s"的表情吧</String>
     <String id="StrFaceLearnTitleTop">棒极了，发音非常准确！</String>
-    <String id="StrSpeakNotGood">不要灰心，还有两次机会哦</String>
+    <String id="StrSpeakNotGood">不要灰心，还有%s次机会哦</String>
     <String id="StrJump">跳过</String>
     <String id="StrReadingAgain">重新朗读</String>
-  </String>
+    
+    <String id="StrHanYuTwo">两</String>
+    <String id="StrHanYuOne">一</String>
+    </String>
 </skin>

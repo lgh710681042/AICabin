@@ -6,11 +6,32 @@
 
 void __stdcall onResult(int nCode, char *strMsg)
 {
-	if (strMsg)
+	if ( nCode == 0 
+		&& strMsg)
 	{
 		wstring strMsgUnicode = CommonUtil::Utf8ToUnicode(strMsg);
 
 		logwrapper::OutputInfo("{} strMsg: {}", __FUNCTION__, strMsg);
+
+		SpeakResultStruct* pSpeakResult = new SpeakResultStruct;
+		pSpeakResult->nCode = nCode;
+		pSpeakResult->strMsgUnicode = strMsgUnicode;
+
+		
+		if (::PostMessage(CSpeechRecordControl::GetInstance()->GetMsgHwnd(),
+			WM_SPEAK_RESULT,
+			NULL,
+			LPARAM(pSpeakResult)) == FALSE)
+		{
+			delete pSpeakResult;
+		}
+	}
+	else
+	{
+		::PostMessage(CSpeechRecordControl::GetInstance()->GetMsgHwnd(),
+			WM_SPEAK_RESULT,
+			NULL,
+			NULL);
 	}
 }
 

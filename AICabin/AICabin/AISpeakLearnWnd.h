@@ -24,6 +24,8 @@ protected:
 	virtual void		OnCreate();
 	virtual void		OnClose();
 
+	virtual LRESULT		WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
+
 private:
     bool				OnEventLeave(TNotifyUI* pTNotify); // 离开响应事件
     bool				OnEventReturn(TNotifyUI* pTNotify); // 返回响应事件
@@ -32,7 +34,10 @@ private:
     bool                OnEventReadAgain(TNotifyUI* pTNotify); // 重新朗读
 
     bool                OnCheckRecordTime(TEventUI &evt);//涨条定时器
-    void                ShowSpeakResult();//显示朗读结果
+    void                ShowSpeakFailResult();//显示朗结果
+
+	void				SetSpeakFailLayoutVisible(bool bVisible);		//识别失败layout显示隐藏
+
 private:
     vector<std::wstring> m_vecExample;
     int m_nTotalTimeWidth;//涨条总长度
@@ -48,5 +53,9 @@ private:
     CButtonUI*          m_pBtnSpeakReadAgain;
     CAutoSizeButtonUI*  m_pBtnSpeakTimesTips;
     CLayoutUI*          m_pLayoutSpeakLearnTime;
+
+	int m_nSpeakTotalTimes = 3;				//speak 总次数
+	int m_nSpeakCurTimes = 1;				//speak 当前次数
+	wstring m_strSpeakQuestion = _T("");		//speak question
 };
 

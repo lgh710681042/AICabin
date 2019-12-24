@@ -17,8 +17,8 @@
                         visible="0" />
 
         <Layout id="face_title_two" pos="LTRB|-1,125,-1,813">
-          <AutoSizeButton style="Label" pos="LTRB|0,0,0,82" text="#StrFaceLearnTitleTop" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
-          <AutoSizeButton style="Label" pos="LTRB|0,82,0,0" text="#StrFaceLearnCommonTitle" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
+          <AutoSizeButton id="btn_face_title_top" style="Label" pos="LTRB|0,0,0,82" text="#StrFaceLearnTitleTop" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
+          <AutoSizeButton id="btn_face_title_bottom" style="Label" pos="LTRB|0,65,0,0" text="#StrFaceLearnCommonTitle" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
         </Layout>
 
         <Layout pos="LTRB|649,277,517,173" style="Picture" bk.image="#ai_face_decorate">
@@ -30,6 +30,10 @@
         <XML id="AILeftBtnPanelStyle"/>
 
         <XML id="AIRightPanelStyle"/>
+
+        <XML id="AILeftBtnPanelUnExpendStyle"/>
+
+        <XML id="AIRightBtnPanelUnExpendStyle"/>
         
         <!--<Button id="btn_speak_learn_record" pos="LT|-1,851,154,154" style="ImageButton" 
                 bk.image="#ai_speak_learn_record_nor"

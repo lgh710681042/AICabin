@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Singleton.h"
+#include "AILearnBaseWnd.h"
 #include "AIActivityWnd.h"
 #include "AIViewResultsWnd.h"
 #include "AISpeakLearnWnd.h"
