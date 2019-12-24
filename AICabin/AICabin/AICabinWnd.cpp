@@ -8,6 +8,17 @@
 #include "MainWnd.h"
 #include "Application.h"
 
+#define SHOW_ACTIVITY_TIMER			1001
+#ifdef _DEBUG
+#define SHOW_ACTIVITY_INTERVAL		1000
+#else
+#define SHOW_ACTIVITY_INTERVAL		8000
+#endif
+
+
+#define TIMER_EARTH_ID			1003					// 转动定时器
+#define TIMER_EARTH_TIME		50						// 每66ms切换图片
+
 CAICabinWnd::CAICabinWnd()
 {
 	ModifyWndStyle(GWL_STYLE, WS_VISIBLE, 0);
@@ -97,15 +108,86 @@ void CAICabinWnd::MarkFullScreen(bool fullscreen)
 		task_bar_list_->MarkFullscreenWindow(GetHWND(), !!fullscreen);
 }
 
+wstring CAICabinWnd::SetTipsStart(wstring& strUserName)
+{
+	WCHAR szBuf[1024];
+	_stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrTipStart")), strUserName.c_str());
+
+	if (m_pButtonTipsStart)
+	{
+		m_pButtonTipsStart->SetText(szBuf);
+		m_pButtonTipsStart->Invalidate();
+	}
+
+	return szBuf;
+}
+
+bool CAICabinWnd::OnTimer(TEventUI& event)
+{
+	if (event.nType == UIEVENT_TIMER)
+	{
+		if (event.wParam == SHOW_ACTIVITY_TIMER)
+		{
+			//显示活动列表窗口
+			CAIActivityWnd* pAIActivityWnd = new CAIActivityWnd;
+			if (pAIActivityWnd)
+			{
+				pAIActivityWnd->CreateWnd(GetHWND());
+				pAIActivityWnd->ShowWindow();
+			}
+
+			KillTimer(GetRoot(), SHOW_ACTIVITY_TIMER);
+		}
+		else if (event.wParam == TIMER_EARTH_ID)
+		{
+			if (m_pAnimateControl == nullptr)
+				return true;
+
+			if (m_nCurFrame >= 99)
+			{
+				m_nCurFrame = 0;
+			}
+
+			TCHAR szPath[MAX_PATH];
+			_stprintf_s(szPath, _T("#ai_animate_%d"), m_nCurFrame);
+			m_pAnimateControl->SetAttribute(_T("bk.image"), szPath);
+			m_pAnimateControl->GetParent()->Invalidate();
+
+			m_nCurFrame++;
+		}
+	}
+
+	return true;
+}
+
 void CAICabinWnd::OnCreate()
 {
 	SetWindowClassName(_T("AICabinWnd"));
 	__super::OnCreate();
+
+	m_pButtonTipsStart = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_start")));
+	m_pAnimateControl = this->FindControl(_T("AIAnimateControl"));
+
+	GetRoot()->OnEvent += MakeDelegate(this, &CAICabinWnd::OnTimer);
 }
 
 void CAICabinWnd::OnClose()
 {
 	PostMessage(CApplication::GetInstance()->GetMainHwnd(), WM_QUIT, 0, 0);
+}
+
+bool CAICabinWnd::ShowWindow(int nCmdShow /*= SW_SHOW*/)
+{
+	bool bResult = __super::ShowWindow(nCmdShow);
+
+	if (nCmdShow != SW_SHOW)
+		return bResult;
+
+	this->SetTimer(GetRoot(), SHOW_ACTIVITY_TIMER, SHOW_ACTIVITY_INTERVAL);
+
+	this->SetTimer(GetRoot(), TIMER_EARTH_ID, TIMER_EARTH_TIME);
+
+	return bResult;
 }
 
 LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)

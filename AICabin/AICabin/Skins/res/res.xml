@@ -57,6 +57,116 @@
     <Image id="ai_face_decorate"             path="common\ai_face_decorate.png"/>
     <Image id="ai_face_recongnition"             path="common\ai_face_recongnition.png"/>
 
+    <Image id="ai_animate_0"             path="animate\1_00000.png"/>
+    <Image id="ai_animate_1"             path="animate\1_00001.png"/>
+    <Image id="ai_animate_2"             path="animate\1_00002.png"/>
+    <Image id="ai_animate_3"             path="animate\1_00003.png"/>
+    <Image id="ai_animate_4"             path="animate\1_00004.png"/>
+    <Image id="ai_animate_5"             path="animate\1_00005.png"/>
+    <Image id="ai_animate_6"             path="animate\1_00006.png"/>
+    <Image id="ai_animate_7"             path="animate\1_00007.png"/>
+    <Image id="ai_animate_8"             path="animate\1_00008.png"/>
+    <Image id="ai_animate_9"             path="animate\1_00009.png"/>
+
+    <Image id="ai_animate_10"             path="animate\1_00010.png"/>
+    <Image id="ai_animate_11"             path="animate\1_00011.png"/>
+    <Image id="ai_animate_12"             path="animate\1_00012.png"/>
+    <Image id="ai_animate_13"             path="animate\1_00013.png"/>
+    <Image id="ai_animate_14"             path="animate\1_00014.png"/>
+    <Image id="ai_animate_15"             path="animate\1_00015.png"/>
+    <Image id="ai_animate_16"             path="animate\1_00016.png"/>
+    <Image id="ai_animate_17"             path="animate\1_00017.png"/>
+    <Image id="ai_animate_18"             path="animate\1_00018.png"/>
+    <Image id="ai_animate_19"             path="animate\1_00019.png"/>
+
+    <Image id="ai_animate_20"             path="animate\1_00020.png"/>
+    <Image id="ai_animate_21"             path="animate\1_00021.png"/>
+    <Image id="ai_animate_22"             path="animate\1_00022.png"/>
+    <Image id="ai_animate_23"             path="animate\1_00023.png"/>
+    <Image id="ai_animate_24"             path="animate\1_00024.png"/>
+    <Image id="ai_animate_25"             path="animate\1_00025.png"/>
+    <Image id="ai_animate_26"             path="animate\1_00026.png"/>
+    <Image id="ai_animate_27"             path="animate\1_00027.png"/>
+    <Image id="ai_animate_28"             path="animate\1_00028.png"/>
+    <Image id="ai_animate_29"             path="animate\1_00029.png"/>
+
+    <Image id="ai_animate_30"             path="animate\1_00030.png"/>
+    <Image id="ai_animate_31"             path="animate\1_00031.png"/>
+    <Image id="ai_animate_32"             path="animate\1_00032.png"/>
+    <Image id="ai_animate_33"             path="animate\1_00033.png"/>
+    <Image id="ai_animate_34"             path="animate\1_00034.png"/>
+    <Image id="ai_animate_35"             path="animate\1_00035.png"/>
+    <Image id="ai_animate_36"             path="animate\1_00036.png"/>
+    <Image id="ai_animate_37"             path="animate\1_00037.png"/>
+    <Image id="ai_animate_38"             path="animate\1_00038.png"/>
+    <Image id="ai_animate_39"             path="animate\1_00039.png"/>
+
+    <Image id="ai_animate_40"             path="animate\1_00040.png"/>
+    <Image id="ai_animate_41"             path="animate\1_00041.png"/>
+    <Image id="ai_animate_42"             path="animate\1_00042.png"/>
+    <Image id="ai_animate_43"             path="animate\1_00043.png"/>
+    <Image id="ai_animate_44"             path="animate\1_00044.png"/>
+    <Image id="ai_animate_45"             path="animate\1_00045.png"/>
+    <Image id="ai_animate_46"             path="animate\1_00046.png"/>
+    <Image id="ai_animate_47"             path="animate\1_00047.png"/>
+    <Image id="ai_animate_48"             path="animate\1_00048.png"/>
+    <Image id="ai_animate_49"             path="animate\1_00049.png"/>
+
+    <Image id="ai_animate_50"             path="animate\1_00050.png"/>
+    <Image id="ai_animate_51"             path="animate\1_00051.png"/>
+    <Image id="ai_animate_52"             path="animate\1_00052.png"/>
+    <Image id="ai_animate_53"             path="animate\1_00053.png"/>
+    <Image id="ai_animate_54"             path="animate\1_00054.png"/>
+    <Image id="ai_animate_55"             path="animate\1_00055.png"/>
+    <Image id="ai_animate_56"             path="animate\1_00056.png"/>
+    <Image id="ai_animate_57"             path="animate\1_00057.png"/>
+    <Image id="ai_animate_58"             path="animate\1_00058.png"/>
+    <Image id="ai_animate_59"             path="animate\1_00059.png"/>
+
+    <Image id="ai_animate_60"             path="animate\1_00060.png"/>
+    <Image id="ai_animate_61"             path="animate\1_00061.png"/>
+    <Image id="ai_animate_62"             path="animate\1_00062.png"/>
+    <Image id="ai_animate_63"             path="animate\1_00063.png"/>
+    <Image id="ai_animate_64"             path="animate\1_00064.png"/>
+    <Image id="ai_animate_65"             path="animate\1_00065.png"/>
+    <Image id="ai_animate_66"             path="animate\1_00066.png"/>
+    <Image id="ai_animate_67"             path="animate\1_00067.png"/>
+    <Image id="ai_animate_68"             path="animate\1_00068.png"/>
+    <Image id="ai_animate_69"             path="animate\1_00069.png"/>
+
+    <Image id="ai_animate_70"             path="animate\1_00070.png"/>
+    <Image id="ai_animate_71"             path="animate\1_00071.png"/>
+    <Image id="ai_animate_72"             path="animate\1_00072.png"/>
+    <Image id="ai_animate_73"             path="animate\1_00073.png"/>
+    <Image id="ai_animate_74"             path="animate\1_00074.png"/>
+    <Image id="ai_animate_75"             path="animate\1_00075.png"/>
+    <Image id="ai_animate_76"             path="animate\1_00076.png"/>
+    <Image id="ai_animate_77"             path="animate\1_00077.png"/>
+    <Image id="ai_animate_78"             path="animate\1_00078.png"/>
+    <Image id="ai_animate_79"             path="animate\1_00079.png"/>
+
+    <Image id="ai_animate_80"             path="animate\1_00080.png"/>
+    <Image id="ai_animate_81"             path="animate\1_00081.png"/>
+    <Image id="ai_animate_82"             path="animate\1_00082.png"/>
+    <Image id="ai_animate_83"             path="animate\1_00083.png"/>
+    <Image id="ai_animate_84"             path="animate\1_00084.png"/>
+    <Image id="ai_animate_85"             path="animate\1_00085.png"/>
+    <Image id="ai_animate_86"             path="animate\1_00086.png"/>
+    <Image id="ai_animate_87"             path="animate\1_00087.png"/>
+    <Image id="ai_animate_88"             path="animate\1_00088.png"/>
+    <Image id="ai_animate_89"             path="animate\1_00089.png"/>
+
+    <Image id="ai_animate_90"             path="animate\1_00090.png"/>
+    <Image id="ai_animate_91"             path="animate\1_00091.png"/>
+    <Image id="ai_animate_92"             path="animate\1_00092.png"/>
+    <Image id="ai_animate_93"             path="animate\1_00093.png"/>
+    <Image id="ai_animate_94"             path="animate\1_00094.png"/>
+    <Image id="ai_animate_95"             path="animate\1_00095.png"/>
+    <Image id="ai_animate_96"             path="animate\1_00096.png"/>
+    <Image id="ai_animate_97"             path="animate\1_00097.png"/>
+    <Image id="ai_animate_98"             path="animate\1_00098.png"/>
+    <Image id="ai_animate_99"             path="animate\1_00099.png"/>
+
   </Image>
 
 

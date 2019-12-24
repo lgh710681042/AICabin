@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "Singleton.h"
+#include "CommonUtil.h"
+#include "AICabinWnd.h"
 #include "MainWnd.h"
+#include "Application.h"
+#include "SpeechSynthControl.h"
+
 
 HINSTANCE CMainWnd::m_hInstance = NULL;
 CMainWnd::CMainWnd()
@@ -102,6 +107,9 @@ LRESULT CMainWnd::ThisWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 	case WM_COPYDATA:
 		HandCopyData(hWnd, uMsg, wParam, lParam);
 		break;
+	case WM_AICABIN_OPEN:
+		HandAICabinOpen(hWnd, uMsg, wParam, lParam);
+		break;
 	default:
 		break;
 	}
@@ -114,5 +122,30 @@ LRESULT CMainWnd::ThisWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 void CMainWnd::HandCopyData(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT* pCopyDataStruct = (COPYDATASTRUCT*)lParam;
+}
+
+void CMainWnd::HandAICabinOpen(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	if (m_pAICabinWnd == nullptr)
+	{
+		m_pAICabinWnd = new CAICabinWnd;
+		if (m_pAICabinWnd == nullptr)
+			return;
+
+		if (!m_pAICabinWnd->CreateWnd())
+			return;
+
+		m_pAICabinWnd->SetAutoDel(true);
+	}
+
+	if (m_pAICabinWnd == nullptr)
+		return;
+
+	wstring strTipsStart = m_pAICabinWnd->SetTipsStart(CApplication::GetInstance()->GetUserName());
+	//ÓïÒôºÏ³É²¥·Å
+	CSpeechSynthControl::GetInstance()->SpeechSynthStartEnter(strTipsStart);
+
+	m_pAICabinWnd->ShowWindow();
+	m_pAICabinWnd->SetFullScreen(true);
 }
 

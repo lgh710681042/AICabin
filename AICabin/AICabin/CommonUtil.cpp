@@ -21,10 +21,10 @@ namespace CommonUtil
 		return szPath;
 	}
 
-	wstring Utf8ToUnicode(const string& strUtf8)
-	{
-		return Utf8ToUnicode(strUtf8.c_str());
-	}
+	//wstring Utf8ToUnicode(const string& strUtf8)
+	//{
+	//	return Utf8ToUnicode(strUtf8.c_str());
+	//}
 
 	wstring Utf8ToUnicode(const char* pszUtf8)
 	{
@@ -43,10 +43,10 @@ namespace CommonUtil
 		return wide;
 	}
 
-	string UnicodeToUtf8(const wstring& strUnicode)
-	{
-		return UnicodeToUtf8(strUnicode.c_str());
-	}
+	//string UnicodeToUtf8(const wstring& strUnicode)
+	//{
+	//	return UnicodeToUtf8(strUnicode.c_str());
+	//}
 
 	string UnicodeToUtf8(const wchar_t* pszUnicode)
 	{
@@ -134,4 +134,29 @@ namespace CommonUtil
 
 		return strLogDir;
 	}
+
+	std::wstring GetEnterMp3Path()
+	{
+		wstring strDir = GetSystemAppDataFolder() + _T("\\AICabin");
+
+		if (!IsDirExist(strDir))
+		{
+			CreateDirectories(strDir);
+		}
+
+		return strDir + _T("\\enter.mp3");
+	}
+
+	std::wstring GetLeaveMp3Path()
+	{
+		wstring strDir = GetSystemAppDataFolder() + _T("\\AICabin");
+
+		if (!IsDirExist(strDir))
+		{
+			CreateDirectories(strDir);
+		}
+
+		return strDir + _T("\\leave.mp3");
+	}
+
 }

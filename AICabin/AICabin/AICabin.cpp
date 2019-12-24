@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Singleton.h"
 #include "CommonUtil.h"
+#include "AICabinWnd.h"
 #include "MainWnd.h"
 #include "Application.h"
 #include "AICabin.h"
