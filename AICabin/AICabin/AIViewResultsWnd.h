@@ -9,10 +9,8 @@ public:
     virtual ~CAIViewResultsWnd();
 
     UIBEGIN_MSG_MAP
-        UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_view_results_return"), OnEventReturn);
         UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_right_panel_return"), OnEventReturn);
         UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_left_panel_return"), OnEventReturn);
-        UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_view_results_leave"), OnEventLeave);
         UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_right_panel_leave"), OnEventLeave);
         UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_left_panel_leave"), OnEventLeave);
         UI_EVENT_ID_HANDLER(UINOTIFY_CLICK, _T("btn_view_results_no"), OnEventNo);
@@ -43,15 +41,11 @@ private:
     int                 m_nScore;//得分
     std::wstring        m_strUseTime;//用时
 
-    CButtonUI*          m_pBtnReturn;
-    CButtonUI*          m_pBtnLeave;
     CControlUI*         m_pCtrlPaint50;
     CControlUI*         m_pCtrlPaint100;
     CControlUI*         m_pCtrlIcon;
     CAutoSizeButtonUI*  m_pLabelPercentage;
     CAutoSizeButtonUI*  m_pLabelTimeData;
     CAutoSizeButtonUI*  m_pLabelEncourage;
-    CLayoutUI*          m_pLayLeftBtnPanel;
-    CLayoutUI*          m_pLayRightBtnPanel;
 };
 

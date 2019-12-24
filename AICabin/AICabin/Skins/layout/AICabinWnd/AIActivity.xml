@@ -8,8 +8,6 @@
     <Style id="AIActivityStyle">
       <Layout id="AIActivityLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_activity_bg">
         <AutoSizeButton style="Label" pos="LT|-1,124,1000,68" maxwidth="1400" text="#StrTipActivity" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
-        <Button id="btn_activity_leave" pos="RT|26,28,244,126" style="ImageButton"
-              bk.image="#btn_activity_leave_nor" bk_over.image="#btn_activity_leave_nor" bk_down.image="#btn_activity_leave_click" text="#StrLeave"/>
  
         <!--活动选择主区域-->
         <Layout id="activity_main_layout" pos="LTRB|55,204,107,72" mode="horzfill" style="Picture" bk.image="#ai_activity_paint">
