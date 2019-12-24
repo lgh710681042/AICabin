@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Singleton.h"
 #include "AIActivityWnd.h"
+#include "AIViewResultsWnd.h"
 #include "AICabinWnd.h"
 #include "MainWnd.h"
 #include "Application.h"
-
 
 CAICabinWnd::CAICabinWnd()
 {
@@ -54,6 +54,39 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		}
+        case VK_F6:
+        {
+            CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
+            if (pAIViewResultsWnd)
+            {
+                pAIViewResultsWnd->SetViewResultsState(Resultsstate_Zero);
+                pAIViewResultsWnd->CreateWnd(GetHWND());
+                pAIViewResultsWnd->ShowWindow();
+            }
+            break;
+        }
+        case VK_F7:
+        {
+            CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
+            if (pAIViewResultsWnd)
+            {
+                pAIViewResultsWnd->SetViewResultsState(Resultsstate_Other);
+                pAIViewResultsWnd->CreateWnd(GetHWND());
+                pAIViewResultsWnd->ShowWindow();
+            }
+            break;
+        }
+        case VK_F8:
+        {
+            CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
+            if (pAIViewResultsWnd)
+            {
+                pAIViewResultsWnd->SetViewResultsState(Resultsstate_Hundred);
+                pAIViewResultsWnd->CreateWnd(GetHWND());
+                pAIViewResultsWnd->ShowWindow();
+            }
+            break;
+        }
 		default:
 			break;
 		}

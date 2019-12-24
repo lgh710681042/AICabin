@@ -97,6 +97,7 @@
     </Style>
 
     <Style id="ImageButton">
+      <Text id="txt" color="#N01" state="all" halign="center" font="font35"/>
       <Image id="bk" state="normal" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
       <Image id="bk_over" state="over|focus" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
       <Image id="bk_down" state="down|ckall" paintmode="center" image="" pos="LTRB|0,0,0,0"/>

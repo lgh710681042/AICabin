@@ -1,0 +1,89 @@
+<skin version="1.0">
+  <Window id="AIViewResultsWnd" minWidth="1600" minHeight="900" move="1" resize="1" shadow="1">
+    <XML id="AIViewResultsStyle"/>
+  </Window>
+
+  <Style>
+    <!--活动界面-->
+    <Style id="AIViewResultsStyle">
+      
+      <!--0分界面-->
+      <Layout id="AIViewResultsLayoutZero" pos="LTRB|0,0,0,0" style="Picture" bk.image="#view_results_bg" visible="0">
+        <AutoSizeButton style="Label" pos="LT|-1,123,1000,68" maxwidth="1200" text="#StrAchievement" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+        <Button id="btn_view_results_return" pos="LT|26,26,125,126" style="ImageButton"
+              bk.image="#view_results_icon_return_nor" bk_over.image="#view_results_icon_return_nor" bk_down.image="#view_results_icon_return_pre"/>
+        <Button id="btn_view_results_leave" pos="RT|26,26,244,126" style="ImageButton"
+              bk.image="#view_results_btn_leave_nor" bk_over.image="#view_results_btn_leave_nor" bk_down.image="#view_results_btn_leave_pre" text="#StrLeave"/>
+        <Control pos="LT|-1,194,1436,690" style="Picture" bk.image="#view_results_panel_bg"/>  
+        
+        <!--中间面板光区域-->
+        <Layout id="panel_light_layout" pos="LT|0,200,1920,880" style="Picture" bk.image="#view_results_panel_light">
+          <Control pos="LT|503,150,224,247" style="Picture" bk.image="#view_results_icon_0"/>
+          
+          <AutoSizeButton style="Label" pos="LT|819,222,210,48" maxwidth="400" text="#StrAccuracyRate" txt.font="font50" txt.textcolor="#N01" txt.halign="left"/>
+          <AutoSizeButton id="percentage_label" style="Label" pos="RT|668,186,224,84" maxwidth="400" text="#StrPercentageZero" txt.font="font86b" txt.textcolor="#N01" txt.halign="left"/>     
+          <AutoSizeButton style="Label" pos="LT|819,330,210,48" maxwidth="400" text="#StrUseTime" txt.font="font50" txt.textcolor="#N01" txt.halign="left"/>
+          <AutoSizeButton id="timedata_label" style="Label" pos="RT|668,330,224,48" maxwidth="400" text="#StrTimeData" txt.font="font50b" txt.textcolor="#N01" txt.halign="left"/>
+
+          <AutoSizeButton id="encourage_label" style="Label" pos="LT|-1,516,1000,44" maxwidth="1200" text="#StrNotGood" txt.font="font45" txt.textcolor="#N01" txt.halign="center"/>
+          <Button id="btn_view_results_no" pos="LT|640,687,244,126" style="ImageButton"
+                bk.image="#view_results_btn_no_nor" bk_over.image="#view_results_btn_no_nor" bk_down.image="#view_results_btn_no_pre" text="#StrNo"/>
+          <Button id="btn_view_results_go" pos="RT|637,687,341,126" style="ImageButton"
+                bk.image="#view_results_btn_go_nor" bk_over.image="#view_results_btn_go_nor" bk_down.image="#view_results_btn_go_pre" text="#StrOkGo"/>     
+        </Layout>
+      </Layout>
+      
+      <!--0<x<100分界面-->
+      <Layout id="AIViewResultsLayoutOther" pos="LTRB|0,0,0,0" style="Picture" bk.image="#view_results_bg" visible="0">
+        <AutoSizeButton style="Label" pos="LT|-1,123,1000,68" maxwidth="1200" text="#StrAchievement" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+        <Button id="btn_view_results_return" pos="LT|26,26,125,126" style="ImageButton"
+              bk.image="#view_results_icon_return_nor" bk_over.image="#view_results_icon_return_nor" bk_down.image="#view_results_icon_return_pre"/>
+        <Button id="btn_view_results_leave" pos="RT|26,26,244,126" style="ImageButton"
+              bk.image="#view_results_btn_leave_nor" bk_over.image="#view_results_btn_leave_nor" bk_down.image="#view_results_btn_leave_pre" text="#StrLeave"/>  
+        <Control pos="LT|-1,194,1436,690" style="Picture" bk.image="#view_results_panel_bg"/>      
+    
+        <!--中间面板光区域-->
+        <Layout id="panel_light_layout" pos="LT|0,200,1920,880" style="Picture" bk.image="#view_results_panel_light">
+          <Control pos="LT|-1,51,1697,459" style="Picture" bk.image="#view_results_paint_50"/>      
+          <Control pos="LT|503,150,224,247" style="Picture" bk.image="#view_results_icon_50"/>
+          
+          <AutoSizeButton style="Label" pos="LT|819,222,210,48" maxwidth="400" text="#StrAccuracyRate" txt.font="font50" txt.textcolor="#N01" txt.halign="left"/>
+          <AutoSizeButton id="percentage_label" style="Label" pos="RT|668,186,224,84" maxwidth="400" text="#StrPercentageOther" txt.font="font86b" txt.textcolor="#N01" txt.halign="left"/>     
+          <AutoSizeButton style="Label" pos="LT|819,330,210,48" maxwidth="400" text="#StrUseTime" txt.font="font50" txt.textcolor="#N01" txt.halign="left"/>
+          <AutoSizeButton id="timedata_label" style="Label" pos="RT|668,330,224,48" maxwidth="400" text="#StrTimeData" txt.font="font50b" txt.textcolor="#N01" txt.halign="left"/>
+
+          <AutoSizeButton id="encourage_label" style="Label" pos="LT|-1,516,1000,44" maxwidth="1200" text="#StrComplete" txt.font="font45" txt.textcolor="#N01" txt.halign="center"/>
+          <Button id="btn_view_results_no" pos="LT|640,687,244,126" style="ImageButton"
+                bk.image="#view_results_btn_no_nor" bk_over.image="#view_results_btn_no_nor" bk_down.image="#view_results_btn_no_pre" text="#StrNo"/>
+          <Button id="btn_view_results_go" pos="RT|637,687,341,126" style="ImageButton"
+                bk.image="#view_results_btn_go_nor" bk_over.image="#view_results_btn_go_nor" bk_down.image="#view_results_btn_go_pre" text="#StrOkGo"/>     
+        </Layout>
+      </Layout>
+      
+       <!--100分界面-->
+      <Layout id="AIViewResultsLayoutHundred" pos="LTRB|0,0,0,0" style="Picture" bk.image="#view_results_bg" visible="0"> 
+        <AutoSizeButton style="Label" pos="LT|-1,123,1000,68" maxwidth="1200" text="#StrAchievement" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>       
+        <Control pos="LT|-1,194,1436,690" style="Picture" bk.image="#view_results_panel_bg"/>
+        <Control pos="LT|114,90,1744,812" style="Picture" bk.image="#view_results_paint_100"/>
+        
+        <!--中间面板光区域-->
+        <Layout id="panel_light_layout" pos="LT|0,200,1920,880" style="Picture" bk.image="#view_results_panel_light">
+          <Control pos="LT|503,150,224,247" style="Picture" bk.image="#view_results_icon_100"/>
+          
+          <AutoSizeButton style="Label" pos="LT|819,222,210,48" maxwidth="400" text="#StrAccuracyRate" txt.font="font50" txt.textcolor="#N01" txt.halign="left"/>
+          <AutoSizeButton id="percentage_label" style="Label" pos="RT|668,186,224,84" maxwidth="400" text="#StrPercentageHundred" txt.font="font86b" txt.textcolor="#N01" txt.halign="left"/>     
+          <AutoSizeButton style="Label" pos="LT|819,330,210,48" maxwidth="400" text="#StrUseTime" txt.font="font50" txt.textcolor="#N01" txt.halign="left"/>
+          <AutoSizeButton id="timedata_label" style="Label" pos="RT|668,330,224,48" maxwidth="400" text="#StrTimeData" txt.font="font50b" txt.textcolor="#N01" txt.halign="left"/>
+      
+          <AutoSizeButton id="encourage_label" style="Label" pos="LT|-1,516,1000,44" maxwidth="1200" text="#StrComplete" txt.font="font45" txt.textcolor="#N01" txt.halign="center"/>
+          <Button id="btn_view_results_no" pos="LT|640,687,244,126" style="ImageButton"
+                bk.image="#view_results_btn_no_nor" bk_over.image="#view_results_btn_no_nor" bk_down.image="#view_results_btn_no_pre" text="#StrNo"/>
+          <Button id="btn_view_results_go" pos="RT|637,687,341,126" style="ImageButton"
+                bk.image="#view_results_btn_go_nor" bk_over.image="#view_results_btn_go_nor" bk_down.image="#view_results_btn_go_pre" text="#StrOkGo"/>     
+        </Layout>
+      </Layout>
+
+        <!--<Layout pos="LT|-1,-1,750,750" style="FillColor" color.fillcolor="00FF00" >-->   
+    </Style>
+  </Style>
+</skin>
