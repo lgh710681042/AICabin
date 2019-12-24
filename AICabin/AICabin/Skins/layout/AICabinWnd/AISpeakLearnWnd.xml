@@ -12,7 +12,7 @@
         <Layout id="SpeakLearnCardLayout" pos="LTRB|471,321,431,251" style="Picture" bk.image="#ai_speak_learn_card">
           
         </Layout>
-        <Layout id="SpeakLearnTimeLayout" pos="LT|520,370,880,341" style="Picture" bk.image="#ai_speak_learn_time" visible="1">
+        <Layout id="SpeakLearnTimeLayout" pos="LT|518,368,880,341" style="Picture" bk.image="#ai_speak_learn_time" visible="1">
           
         </Layout>
 
@@ -25,15 +25,23 @@
         <Button id="btn_speak_learn_record" pos="LT|-1,851,154,154" style="ImageButton" 
                 bk.image="#ai_speak_learn_record_nor"
                 bk_over.image="#ai_speak_learn_record_nor"
-                bk_down.image="#ai_speak_learn_record_click" visible="1"/>
+                bk_down.image="#ai_speak_learn_record_click" visible="0"/>
 
         <Animation id="btn_speak_learn_recording" pos="LTRB|835,878,835,102" FrameRate="100"  image="#ai_speak_learn_recording_gif" Gif="0" autostart="1" />
         <!--<Button id="btn_speak_learn_recording" pos="LT|-1,878,250,100" style="Picture"
                 bk.image="#ai_speak_learn_recording" visible="0"/>-->
+
+        <AutoSizeButton id="speak_times_tips" style="Label" pos="LT|-1,792,800,35" maxwidth="1200" text="#StrSpeakNotGood" txt.font="font35" txt.textcolor="#N01" txt.halign="center" visible="0"/>
         
-        <Layout id="layout_speak_learn_retry" pos="LTRB|680,830,655,65" style="FillColor" color.fillcolor="FFFFFF" visible="0">
-          
-        </Layout>
+        <Button id="btn_speak_jump" pos="LT|658,887,244,126" style="ImageButton"
+                bk.image="#btn_speak_jump_nor"
+                bk_over.image="#btn_speak_jump_nor"
+                bk_down.image="#btn_speak_jump_pre" text="#StrJump" visible="0"/>
+
+        <Button id="btn_speak_read_again" pos="LT|958,887,304,126" style="ImageButton"
+                bk.image="#btn_speak_read_again_nor"
+                bk_over.image="#btn_speak_read_again_nor"
+                bk_down.image="#btn_speak_read_again_pre" text="#StrReadingAgain" visible="0"/>
 
         <Control />
       </Layout>
@@ -67,13 +75,15 @@
                 logo.image="#ai_btn_leave_logo"
                 bk.image="#ai_btn_panel_nor"
                 bk_over.image="#ai_btn_panel_nor"
-                bk_down.image="#ai_btn_panel_click" />
+                bk_down.image="#ai_btn_panel_click" 
+                text="#StrLeave" txt.pos="LT|100,23,82,36" />
 
         <Button id="btn_right_panel_return" pos="LTRB|69,120,40,20" style="ImageButton"
                 logo.image="#ai_btn_return_logo"
                 bk.image="#ai_btn_panel_nor"
                 bk_over.image="#ai_btn_panel_nor"
-                bk_down.image="#ai_btn_panel_click"/>
+                bk_down.image="#ai_btn_panel_click"
+                text="#StrReturn" txt.pos="LT|100,23,82,36" />
 
         <Button id="btn_right_panel_arraw" pos="LTRB|0,75,270,74" style="Picture"
                 bk.image="#ai_btn_right_arrow"/>

@@ -18,13 +18,16 @@ CAISpeakLearnWnd::CAISpeakLearnWnd()
 
     m_nTotalTimeWidth = 0;//涨条总长度
     m_nEveryTimeWidth = 0;//每次涨条长度
-    m_nTatalTimes = 25;//总次数
+    m_nTatalTimes = 50;//总次数
     m_nCurTimes = 0;//当前次数
     m_rc = { 0, 0, 0, 0 };
 
     m_pBtnCardText = nullptr;
     m_pBtnSpeakLearnRecord = nullptr;
     m_pBtnSpeakLearnRecording = nullptr;
+    m_pBtnSpeakJump = nullptr;
+    m_pBtnSpeakReadAgain = nullptr;
+    m_pBtnSpeakTimesTips = nullptr;
     m_pLayoutSpeakLearnTime = nullptr;
 
 }
@@ -69,6 +72,18 @@ void CAISpeakLearnWnd::OnCreate()
     if (m_pBtnSpeakLearnRecording)
         m_pBtnSpeakLearnRecording->SetVisible(false);
 
+    m_pBtnSpeakJump = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_jump")));
+    if (m_pBtnSpeakJump)
+        m_pBtnSpeakJump->SetVisible(false);
+
+    m_pBtnSpeakReadAgain = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_read_again")));
+    if (m_pBtnSpeakReadAgain)
+        m_pBtnSpeakReadAgain->SetVisible(false);
+    
+    m_pBtnSpeakTimesTips = dynamic_cast<CAutoSizeButtonUI*> (FindControl(_T("speak_times_tips")));
+    if (m_pBtnSpeakTimesTips)
+        m_pBtnSpeakTimesTips->SetVisible(false);
+
     m_pLayoutSpeakLearnTime = dynamic_cast<CLayoutUI*> (FindControl(_T("SpeakLearnTimeLayout")));
     if (m_pLayoutSpeakLearnTime)
     {
@@ -98,15 +113,11 @@ void CAISpeakLearnWnd::OnClose()
 
 bool CAISpeakLearnWnd::OnEventLeave(TNotifyUI* pTNotify)
 {
-    
-
     return true;
 }
 
 bool CAISpeakLearnWnd::OnEventReturn(TNotifyUI* pTNotify)
 {
-    
-
     return true;
 }
 
@@ -130,10 +141,57 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
         m_pLayoutSpeakLearnTime->SetVisible(true);
     }
     m_nCurTimes = 0;
-    SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, 200);
+    SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, 100);
 
 	CSpeechRecordControl::GetInstance()->ControlSpeechRecoStart();
 
+
+    return true;
+}
+
+bool CAISpeakLearnWnd::OnEventReadJump(TNotifyUI* pTNotify)
+{
+    //下一个
+    if (m_pBtnSpeakTimesTips)
+        m_pBtnSpeakTimesTips->SetVisible(false);
+
+    if (m_pBtnSpeakJump)
+        m_pBtnSpeakJump->SetVisible(false);
+
+    if (m_pBtnSpeakReadAgain)
+        m_pBtnSpeakReadAgain->SetVisible(false);
+
+    if (m_pBtnSpeakLearnRecording)
+        m_pBtnSpeakLearnRecording->SetVisible(false);
+
+    if (m_pLayoutSpeakLearnTime)
+        m_pLayoutSpeakLearnTime->SetVisible(false);
+
+    if (m_pBtnSpeakLearnRecord)
+        m_pBtnSpeakLearnRecord->SetVisible(true);
+
+    return true;
+}
+
+bool CAISpeakLearnWnd::OnEventReadAgain(TNotifyUI* pTNotify)
+{
+    if (m_pBtnSpeakTimesTips)
+        m_pBtnSpeakTimesTips->SetVisible(false);
+
+    if (m_pBtnSpeakJump)
+        m_pBtnSpeakJump->SetVisible(false);
+
+    if (m_pBtnSpeakReadAgain)
+        m_pBtnSpeakReadAgain->SetVisible(false);
+
+    if (m_pBtnSpeakLearnRecording)
+        m_pBtnSpeakLearnRecording->SetVisible(false);
+
+    if (m_pLayoutSpeakLearnTime)
+        m_pLayoutSpeakLearnTime->SetVisible(false);
+
+    if (m_pBtnSpeakLearnRecord)
+        m_pBtnSpeakLearnRecord->SetVisible(true);
 
     return true;
 }
@@ -146,28 +204,16 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
         {
         case SPEAK_LEARN_TIMERID:
         {
-            if (m_nCurTimes > m_nTatalTimes)
-            {
-                KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
-                if (m_pLayoutSpeakLearnTime)
-                    m_pLayoutSpeakLearnTime->SetVisible(false);
-
-                return true;
-            }
-            
-
             RECT rc = m_rc;
             rc.right = rc.left + m_nCurTimes * m_nEveryTimeWidth;
-            if (rc.right > m_rc.right)
+            if (rc.right > m_rc.right || m_nCurTimes > m_nTatalTimes)
             {
-                KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
-                if (m_pLayoutSpeakLearnTime)
-                    m_pLayoutSpeakLearnTime->SetVisible(false);
-
+                ShowSpeakResult();
                 return true;
             }
 
-            if (m_pLayoutSpeakLearnTime){
+            if (m_pLayoutSpeakLearnTime)
+            {
                 m_pLayoutSpeakLearnTime->SetRect(rc);
                 m_pLayoutSpeakLearnTime->OnlyResizeChild();
                 m_pLayoutSpeakLearnTime->Invalidate();
@@ -181,4 +227,27 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
         }
     }
     return true;
+}
+
+void CAISpeakLearnWnd::ShowSpeakResult()
+{
+    KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
+
+    if (m_pBtnSpeakLearnRecord)
+        m_pBtnSpeakLearnRecord->SetVisible(false);
+
+    if (m_pBtnSpeakLearnRecording)
+        m_pBtnSpeakLearnRecording->SetVisible(false);
+
+    if (m_pLayoutSpeakLearnTime)
+        m_pLayoutSpeakLearnTime->SetVisible(false);
+
+    if (m_pBtnSpeakTimesTips)
+        m_pBtnSpeakTimesTips->SetVisible(true);
+
+    if (m_pBtnSpeakJump)
+        m_pBtnSpeakJump->SetVisible(true);
+
+    if (m_pBtnSpeakReadAgain)
+        m_pBtnSpeakReadAgain->SetVisible(true);
 }
