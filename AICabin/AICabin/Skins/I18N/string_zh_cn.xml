@@ -92,7 +92,7 @@
     <String id="StrAllSlide">所有幻灯片</String>
     <String id="StrMiddlePrePage">上一页</String>
     <String id="StrMiddleNextPage">下一页</String>
-    <String id="StrTipStart">hey，唐钰，欢迎来到学习舱！</String>
+    <String id="StrTipStart">hey，%s，欢迎来到学习舱！</String>
     <String id="StrTipEnd1">你已经结束了今天的学习</String>
     <String id="StrTipEnd2">bye，唐钰，我们下次见~</String>
     <String id="StrTipActivity">选择你今天的学习活动吧</String>
@@ -118,7 +118,7 @@
 
     <String id="StrSpeakLearnTitle">请读出屏幕上的英文单词</String>
     <String id="StrSpeakLearnCardText">HAPPY</String>
-    <String id="StrFaceLearnCommonTitle">请做一个"%"的表情吧</String>
+    <String id="StrFaceLearnCommonTitle">请做一个"%s"的表情吧</String>
     <String id="StrFaceLearnTitleTop">棒极了，发音非常准确！</String>
   </String>
 </skin>

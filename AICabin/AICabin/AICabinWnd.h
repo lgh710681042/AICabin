@@ -13,7 +13,13 @@ public:
 
 	void				MarkFullScreen(bool fullscreen);
 
+	wstring				SetTipsStart(wstring& strUserName);
+
+	virtual bool		ShowWindow(int nCmdShow = SW_SHOW);
+
 protected:
+	bool					OnTimer(TEventUI& event);
+
 	//override super
 	virtual void		OnCreate();
 	virtual void		OnClose();
@@ -37,5 +43,7 @@ private:
 
 	CComPtr<ITaskbarList2> task_bar_list_;
 	bool fullscreen_ = false;
+
+	CButtonUI* m_pButtonTipsStart = nullptr;
 };
 

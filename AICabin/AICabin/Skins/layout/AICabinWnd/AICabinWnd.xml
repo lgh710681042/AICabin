@@ -15,7 +15,7 @@
         </Layout>
         <Control pos="LTRT|0,0,0,30"/>
         <Layout mode="vertfill" pos="LTRT|100,0,100,77">
-          <AutoSizeButton id="text_tips" style="Label" pos="LT|-1,-1,1000,77" maxwidth="1400" text="#StrTipStart" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+          <AutoSizeButton id="text_tips_start" style="Label" pos="LT|-1,-1,1000,77" maxwidth="1400" text="#StrTipStart" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
         </Layout>
 
         <Control />

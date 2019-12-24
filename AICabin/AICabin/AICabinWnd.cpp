@@ -8,6 +8,9 @@
 #include "MainWnd.h"
 #include "Application.h"
 
+#define SHOW_ACTIVITY_TIMER			1001
+#define SHOW_ACTIVITY_INTERVAL		8000
+
 CAICabinWnd::CAICabinWnd()
 {
 	ModifyWndStyle(GWL_STYLE, WS_VISIBLE, 0);
@@ -97,15 +100,66 @@ void CAICabinWnd::MarkFullScreen(bool fullscreen)
 		task_bar_list_->MarkFullscreenWindow(GetHWND(), !!fullscreen);
 }
 
+wstring CAICabinWnd::SetTipsStart(wstring& strUserName)
+{
+	WCHAR szBuf[1024];
+	_stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrTipStart")), strUserName.c_str());
+
+	if (m_pButtonTipsStart)
+	{
+		m_pButtonTipsStart->SetText(szBuf);
+		m_pButtonTipsStart->Invalidate();
+	}
+
+	return szBuf;
+}
+
+bool CAICabinWnd::OnTimer(TEventUI& event)
+{
+	if (event.nType == UIEVENT_TIMER)
+	{
+		if (event.wParam == SHOW_ACTIVITY_TIMER)
+		{
+			//显示活动列表窗口
+			CAIActivityWnd* pAIActivityWnd = new CAIActivityWnd;
+			if (pAIActivityWnd)
+			{
+				pAIActivityWnd->CreateWnd(GetHWND());
+				pAIActivityWnd->ShowWindow();
+			}
+
+			KillTimer(GetRoot(), SHOW_ACTIVITY_TIMER);
+		}
+	}
+
+	return true;
+}
+
 void CAICabinWnd::OnCreate()
 {
 	SetWindowClassName(_T("AICabinWnd"));
 	__super::OnCreate();
+
+	m_pButtonTipsStart = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_start")));
+
+	GetRoot()->OnEvent += MakeDelegate(this, &CAICabinWnd::OnTimer);
 }
 
 void CAICabinWnd::OnClose()
 {
 	PostMessage(CApplication::GetInstance()->GetMainHwnd(), WM_QUIT, 0, 0);
+}
+
+bool CAICabinWnd::ShowWindow(int nCmdShow /*= SW_SHOW*/)
+{
+	bool bResult = __super::ShowWindow(nCmdShow);
+
+	if (nCmdShow != SW_SHOW)
+		return bResult;
+
+	this->SetTimer(GetRoot(), SHOW_ACTIVITY_TIMER, SHOW_ACTIVITY_INTERVAL);
+
+	return bResult;
 }
 
 LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)

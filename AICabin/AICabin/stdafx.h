@@ -25,6 +25,7 @@
 #include "DirectUI.h"
 #include "NDHttp/curl/curl.h"
 #include "spdlog_wrapper.hpp"
+#include "rapidjson_wrapper.hpp"
 
 //由于DUI导出类用到stl相关模板类，简单禁用掉此类警告
 #pragma warning( disable: 4251 )
@@ -38,3 +39,7 @@
 #endif
 
 #pragma comment(lib, "WINMM.LIB")
+
+
+using namespace rapidjson;
+using namespace rjwrapper;

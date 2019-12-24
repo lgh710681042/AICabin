@@ -24,8 +24,12 @@ private:
 
 	void					HandCopyData(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+	void					HandAICabinOpen(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
 private:
 	static HINSTANCE		m_hInstance;
 	HWND					m_hWnd;
+
+	CAICabinWnd*			m_pAICabinWnd = nullptr;
 };
 

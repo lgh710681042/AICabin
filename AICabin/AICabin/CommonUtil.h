@@ -1,19 +1,20 @@
 #pragma once
 
+#define WM_AICABIN_OPEN		WM_USER + 101
 
 namespace CommonUtil
 {
 	wstring
 		GetLocalPath();
 
-	wstring
-		Utf8ToUnicode(const string& strUtf8);
+	/*wstring
+		Utf8ToUnicode(const string& strUtf8);*/
 
 	wstring
 		Utf8ToUnicode(const char* pszUtf8);
 
-	string
-		UnicodeToUtf8(const wstring& strUnicode);
+	/*string
+		UnicodeToUtf8(const wstring& strUnicode);*/
 
 	string
 		UnicodeToUtf8(const wchar_t* pszUnicode);
@@ -32,4 +33,10 @@ namespace CommonUtil
 
 	wstring
 		GetLogDir();
+
+	wstring
+		GetEnterMp3Path();
+
+	wstring
+		GetLeaveMp3Path();
 }
