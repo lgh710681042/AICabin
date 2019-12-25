@@ -17,6 +17,8 @@ public:
 
 	virtual bool		ShowWindow(int nCmdShow = SW_SHOW);
 
+    void                ShowEndLayout();//œ‘ æΩ· ¯layout
+
 protected:
 	bool					OnTimer(TEventUI& event);
 
@@ -41,12 +43,14 @@ private:
 	// Saved window information from before entering fullscreen mode.
 	SavedWindowInfo saved_window_info_;
 
-	CComPtr<ITaskbarList2> task_bar_list_;
-	bool fullscreen_ = false;
+	CComPtr<ITaskbarList2>  task_bar_list_;
+	bool                    fullscreen_ = false;
+	int	                    m_nCurFrame = 0;
 
-	CButtonUI* m_pButtonTipsStart = nullptr;
-	CControlUI* m_pAnimateControl = nullptr;
-	int	m_nCurFrame = 0;
-
+	CButtonUI*              m_pButtonTipsStart = nullptr;
+	CControlUI*             m_pAnimateControl = nullptr;
+    CButtonUI*              m_pButtonTipsEnd = nullptr;
+    CLayoutUI*              m_pLayHello = nullptr;
+    CLayoutUI*              m_pLayEnd = nullptr;
 };
 
