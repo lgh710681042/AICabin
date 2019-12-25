@@ -8,6 +8,7 @@
 #include "AICabinWnd.h"
 #include "MainWnd.h"
 #include "Application.h"
+#include "SpeechSynthControl.h"
 
 #define SHOW_ACTIVITY_TIMER			1001
 #ifdef _DEBUG
@@ -308,4 +309,9 @@ void CAICabinWnd::ShowEndLayout()
         m_pButtonTipsEnd->SetText(szBuf);
         m_pButtonTipsEnd->Invalidate();
     }
+
+	wstring strEnd = I18NSTR(_T("#StrTipEndNow")) + wstring(szBuf);
+
+	//ÓïÒôºÏ³É²¥·Å
+	CSpeechSynthControl::GetInstance()->ControlSpeechSynthStartLeave(strEnd);
 }

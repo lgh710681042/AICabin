@@ -28,9 +28,9 @@ void __stdcall onSynthResultLeave(int nCode, char *strMsg)
 		WCHAR szCommand[256] = { 0 };
 		GetShortPathName(strMp3.c_str(), szShortPath, sizeof(szShortPath));
 
-		wsprintf(szCommand, L"open \"%s\" alias song", szShortPath);
+		wsprintf(szCommand, L"open \"%s\" alias song2", szShortPath);
 		mciSendString(szCommand, nullptr, 0, nullptr);
-		mciSendString(L"play song", nullptr, 0, nullptr);
+		mciSendString(L"play song2", nullptr, 0, nullptr);
 	}
 }
 

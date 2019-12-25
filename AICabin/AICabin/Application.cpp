@@ -119,7 +119,7 @@ bool CApplication::OpenAICabin()
 			::Sleep(1000);
 
 			CHttpRequestDataModel Model;
-			Model.strHost = "ai-learning-box-service.beta.101.com";
+			Model.strHost = "ai-learning-box-service.sdp.101.com";
 			Model.strUrl = "/v0.1/visitor/opening_infos?cabin_code=ai_learning_box";
 			Model.strMethod = "PUT";
 			Model.strHeader = "Accept: application/json\r\nContent-Type: application/json\r\nsdp-app-id:44cebc7f-7b35-4e4d-95d0-3c7af9db955e";
@@ -133,11 +133,11 @@ bool CApplication::OpenAICabin()
 			DWORD code = NDhttp_Wrapper::Excute(&Model, strData);
 			if (code != 0)
 			{
-			logwrapper::OutputInfo("{} error code:{}",
-			__FUNCTION__,
-			code);
+				logwrapper::OutputInfo("{} error code:{}",
+					__FUNCTION__,
+					code);
 
-			continue;
+				continue;
 			}
 
 			wstring strUnicode = CommonUtil::Utf8ToUnicode(strData.c_str());
