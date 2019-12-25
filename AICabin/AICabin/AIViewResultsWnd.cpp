@@ -1,7 +1,12 @@
 #include "stdafx.h"
+#include "Singleton.h"
 #include "AILearnBaseWnd.h"
 #include "AIViewResultsWnd.h"
-
+#include "Application.h"
+#include "AIFaceLearnWnd.h"
+#include "AISpeakLearnWnd.h"
+#include "AIActivityWnd.h"
+#include "AICabinWnd.h"
 
 CAIViewResultsWnd::CAIViewResultsWnd()
 {
@@ -72,22 +77,68 @@ void CAIViewResultsWnd::OnClose()
 
 bool CAIViewResultsWnd::OnEventReturn(TNotifyUI* pTNotify)
 {
+    //返回到上一界面
+    CloseWindow();
     return true;
 }
 
 bool CAIViewResultsWnd::OnEventLeave(TNotifyUI* pTNotify)
 {
+    //关闭查看成绩窗口
     CloseWindow();
+
+    //关闭人脸表情窗口
+    if (CApplication::GetInstance()->m_pAIFaceLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIFaceLearnWnd)->CloseWindow();
+
+    //关闭学习卡片窗口
+    if (CApplication::GetInstance()->m_pAISpeakLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAISpeakLearnWnd)->CloseWindow();
+
+    //关闭活动列表窗口
+    if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIActivityWnd)->CloseWindow();
+
+    //跳到结束界面
+    if (CApplication::GetInstance()->m_pAICabinWnd != nullptr)
+        (CApplication::GetInstance()->m_pAICabinWnd)->ShowEndLayout();
+
     return true;
 }
 
 bool CAIViewResultsWnd::OnEventNo(TNotifyUI* pTNotify)
 {
+    //关闭查看成绩窗口
+    CloseWindow();
+
+    //关闭人脸表情窗口
+    if (CApplication::GetInstance()->m_pAIFaceLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIFaceLearnWnd)->CloseWindow();
+
+    //关闭学习卡片窗口
+    if (CApplication::GetInstance()->m_pAISpeakLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAISpeakLearnWnd)->CloseWindow();
+
+    //跳到活动界面
+    if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIActivityWnd)->ShowWindow();
+
     return true;
 }
 
 bool CAIViewResultsWnd::OnEventGo(TNotifyUI* pTNotify)
 {
+    //关闭查看成绩窗口
+    CloseWindow();
+
+    //关闭人脸表情窗口
+    if (CApplication::GetInstance()->m_pAIFaceLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIFaceLearnWnd)->CloseWindow();
+
+    //跳到卡片开始学习界面
+    if (CApplication::GetInstance()->m_pAISpeakLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAISpeakLearnWnd)->StartNewRecord();
+
     return true;
 }
 

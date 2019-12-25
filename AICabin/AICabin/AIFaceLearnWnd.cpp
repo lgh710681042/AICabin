@@ -1,7 +1,12 @@
 #include "stdafx.h"
+#include "Singleton.h"
 #include "AILearnBaseWnd.h"
+#include "AIViewResultsWnd.h"
 #include "AIFaceLearnWnd.h"
-
+#include "AISpeakLearnWnd.h"
+#include "AIActivityWnd.h"
+#include "AICabinWnd.h"
+#include "Application.h"
 
 CAIFaceLearnWnd::CAIFaceLearnWnd()
 {
@@ -36,8 +41,9 @@ HWND CAIFaceLearnWnd::CreateWnd(HWND hParent)
 	return hWnd;
 }
 
-void CAIFaceLearnWnd::SetFaceQuestion(wstring strFaceQuestion)
+void CAIFaceLearnWnd::SetFaceQuestion(wstring strFaceQuestion, bool bSucc)
 {
+    m_bSuccess = bSucc;
 	if (m_pBtnFaceCommonTitle
 		&& m_pBtnFaceTitleTop)
 	{
@@ -46,6 +52,11 @@ void CAIFaceLearnWnd::SetFaceQuestion(wstring strFaceQuestion)
 
 		m_pBtnFaceCommonTitle->SetText(szBuf);
 		m_pBtnFaceTitleBottom->SetText(szBuf);
+    
+        if (m_bSuccess)
+            m_pBtnFaceTitleTop->SetText(I18NSTR(_T("#StrFaceLearnTitleTop")));
+        else
+            m_pBtnFaceTitleTop->SetText(I18NSTR(_T("#StrFaceLearnTitleTop2")));
 	}
 }
 
@@ -63,9 +74,58 @@ void CAIFaceLearnWnd::OnCreate()
 		m_pAILeftBtnPanel->SetVisible(true);
 		m_pAILeftBtnPanelUnExpend->SetVisible(false);
 	}
+
+    CApplication::GetInstance()->m_pAIFaceLearnWnd = this;
 }
 
 void CAIFaceLearnWnd::OnClose()
 {
+    CApplication::GetInstance()->m_pAIFaceLearnWnd = nullptr;
+}
 
+bool CAIFaceLearnWnd::OnEventReturn(TNotifyUI* pTNotify)
+{
+    //返回到上一界面
+    CloseWindow();
+
+    //跳到卡片开始学习界面
+    if (CApplication::GetInstance()->m_pAISpeakLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAISpeakLearnWnd)->StartNewRecord();
+
+    return true;
+}
+
+bool CAIFaceLearnWnd::OnEventLeave(TNotifyUI* pTNotify)
+{
+    //关闭人脸表情窗口
+    CloseWindow();
+
+    //关闭学习卡片窗口
+    if (CApplication::GetInstance()->m_pAISpeakLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAISpeakLearnWnd)->CloseWindow();
+
+    //关闭活动列表窗口
+    if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIActivityWnd)->CloseWindow();
+
+    //跳到结束界面
+    if (CApplication::GetInstance()->m_pAICabinWnd != nullptr)
+        (CApplication::GetInstance()->m_pAICabinWnd)->ShowEndLayout();
+
+    return true;
+}
+
+bool CAIFaceLearnWnd::OnBtnViewResult(TNotifyUI* pTNotify)
+{
+    //进入到成绩结果界面
+
+    CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
+    if (pAIViewResultsWnd)
+    {
+        pAIViewResultsWnd->SetPercentage(0, 30);
+        pAIViewResultsWnd->CreateWnd(GetHWND());
+        pAIViewResultsWnd->ShowWindow();
+    }
+
+    return true;
 }

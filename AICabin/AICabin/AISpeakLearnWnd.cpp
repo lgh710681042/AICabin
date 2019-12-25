@@ -6,11 +6,16 @@
 #include "AIFaceLearnWnd.h"
 #include "AISpeakLearnWnd.h"
 #include <algorithm>
+#include "AIActivityWnd.h"
+#include "AICabinWnd.h"
+#include "Application.h"
 
 #define	SPEAK_LEARN_TIMERID			1001
 #define SPEAK_RECORD_TIMERID		2001
 #define SPEAK_RECORD_INTERVAL		5000		//语音识别5秒
 
+#define SPEAK_EVERY_TIME            100 //定时器每次间隔
+#define SPEAK_TOTAL_TIMES           50  //总次数（与上面字段相乘等于总时间）
 
 CAISpeakLearnWnd::CAISpeakLearnWnd()
 {
@@ -22,7 +27,6 @@ CAISpeakLearnWnd::CAISpeakLearnWnd()
 
     m_nTotalTimeWidth = 0;//涨条总长度
     m_nEveryTimeWidth = 0;//每次涨条长度
-    m_nTatalTimes = 50;//总次数
     m_nCurTimes = 0;//当前次数
     m_rc = { 0, 0, 0, 0 };
 
@@ -89,11 +93,14 @@ void CAISpeakLearnWnd::OnCreate()
     {
         m_rc = m_pLayoutSpeakLearnTime->GetRect();
         m_nTotalTimeWidth = m_rc.right - m_rc.left;
-        m_nEveryTimeWidth = m_nTotalTimeWidth / m_nTatalTimes;
+        m_nEveryTimeWidth = m_nTotalTimeWidth / SPEAK_TOTAL_TIMES;
         m_pLayoutSpeakLearnTime->SetVisible(false);
     }
 
     GetRoot()->OnEvent += MakeDelegate(this, &CAISpeakLearnWnd::OnCheckRecordTime);
+
+    //清空已读记录
+    m_mapHaveRead.clear();
 
 	//获取vec随机数
 	int nIndex = CommonUtil::ToolRandInt(0, m_vecExample.size() - 1);
@@ -109,11 +116,13 @@ void CAISpeakLearnWnd::OnCreate()
 		m_pAILeftBtnPanel->SetVisible(true);
 		m_pAILeftBtnPanelUnExpend->SetVisible(false);
 	}
+
+    CApplication::GetInstance()->m_pAISpeakLearnWnd = this;
 }
 
 void CAISpeakLearnWnd::OnClose()
 {
-    
+    CApplication::GetInstance()->m_pAISpeakLearnWnd = nullptr;
 }
 
 LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
@@ -141,12 +150,16 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			}
 
+            SaveHaveReadData();
+            if (m_pLayoutSpeakLearnTime)
+                m_pLayoutSpeakLearnTime->SetVisible(false);
+
 			//语音识别成功，人脸识别窗口显示
 			CAIFaceLearnWnd* pAIFaceLearnWnd = new CAIFaceLearnWnd;
 			if (pAIFaceLearnWnd)
 			{
 				pAIFaceLearnWnd->CreateWnd(GetParent(GetHWND()));
-				pAIFaceLearnWnd->SetFaceQuestion(m_strSpeakQuestion);
+				pAIFaceLearnWnd->SetFaceQuestion(m_strSpeakQuestion, true);
 				pAIFaceLearnWnd->ShowWindow();
 			}
 
@@ -159,7 +172,18 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		if (m_nSpeakCurTimes >= m_nSpeakTotalTimes)
 		{
 			//失败次数当于总次数,直接显示成绩界面
-			//CAIViewResultsWnd
+            SaveHaveReadData();
+            if (m_pLayoutSpeakLearnTime)
+                m_pLayoutSpeakLearnTime->SetVisible(false);
+
+            //失败3次，也是进入人脸识别窗口
+            CAIFaceLearnWnd* pAIFaceLearnWnd = new CAIFaceLearnWnd;
+            if (pAIFaceLearnWnd)
+            {
+                pAIFaceLearnWnd->CreateWnd(GetParent(GetHWND()));
+                pAIFaceLearnWnd->SetFaceQuestion(m_strSpeakQuestion,false);
+                pAIFaceLearnWnd->ShowWindow();
+            }
 
 			return __super::WindowProc(message, wParam, lParam);
 		}
@@ -172,13 +196,33 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	return __super::WindowProc(message, wParam, lParam);
 }
 
+void CAISpeakLearnWnd::StartNewRecord()
+{
+    KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
+    m_nSpeakCurTimes = 1;
+    OnEventReadJump(nullptr);
+}
+
 bool CAISpeakLearnWnd::OnEventLeave(TNotifyUI* pTNotify)
 {
+    //关闭学习卡片窗口
+    CloseWindow();
+
+    //关闭活动列表窗口
+    if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIActivityWnd)->CloseWindow();
+
+    //跳到结束界面
+    if (CApplication::GetInstance()->m_pAICabinWnd != nullptr)
+        (CApplication::GetInstance()->m_pAICabinWnd)->ShowEndLayout();
+
     return true;
 }
 
 bool CAISpeakLearnWnd::OnEventReturn(TNotifyUI* pTNotify)
 {
+    //返回到上一界面
+    CloseWindow();
     return true;
 }
 
@@ -192,9 +236,6 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
         m_pBtnSpeakLearnRecording->SetVisible(true);
 
     if (m_pLayoutSpeakLearnTime)
-        m_pLayoutSpeakLearnTime->SetVisible(true);
-
-    if (m_pLayoutSpeakLearnTime)
     {
         RECT rc = m_rc;
         rc.right = rc.left;
@@ -202,7 +243,7 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
         m_pLayoutSpeakLearnTime->SetVisible(true);
     }
     m_nCurTimes = 0;
-    SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, 100);
+    SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, SPEAK_EVERY_TIME);
 
 	//begin record
 	CSpeechRecordControl::GetInstance()->ControlSpeechRecoStart();
@@ -255,7 +296,7 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
         {
             RECT rc = m_rc;
             rc.right = rc.left + m_nCurTimes * m_nEveryTimeWidth;
-            if (rc.right > m_rc.right || m_nCurTimes > m_nTatalTimes)
+            if (rc.right > m_rc.right || m_nCurTimes > SPEAK_TOTAL_TIMES)
             {
 				if (m_pLayoutSpeakLearnTime)
 				{
@@ -339,4 +380,17 @@ void CAISpeakLearnWnd::SetSpeakFailLayoutVisible(bool bVisible)
 
 	if (m_pBtnSpeakReadAgain)
 		m_pBtnSpeakReadAgain->SetVisible(bVisible);
+}
+
+void CAISpeakLearnWnd::SaveHaveReadData()
+{
+    if (m_strSpeakQuestion.empty())
+        return;
+
+    map<std::wstring, int>::iterator iter = m_mapHaveRead.find(m_strSpeakQuestion);
+    if (iter == m_mapHaveRead.end())
+    {
+        m_mapHaveRead.insert(pair<std::wstring, int>(m_strSpeakQuestion, 1));
+        return;
+    }
 }

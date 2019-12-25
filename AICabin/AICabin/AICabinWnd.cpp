@@ -168,13 +168,26 @@ void CAICabinWnd::OnCreate()
 
 	m_pButtonTipsStart = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_start")));
 	m_pAnimateControl = this->FindControl(_T("AIAnimateControl"));
+    m_pButtonTipsEnd = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_end")));
+
+    m_pLayHello = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIHelloLayout")));
+    if (m_pLayHello)
+        m_pLayHello->SetVisible(true);
+
+    m_pLayEnd = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIEndLayout")));
+    if (m_pLayEnd)
+        m_pLayEnd->SetVisible(false);
+
 
 	GetRoot()->OnEvent += MakeDelegate(this, &CAICabinWnd::OnTimer);
+
+    CApplication::GetInstance()->m_pAICabinWnd = this;
 }
 
 void CAICabinWnd::OnClose()
 {
 	PostMessage(CApplication::GetInstance()->GetMainHwnd(), WM_QUIT, 0, 0);
+    CApplication::GetInstance()->m_pAICabinWnd = nullptr;
 }
 
 bool CAICabinWnd::ShowWindow(int nCmdShow /*= SW_SHOW*/)
@@ -211,7 +224,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		}
-        case VK_F6:
+/*        case VK_F6:
         {
             CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
             if (pAIViewResultsWnd)
@@ -244,7 +257,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             }
             break;
         }
-/*		case VK_F9:
+		case VK_F9:
 		{
 			CAISpeakLearnWnd* pAISpeakLearnWnd = new CAISpeakLearnWnd;
 			if (pAISpeakLearnWnd)
@@ -275,4 +288,23 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 void CAICabinWnd::SwitchLayout()
 {
 
+}
+
+void CAICabinWnd::ShowEndLayout()
+{
+    m_pLayHello = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIHelloLayout")));
+    if (m_pLayHello)
+        m_pLayHello->SetVisible(false);
+
+    m_pLayEnd = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIEndLayout")));
+    if (m_pLayEnd)
+        m_pLayEnd->SetVisible(true);
+
+    WCHAR szBuf[1024];
+    _stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrTipEnd")), CApplication::GetInstance()->GetUserNameW().c_str());
+    if (m_pButtonTipsEnd)
+    {
+        m_pButtonTipsEnd->SetText(szBuf);
+        m_pButtonTipsEnd->Invalidate();
+    }
 }

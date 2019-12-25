@@ -93,8 +93,8 @@
     <String id="StrMiddlePrePage">上一页</String>
     <String id="StrMiddleNextPage">下一页</String>
     <String id="StrTipStart">hey，%s，欢迎来到学习舱！</String>
-    <String id="StrTipEnd1">你已经结束了今天的学习</String>
-    <String id="StrTipEnd2">bye，唐钰，我们下次见~</String>
+    <String id="StrTipEndNow">你已经结束了今天的学习</String>
+    <String id="StrTipEnd">bye，%s，我们下次见~</String>
     <String id="StrTipActivity">选择你今天的学习活动吧</String>
     <String id="StrActivityOne">活动一</String>
     <String id="StrActivityTwo">活动二</String>
@@ -121,6 +121,7 @@
     <String id="StrSpeakLearnCardText">HAPPY</String>
     <String id="StrFaceLearnCommonTitle">请做一个"%s"的表情吧</String>
     <String id="StrFaceLearnTitleTop">棒极了，发音非常准确！</String>
+    <String id="StrFaceLearnTitleTop2">不要灰心，我们来试试别的</String>
     <String id="StrSpeakNotGood">不要灰心，还有%s次机会哦</String>
     <String id="StrJump">跳过</String>
     <String id="StrReadingAgain">重新朗读</String>

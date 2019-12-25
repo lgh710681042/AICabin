@@ -1,8 +1,10 @@
 #include "stdafx.h"
+#include "Singleton.h"
 #include "AILearnBaseWnd.h"
 #include "AIActivityWnd.h"
 #include "AISpeakLearnWnd.h"
-
+#include "AICabinWnd.h"
+#include "Application.h"
 
 CAIActivityWnd::CAIActivityWnd()
 {
@@ -45,6 +47,13 @@ void CAIActivityWnd::OnCreate()
     if (pLayActivityTwo)
         pLayActivityTwo->OnEvent += MakeDelegate(this, &CAIActivityWnd::OnLayoutListenReadEvent);
 
+    /*CButtonUI *pBtnReturnLeft = dynamic_cast<CButtonUI*>(FindControl(_T("btn_left_panel_return")));
+    if (pBtnReturnLeft)
+        pBtnReturnLeft->SetEnabled(false);
+
+    CButtonUI *pBtnReturnRight = dynamic_cast<CButtonUI*>(FindControl(_T("btn_right_panel_return")));
+    if (pBtnReturnRight)
+        pBtnReturnRight->SetEnabled(false);*/
 
 	if (m_pAILeftBtnPanel
 		&& m_pAILeftBtnPanelUnExpend)
@@ -53,11 +62,32 @@ void CAIActivityWnd::OnCreate()
 		m_pAILeftBtnPanelUnExpend->SetVisible(true);
 	}
 	
+    CApplication::GetInstance()->m_pAIActivityWnd = this;
 }
 
 void CAIActivityWnd::OnClose()
 {
+    CApplication::GetInstance()->m_pAIActivityWnd = nullptr;
+}
 
+bool CAIActivityWnd::OnEventReturn(TNotifyUI* pTNotify)
+{
+    //返回到上一界面
+    //CloseWindow();
+
+    return true;
+}
+
+bool CAIActivityWnd::OnEventLeave(TNotifyUI* pTNotify)
+{
+    //关闭活动列表窗口
+    CloseWindow();
+
+    //跳到结束界面
+    if (CApplication::GetInstance()->m_pAICabinWnd != nullptr)
+        (CApplication::GetInstance()->m_pAICabinWnd)->ShowEndLayout();
+
+    return true;
 }
 
 bool CAIActivityWnd::OnLayoutBodyPartsEvent(TEventUI& evt)

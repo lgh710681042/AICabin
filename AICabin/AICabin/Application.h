@@ -1,4 +1,11 @@
 #pragma once
+
+class CMainWnd;
+class CAICabinWnd;
+class CAIActivityWnd;
+class CAISpeakLearnWnd;
+class CAIFaceLearnWnd;
+
 class CApplication 
 	: public Util::Singleton<CApplication>
 {
@@ -21,6 +28,13 @@ private:
 	bool	InitDirectUI(HINSTANCE hInstance);
 
 	bool	OpenAICabin();
+
+
+public:
+    CAICabinWnd*	    m_pAICabinWnd = nullptr;
+    CAIActivityWnd*     m_pAIActivityWnd = nullptr;//活动列表窗口
+    CAISpeakLearnWnd*   m_pAISpeakLearnWnd = nullptr;//学习卡片窗口
+    CAIFaceLearnWnd*    m_pAIFaceLearnWnd = nullptr;//人脸表情窗口
 
 private:
 	HWND		m_hMsgWnd = nullptr;
