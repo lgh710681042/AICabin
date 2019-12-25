@@ -127,5 +127,10 @@
     
     <String id="StrHanYuTwo">两</String>
     <String id="StrHanYuOne">一</String>
+
+    <String id="StrFaceBegin">开始识别</String>
+    <String id="StrFaceViewResult">查看成绩</String>
+    <String id="StrFaceRetry">重新识别</String>
+    <String id="StrFaceNoRetry">不了</String>
     </String>
 </skin>

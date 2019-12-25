@@ -27,6 +27,34 @@
           </Layout>
         </Layout>
 
+        <Button id="btn_face_begin" pos="LT|806,886,310,129" style="ImageButton"
+                bk.image="#ai_btn_face_four_nor"
+                bk_over.image="#ai_btn_face_four_nor"
+                bk_down.image="#ai_btn_face_four_click"
+                text="#StrFaceBegin" visible="0"/>
+
+        <Button id="btn_face_view_result" pos="LT|806,886,310,129" style="ImageButton"
+                bk.image="#ai_btn_face_four_nor"
+                bk_over.image="#ai_btn_face_four_nor"
+                bk_down.image="#ai_btn_face_four_click"
+                text="#StrFaceViewResult"/>
+
+        <Layout id="AIFaceFailLayout" pos="LTRB|656,830,655,65"  visible="0">
+          <AutoSizeButton id="btn_face_title_Retry" style="Label" pos="LT|-1,0,610,35" text="#StrSpeakNotGood" txt.font="font35" txt.textcolor="#N01" txt.halign="center"/>
+
+          <Button id="btn_face_no_retry" pos="LT|0,40,249,129" style="ImageButton"
+                bk.image="#ai_btn_face_two_nor"
+                bk_over.image="#ai_btn_face_two_nor"
+                bk_down.image="#ai_btn_face_two_click"
+                text="#StrFaceNoRetry"/>
+
+          <Button id="btn_face_retry" pos="RT|0,40,309,129" style="ImageButton"
+                bk.image="#ai_btn_face_four_nor"
+                bk_over.image="#ai_btn_face_four_nor"
+                bk_down.image="#ai_btn_face_four_click"
+                text="#StrFaceRetry" />
+        </Layout>
+
         <XML id="AILeftBtnPanelStyle"/>
 
         <XML id="AIRightPanelStyle"/>
