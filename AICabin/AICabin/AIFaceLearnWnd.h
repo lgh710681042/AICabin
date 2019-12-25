@@ -17,6 +17,8 @@ public:
 
 	void			SetFaceQuestion(wstring strFaceQuestion);
 
+	void			BeginFace();
+
 protected:
 	//override super
 	virtual void		OnCreate();

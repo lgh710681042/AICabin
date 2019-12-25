@@ -17,6 +17,8 @@ public:
 
 	wstring GetUserName(){ return m_strUserName; }
 
+	CRITICAL_SECTION		m_ControlLock;
+
 private:
 	bool	InitDirectUI(HINSTANCE hInstance);
 

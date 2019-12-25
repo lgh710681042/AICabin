@@ -12,6 +12,7 @@
 
 CApplication::CApplication()
 {
+	InitializeCriticalSection(&m_ControlLock);
 }
 
 
@@ -22,6 +23,8 @@ CApplication::~CApplication()
 		delete m_pMainWnd;
 		m_pMainWnd = nullptr;
 	}
+
+	DeleteCriticalSection(&m_ControlLock);
 }
 
 bool CApplication::Initialize(HINSTANCE hInstance, LPTSTR lpCmdLine)

@@ -261,6 +261,7 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			{
 				pAIFaceLearnWnd->CreateWnd(GetHWND());
 				pAIFaceLearnWnd->ShowWindow();
+				//pAIFaceLearnWnd->BeginFace();
 			}
 			break;
 		}

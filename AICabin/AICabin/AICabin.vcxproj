@@ -52,14 +52,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;RAPIDJSON_HAS_STDSTRING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;RAPIDJSON_HAS_STDSTRING;_CRT_SECURE_NO_WARNINGS;CURL_STATICLIB;USE_OPENSSL;BUILDING_LIBCURL;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)third-party\rapidjson\include;$(SolutionDir)third-party\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)third-party\rapidjson\include;$(SolutionDir)third-party\spdlog\include;$(SolutionDir)third-party\libCurl\include;$(SolutionDir)third-party\json;$(SolutionDir)third-party\opencv310\include;$(SolutionDir)third-party\opencv310\include\opencv;$(SolutionDir)third-party\opencv310\include\opencv2;$(SolutionDir)third-party\kinect\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib;$(SolutionDir)third-party\libCurl\lib;$(SolutionDir)third-party\opencv310\libx86v12;$(SolutionDir)third-party\kinect\Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcurl_a_debug.lib;opencv_core310d.lib;opencv_highgui310d.lib;opencv_imgcodecs310d.lib;opencv_imgproc310d.lib;opencv_videoio310d.lib;opencv_video310d.lib;kinect20.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <Command>xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
@@ -115,10 +116,13 @@ call  "skin_complie.bat"</Command>
     <ClInclude Include="AIFaceLearnWnd.h" />
     <ClInclude Include="AISpeakLearnWnd.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="base64.h" />
     <ClInclude Include="CommonUtil.h" />
     <ClInclude Include="MainWnd.h" />
     <ClInclude Include="NDHttp_Wrapper.hpp" />
     <ClInclude Include="NewUI\UIAutoSizeButton.h" />
+    <ClInclude Include="OpencvControl.h" />
+    <ClInclude Include="qFaceExpression.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SpeechRecordControl.h" />
     <ClInclude Include="SpeechSynthControl.h" />
@@ -127,6 +131,7 @@ call  "skin_complie.bat"</Command>
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\third-party\json\jsoncpp.cpp" />
     <ClCompile Include="..\third-party\spdlog\include\spdlog_wrapper.cpp" />
     <ClCompile Include="AIActivityWnd.cpp" />
     <ClCompile Include="AICabin.cpp" />
@@ -136,9 +141,12 @@ call  "skin_complie.bat"</Command>
     <ClCompile Include="AIFaceLearnWnd.cpp" />
     <ClCompile Include="AISpeakLearnWnd.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="base64.cpp" />
     <ClCompile Include="CommonUtil.cpp" />
     <ClCompile Include="MainWnd.cpp" />
     <ClCompile Include="NewUI\UIAutoSizeButton.cpp" />
+    <ClCompile Include="OpencvControl.cpp" />
+    <ClCompile Include="qFaceExpression.cpp" />
     <ClCompile Include="SpeechRecordControl.cpp" />
     <ClCompile Include="SpeechSynthControl.cpp" />
     <ClCompile Include="SpeechTechControl.cpp" />

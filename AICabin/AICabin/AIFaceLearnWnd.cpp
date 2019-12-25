@@ -1,4 +1,7 @@
 #include "stdafx.h"
+#include "Singleton.h"
+#include "qFaceExpression.h"
+#include "OpencvControl.h"
 #include "AILearnBaseWnd.h"
 #include "AIFaceLearnWnd.h"
 
@@ -47,6 +50,11 @@ void CAIFaceLearnWnd::SetFaceQuestion(wstring strFaceQuestion)
 		m_pBtnFaceCommonTitle->SetText(szBuf);
 		m_pBtnFaceTitleBottom->SetText(szBuf);
 	}
+}
+
+void CAIFaceLearnWnd::BeginFace()
+{
+	COpencvControl::GetInstance()->BeginFace(GetHWND());
 }
 
 void CAIFaceLearnWnd::OnCreate()
