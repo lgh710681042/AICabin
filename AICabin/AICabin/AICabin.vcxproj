@@ -63,7 +63,8 @@
       <AdditionalDependencies>libcurl_a_debug.lib;opencv_core310d.lib;opencv_highgui310d.lib;opencv_imgcodecs310d.lib;opencv_imgproc310d.lib;opencv_videoio310d.lib;opencv_video310d.lib;kinect20.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
+      <Command>xcopy "$(SolutionDir)Redist\x86\Microsoft.VC120.DebugCRT" "$(BinDir)\$(Configuration)\" /E /Y /D
+xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
 xcopy "$(SolutionDir)\DirectUI\framework" "$(BinDir)\$(Configuration)\framework\" /E /Y /D
 xcopy "$(SolutionDir)DirectUI\tool" "$(BinDir)\$(Configuration)\" /E /Y /D
 xcopy "$(ProjectDir)bin_ud" "$(BinDir)\$(Configuration)" /E /Y /D
@@ -94,7 +95,8 @@ call  "skin_complie.bat"</Command>
       <AdditionalDependencies>libcurl_a.lib;opencv_core310.lib;opencv_highgui310.lib;opencv_imgcodecs310.lib;opencv_imgproc310.lib;opencv_videoio310.lib;opencv_video310.lib;kinect20.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
+      <Command>xcopy "$(SolutionDir)Redist\x86\Microsoft.VC120.CRT" "$(BinDir)\$(Configuration)\" /E /Y /D
+xcopy "$(ProjectDir)Skins" "$(BinDir)\$(Configuration)\Skins\" /E /Y /D
 xcopy "$(SolutionDir)\DirectUI\framework" "$(BinDir)\$(Configuration)\framework\" /E /Y /D
 xcopy "$(SolutionDir)DirectUI\tool" "$(BinDir)\$(Configuration)\" /E /Y /D
 xcopy "$(ProjectDir)bin_release" "$(BinDir)\$(Configuration)" /E /Y /D
@@ -168,7 +170,9 @@ call  "skin_complie.bat"</Command>
     <Xml Include="Skins\I18N\string_zh_cn.xml" />
     <Xml Include="Skins\layout\AICabinWnd\AIActivity.xml" />
     <Xml Include="Skins\layout\AICabinWnd\AICabinWnd.xml" />
-    <Xml Include="Skins\layout\AICabinWnd\AIFaceLearnWnd.xml" />
+    <Xml Include="Skins\layout\AICabinWnd\AIFaceLearnWnd.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="Skins\layout\AICabinWnd\AISpeakLearnWnd.xml">
       <SubType>Designer</SubType>
     </Xml>

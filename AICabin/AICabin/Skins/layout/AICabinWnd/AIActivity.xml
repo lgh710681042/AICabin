@@ -22,26 +22,33 @@
           <Control pos="LTLB|0,0,150,0"/>   
           <Layout id="activity_one_layout" pos="LTLB|0,110,492,30" mode="vertfill" style="Picture" bk.image="#activity_one_bg" EnableMouse="1" >
             <Control pos="LTRT|0,0,0,37"/>
-            <AutoSizeButton style="Label" pos="LT|50,0,74,25" maxwidth="360" text="#StrActivityOne" txt.font="font24" txt.textcolor="80FFFFFF" txt.halign="center"/>
-            <Control pos="LTRT|0,0,0,198"/>
-            <AutoSizeButton style="Label" pos="LT|51,0,294,49" maxwidth="360" text="#StrActivityityContent1" txt.font="font48" txt.textcolor="80FFFFFF" txt.halign="center"/>
+            <!--<AutoSizeButton style="Label" pos="LT|50,0,74,25" maxwidth="360" text="#StrActivityOne" txt.font="font24" txt.textcolor="80FFFFFF" txt.halign="center"/>-->
+            <Control pos="LTRT|0,0,0,223"/>
+            <AutoSizeButton style="Label" pos="LT|99,0,197,48" maxwidth="360" text="#StrActivityityContent1" txt.font="font48" txt.textcolor="80FFFFFF" txt.halign="center"/>
             <Control />
           </Layout>
 
-          <Layout id="activity_two_layout" pos="LTLB|0,46,568,9" mode="vertfill" style="Picture" bk.image="#activity_two_bg" EnableMouse="1" >
-            <Control pos="LTRT|0,0,0,89"/>
+          <Layout id="activity_two_layout" pos="LTLB|0,46,568,9">
+            <Button id="btn_activity_two_layout" pos="LTRB|0,0,0,0" style="ImageButtonExAc" bk_over.image="#activity_two_bg"
+                    bk_down.image="#activity_two_bg_click"
+                    bk.image="#activity_two_bg" 
+                    text="#StrTipActivityContent2" txt.pos="LT|165,325,211,50" />
+           </Layout>
+          <!--<Layout id="activity_two_layout" pos="LTLB|0,46,568,9" mode="vertfill" style="ImageLayout" bk.image="#activity_two_bg"  bk_down.image="#activity_two_bg_click" EnableMouse="1" >-->
+            
+            <!--<Control pos="LTRT|0,0,0,89"/>
             <AutoSizeButton style="Label" pos="LT|106,0,77,26" maxwidth="360" text="#StrActivityTwo" txt.font="font25" txt.textcolor="CCFFFFFF" txt.halign="center"/>
             <Control pos="LTRT|0,0,0,210"/>
-            <AutoSizeButton style="Label" pos="LT|82,0,357,51" maxwidth="360" text="#StrTipActivityContent2" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
-            <Control />
-          </Layout>
+            <AutoSizeButton style="Label" pos="LT|158,0,201,50" maxwidth="360" text="#StrTipActivityContent2" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
+            <Control />-->
+          <!--</Layout>-->
           
           <Control pos="LTLB|0,0,49,0"/>
           <Layout id="activity_three_layout" pos="LTLB|0,110,492,30" mode="vertfill" style="Picture" bk.image="#activity_three_bg" EnableMouse="1" >
             <Control pos="LTRT|0,0,0,37"/>
-            <AutoSizeButton style="Label" pos="LT|51,0,74,25" maxwidth="360" text="#StrActivityThree" txt.font="font24" txt.textcolor="80FFFFFF" txt.halign="center"/>
-            <Control pos="LTRT|0,0,0,198"/>
-            <AutoSizeButton style="Label" pos="LT|110,0,171,49" maxwidth="360" text="#StrTipActivityContent3" txt.font="font48" txt.textcolor="80FFFFFF" txt.halign="center"/>
+            <!--<AutoSizeButton style="Label" pos="LT|51,0,74,25" maxwidth="360" text="#StrActivityThree" txt.font="font24" txt.textcolor="80FFFFFF" txt.halign="center"/>-->
+            <Control pos="LTRT|0,0,0,223"/>
+            <AutoSizeButton style="Label" pos="LT|113,0,170,48" maxwidth="360" text="#StrTipActivityContent3" txt.font="font48" txt.textcolor="80FFFFFF" txt.halign="center"/>
             <Control />
           </Layout>
           <Control />
@@ -49,5 +56,13 @@
 
       </Layout>
     </Style>
+  
+    <Style id="ImageButtonExAc">
+      <Image id="bk" state="normal" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_over" state="over"  image="" pos="LTRB|0,0,0,0"/>
+      <Image id="bk_down" state="down|ckall" paintmode="center" image="" pos="LTRB|0,0,0,0"/>
+      <Text id="txt" color="#N01" state="all" halign="center" font="font50" pos="" />
+    </Style>
+
   </Style>
 </skin>

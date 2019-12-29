@@ -20,16 +20,26 @@ public:
 
 	HWND	GetMainHwnd();
 
+	HWND	GetMainUIHwnd(){ return m_hUIWnd; }
+
+	void	SetMainUIHwnd(HWND hwnd){ m_hUIWnd = hwnd; };
+
 	wstring GetUserID(){ return m_strUserID; }
 
 	wstring GetUserName(){ return m_strUserName; }
 
+	void	SetRequest(bool bRequest){ m_bRequest = bRequest; };
+
 	CRITICAL_SECTION		m_ControlLock;
+
+	CRITICAL_SECTION		m_ControlLockFace;
+
+	bool	OpenAICabin();
+
+	bool	LeaveAICabin(bool bSync = false);
 
 private:
 	bool	InitDirectUI(HINSTANCE hInstance);
-
-	bool	OpenAICabin();
 
 
 public:
@@ -40,6 +50,7 @@ public:
 
 private:
 	HWND		m_hMsgWnd = nullptr;
+	HWND		m_hUIWnd = nullptr;
 	CMainWnd*	m_pMainWnd = nullptr;
 
 	//ÅÐ¶ÏÊÇ·ñ¿ªÊ¼ÂÖÑ¯

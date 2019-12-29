@@ -70,7 +70,7 @@ public:
 
 public:
 
-	int init(std::string str_exp);
+	int init(std::string str_exp, int x, int y, int w, int h);
 
 	void setExpression(std::string str_exp)
 	{
@@ -107,12 +107,14 @@ public:
 		if (pDetectData != NULL)
 		{
 			pDetectData->m_pThreadManageMentData->bStopThread = true;
+			Sleep(1000);
 			pDetectData->m_pThreadManageMentData->res_json.clear();
 			//pDetectData->m_pThreadManageMentData->vcap.release();
 
 			for (int i = 0; i < THREAD_NUM; i++)
 			{
-				CloseHandle(pDetectData->m_pThreadManageMentData->m_pThreadManageMentDataKernel[i].hDetectThread);
+				if (pDetectData->m_pThreadManageMentData->m_pThreadManageMentDataKernel[i].hDetectThread!=nullptr)
+					CloseHandle(pDetectData->m_pThreadManageMentData->m_pThreadManageMentDataKernel[i].hDetectThread);
 				
 			}
 			delete[] pDetectData->m_pThreadManageMentData->m_pThreadManageMentDataKernel;

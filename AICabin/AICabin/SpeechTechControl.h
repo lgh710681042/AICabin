@@ -17,6 +17,9 @@ typedef void*(WINAPI *LPEx_SpeechRecoInit)(onResultCallback CbResult,
 typedef void(WINAPI *LPEx_SpeechRecoUnInit)(void* pEngine);
 typedef bool(WINAPI *LPEx_SpeechRecoStart)(void* pEngine);
 typedef bool(WINAPI *LPEx_SpeechRecoStop)(void* pEngine);
+typedef bool(WINAPI *LPEx_SpeechAwaken)(void* pEngine, bool bAwaken);
+typedef bool(WINAPI *LPEx_SpeechRecoStartVad)(void* pEngine);
+typedef bool(WINAPI *LPEx_SpeechRecoStopVad)(void* pEngine);
 
 class CSpeechTechControl 
 	: public Util::Singleton<CSpeechTechControl>
@@ -55,6 +58,12 @@ public:
 
 	bool			SpeechRecoStop(void* pEngine);
 
+    bool            SpeechAwaken(void* pEngine, bool bAwaken);
+
+    bool			SpeechRecoStartVad(void* pEngine);
+
+    bool			SpeechRecoStopVad(void* pEngine);
+
 private:
 	HMODULE m_hSpeechTech = nullptr;
 
@@ -66,5 +75,8 @@ private:
 	LPEx_SpeechRecoUnInit funSpeechRecoUnInit_ = nullptr;
 	LPEx_SpeechRecoStart funSpeechRecoStart_ = nullptr;
 	LPEx_SpeechRecoStop funSpeechRecoStop_ = nullptr;
+    LPEx_SpeechAwaken funSpeechAwaken_ = nullptr;
+    LPEx_SpeechRecoStartVad funSpeechRecoStartVad_ = nullptr;
+    LPEx_SpeechRecoStopVad funSpeechRecoStopVad_ = nullptr;
 };
 

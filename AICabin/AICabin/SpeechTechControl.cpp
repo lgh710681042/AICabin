@@ -138,3 +138,52 @@ bool CSpeechTechControl::SpeechRecoStop(void* pEngine)
 
 	return false;
 }
+
+bool CSpeechTechControl::SpeechAwaken(void* pEngine, bool bAwaken)
+{
+    if (m_hSpeechTech == nullptr)
+        return false;
+
+
+    if (funSpeechAwaken_ == nullptr)
+    {
+        funSpeechAwaken_ = (LPEx_SpeechAwaken)GetProcAddress(m_hSpeechTech, "Ex_SpeechAwaken");
+    }
+
+    if (funSpeechAwaken_)
+        return funSpeechAwaken_(pEngine, bAwaken);
+
+    return false;
+}
+
+bool CSpeechTechControl::SpeechRecoStartVad(void* pEngine)
+{
+    if (m_hSpeechTech == nullptr)
+        return false;
+
+    if (funSpeechRecoStartVad_ == nullptr)
+    {
+        funSpeechRecoStartVad_ = (LPEx_SpeechRecoStartVad)GetProcAddress(m_hSpeechTech, "Ex_SpeechRecoStartVad");
+    }
+
+    if (funSpeechRecoStartVad_)
+        return funSpeechRecoStartVad_(pEngine);
+
+    return false;
+}
+
+bool CSpeechTechControl::SpeechRecoStopVad(void* pEngine)
+{
+    if (m_hSpeechTech == nullptr)
+        return false;
+
+    if (funSpeechRecoStopVad_ == nullptr)
+    {
+        funSpeechRecoStopVad_ = (LPEx_SpeechRecoStopVad)GetProcAddress(m_hSpeechTech, "Ex_SpeechRecoStopVad");
+    }
+
+    if (funSpeechRecoStopVad_)
+        return funSpeechRecoStopVad_(pEngine);
+
+    return false;
+}

@@ -118,7 +118,7 @@ unsigned int __stdcall kinect_image(PVOID pM)
 	cv::Mat original(colorHeight, colorWidth, CV_8UC4);
 	DetectData *pDetectData = (DetectData*)pM;
 	ThreadManageMentData * pThreadData = (ThreadManageMentData*)pDetectData->m_pThreadManageMentData;
-	pThreadData->box = cv::Rect(int(im_W / 4), int(im_H / 6), int(im_W / 2), int(im_H * 2 / 3));
+	//pThreadData->box = cv::Rect(int(im_W / 4), int(im_H / 6), int(im_W / 2), int(im_H * 2 / 3));
 
 	//**********************以上为ColorFrame的读取前准备**************************
 	cv::Rect box = pThreadData->box;
@@ -147,7 +147,7 @@ unsigned int __stdcall kinect_image(PVOID pM)
 		{
 			AutoLock lock(&CApplication::GetInstance()->m_ControlLock);
 
-			cv::rectangle(frame, box, cv::Scalar(0, 0, 255));
+			//cv::rectangle(frame, box, cv::Scalar(0, 0, 255));
 			pThreadData->frame = frame.clone();
 		}
 
@@ -167,7 +167,10 @@ unsigned int __stdcall kinect_image(PVOID pM)
 				pThreadData->bStart = false;
 				state_code = false;
 				if (!pThreadData->bStopThread)
+				{
 					CloseHandle(pThreadData->m_pThreadManageMentDataKernel[1].hDetectThread);
+					pThreadData->m_pThreadManageMentDataKernel[1].hDetectThread = nullptr;
+				}
 				int face_num = pThreadData->res_json["faceNum"].asInt();
 				if (face_num > 0)
 				{
@@ -286,7 +289,7 @@ FaceExpression::~FaceExpression()
 
 }
 
-int FaceExpression::init(std::string str_exp)
+int FaceExpression::init(std::string str_exp, int x, int y, int w, int h)
 {
 	exp_str = str_exp;
 	curl_global_init(CURL_GLOBAL_ALL);
@@ -314,6 +317,8 @@ int FaceExpression::init(std::string str_exp)
 	//}
 	//pDetectData->m_pThreadManageMentData->box = cv::Rect(int(c_w / 4), int(c_h / 6), int(c_w / 2), int(c_h * 2 / 3));
 	pDetectData->m_pThreadManageMentData->nThreadIndex = 0;
+	pDetectData->m_pThreadManageMentData->box = cv::Rect(int(x), int(y), int(w), int(h));
+
 	//pDetectData->m_pThreadManageMentData->vcap = capture;
 	pDetectData->m_pThreadManageMentData->m_pThreadManageMentDataKernel[0].hStartEvent = CreateEvent(NULL, false, false, NULL);
 	pDetectData->m_pThreadManageMentData->m_pThreadManageMentDataKernel[0].hEndEvent = CreateEvent(NULL, false, false, NULL);

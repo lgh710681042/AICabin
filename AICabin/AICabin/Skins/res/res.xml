@@ -11,6 +11,7 @@
     <Image id="ai_activity_paint"             path="common\ai_activity_paint.png"/>
     <Image id="activity_one_bg"               path="common\activity_one_bg.png"/>
     <Image id="activity_two_bg"               path="common\activity_two_bg.png"/>
+    <Image id="activity_two_bg_click"               path="common\activity_two_bg_click.png"/>
     <Image id="activity_three_bg"             path="common\activity_three_bg.png"/>
 
 
@@ -34,8 +35,8 @@
     
 
     <Image id="ai_speak_learn_bg"             path="common\ai_speak_learn_bg.png"/>
-    <Image id="ai_speak_learn_card"             path="common\ai_speak_learn_card.png"/>
-    <Image id="ai_speak_learn_time"           path="common\ai_speak_learn_time.png"/>
+    <Image id="ai_speak_learn_card"           path="common\ai_speak_learn_card.png"/>
+    <Image id="ai_speak_learn_time"           path="|S2,5,2,5|common\ai_speak_learn_time.png"/>
     <Image id="ai_left_btn_panel"             path="common\ai_left_btn_panel.png"/>
     <Image id="ai_right_btn_panel"            path="common\ai_right_btn_panel.png"/>
     <Image id="ai_left_panel_unexpend"        path="common\ai_left_panel_unexpend.png"/>
@@ -45,25 +46,33 @@
     <Image id="ai_btn_leave_logo"             path="common\ai_btn_leave_logo.png"/>
     <Image id="ai_btn_return_logo"            path="common\ai_btn_return_logo.png"/>
     <Image id="ai_btn_left_arrow"             path="common\ai_btn_left_arrow.png"/>
-    <Image id="ai_btn_right_arrow"             path="common\ai_btn_right_arrow.png"/>
-    <Image id="ai_speak_learn_record_click"             path="common\ai_speak_learn_record_click.png"/>
-    <Image id="ai_speak_learn_record_nor"             path="common\ai_speak_learn_record_nor.png"/>
-    <Image id="ai_speak_learn_recording"             path="common\ai_speak_learn_recording.png"/>
+    <Image id="ai_btn_right_arrow"            path="common\ai_btn_right_arrow.png"/>
+    <Image id="ai_speak_learn_record_click"   path="common\ai_speak_learn_record_click.png"/>
+    <Image id="ai_speak_learn_record_nor"     path="common\ai_speak_learn_record_nor.png"/>
+    <Image id="ai_speak_learn_recording"      path="common\ai_speak_learn_recording.png"/>
     <Image id="btn_speak_jump_nor"            path="common\btn_speak_jump_nor.png"/>
     <Image id="btn_speak_jump_pre"            path="common\btn_speak_jump_pre.png"/>
     <Image id="btn_speak_read_again_nor"      path="common\btn_speak_read_again_nor.png"/>
     <Image id="btn_speak_read_again_pre"      path="common\btn_speak_read_again_pre.png"/>
-    
-    <Image id="ai_speak_learn_recording_gif"             path="common\ai_speak_learn_recording.gif"/>
+    <Image id="ai_speak_learn_card_error"     path="common\ai_speak_learn_card_error.png"/>
+    <Image id="ai_speak_learn_time_error"     path="common\ai_speak_learn_time_error.png"/>
+    <Image id="ai_speak_learn_err_spread_one" path="common\ai_speak_learn_err_spread_one.png"/>
+    <Image id="ai_speak_learn_err_spread_two" path="common\ai_speak_learn_err_spread_two.png"/>
+    <Image id="ai_speak_learn_recording_gif"  path="common\ai_speak_learn_recording.gif"/>
 
-    <Image id="ai_face_bg"             path="common\ai_face_bg.png"/>
-    <Image id="ai_face_bg_success"             path="common\ai_face_bg_success.png"/>
-    <Image id="ai_btn_face_four_click"             path="common\ai_btn_face_four_click.png"/>
-    <Image id="ai_btn_face_four_nor"             path="common\ai_btn_face_four_nor.png"/>
-    <Image id="ai_btn_face_two_click"             path="common\ai_btn_face_two_click.png"/>
-    <Image id="ai_btn_face_two_nor"             path="common\ai_btn_face_two_nor.png"/>
-    <Image id="ai_face_decorate"             path="common\ai_face_decorate.png"/>
-    <Image id="ai_face_recongnition"             path="common\ai_face_recongnition.png"/>
+    <Image id="ai_face_bg"                    path="common\ai_face_bg.png"/>
+    <Image id="ai_face_bg_success"            path="common\ai_face_bg_success.png"/>
+    <Image id="ai_face_bg_ex"                 path="common\ai_face_bg_ex.png"/>
+    <Image id="ai_face_bg_success_ex"         path="common\ai_face_bg_success_ex.png"/>
+    <Image id="ai_btn_face_four_click"        path="common\ai_btn_face_four_click.png"/>
+    <Image id="ai_btn_face_four_nor"          path="common\ai_btn_face_four_nor.png"/>
+    <Image id="ai_btn_face_two_click"         path="common\ai_btn_face_two_click.png"/>
+    <Image id="ai_btn_face_two_nor"           path="common\ai_btn_face_two_nor.png"/>
+    <Image id="ai_face_decorate"              path="common\ai_face_decorate.png"/>
+    <Image id="ai_face_recongnition"          path="common\ai_face_recongnition.png"/>
+    <Image id="ai_face_recongnition_fail"          path="common\ai_face_recongnition_fail.png"/>
+    <Image id="face_test"                     path="common\face_test.bmp"/>
+    <Image id="ai_face_recongnition_first"    path="common\ai_face_recongnition_first.png" />
     
     <Image id="ai_animate_0"             path="animate\1_00000.png"/>
     <Image id="ai_animate_1"             path="animate\1_00001.png"/>
@@ -174,6 +183,91 @@
     <Image id="ai_animate_97"             path="animate\1_00097.png"/>
     <Image id="ai_animate_98"             path="animate\1_00098.png"/>
     <Image id="ai_animate_99"             path="animate\1_00099.png"/>
+
+
+
+    <Image id="ai_face_animate_0"              path="common\face_animate\1_00000.png"/>
+    <Image id="ai_face_animate_1"              path="common\face_animate\1_00001.png"/>
+    <Image id="ai_face_animate_2"              path="common\face_animate\1_00002.png"/>
+    <Image id="ai_face_animate_3"              path="common\face_animate\1_00003.png"/>
+    <Image id="ai_face_animate_4"              path="common\face_animate\1_00004.png"/>
+    <Image id="ai_face_animate_5"              path="common\face_animate\1_00005.png"/>
+    <Image id="ai_face_animate_6"              path="common\face_animate\1_00006.png"/>
+    <Image id="ai_face_animate_7"              path="common\face_animate\1_00007.png"/>
+    <Image id="ai_face_animate_8"              path="common\face_animate\1_00008.png"/>
+    <Image id="ai_face_animate_9"              path="common\face_animate\1_00009.png"/>
+
+    <Image id="ai_face_animate_10"             path="common\face_animate\1_00010.png"/>
+    <Image id="ai_face_animate_11"             path="common\face_animate\1_00011.png"/>
+    <Image id="ai_face_animate_12"             path="common\face_animate\1_00012.png"/>
+    <Image id="ai_face_animate_13"             path="common\face_animate\1_00013.png"/>
+    <Image id="ai_face_animate_14"             path="common\face_animate\1_00014.png"/>
+    <Image id="ai_face_animate_15"             path="common\face_animate\1_00015.png"/>
+    <Image id="ai_face_animate_16"             path="common\face_animate\1_00016.png"/>
+    <Image id="ai_face_animate_17"             path="common\face_animate\1_00017.png"/>
+    <Image id="ai_face_animate_18"             path="common\face_animate\1_00018.png"/>
+    <Image id="ai_face_animate_19"             path="common\face_animate\1_00019.png"/>
+
+    <Image id="ai_face_animate_20"             path="common\face_animate\1_00020.png"/>
+    <Image id="ai_face_animate_21"             path="common\face_animate\1_00021.png"/>
+    <Image id="ai_face_animate_22"             path="common\face_animate\1_00022.png"/>
+    <Image id="ai_face_animate_23"             path="common\face_animate\1_00023.png"/>
+    <Image id="ai_face_animate_24"             path="common\face_animate\1_00024.png"/>
+    <Image id="ai_face_animate_25"             path="common\face_animate\1_00025.png"/>
+    <Image id="ai_face_animate_26"             path="common\face_animate\1_00026.png"/>
+    <Image id="ai_face_animate_27"             path="common\face_animate\1_00027.png"/>
+    <Image id="ai_face_animate_28"             path="common\face_animate\1_00028.png"/>
+    <Image id="ai_face_animate_29"             path="common\face_animate\1_00029.png"/>
+
+    <Image id="ai_face_animate_30"             path="common\face_animate\1_00030.png"/>
+    <Image id="ai_face_animate_31"             path="common\face_animate\1_00031.png"/>
+    <Image id="ai_face_animate_32"             path="common\face_animate\1_00032.png"/>
+    <Image id="ai_face_animate_33"             path="common\face_animate\1_00033.png"/>
+    <Image id="ai_face_animate_34"             path="common\face_animate\1_00034.png"/>
+    <Image id="ai_face_animate_35"             path="common\face_animate\1_00035.png"/>
+    <Image id="ai_face_animate_36"             path="common\face_animate\1_00036.png"/>
+    <Image id="ai_face_animate_37"             path="common\face_animate\1_00037.png"/>
+    <Image id="ai_face_animate_38"             path="common\face_animate\1_00038.png"/>
+    <Image id="ai_face_animate_39"             path="common\face_animate\1_00039.png"/>
+
+    <Image id="ai_face_animate_40"             path="common\face_animate\1_00040.png"/>
+    <Image id="ai_face_animate_41"             path="common\face_animate\1_00041.png"/>
+    <Image id="ai_face_animate_42"             path="common\face_animate\1_00042.png"/>
+    <Image id="ai_face_animate_43"             path="common\face_animate\1_00043.png"/>
+    <Image id="ai_face_animate_44"             path="common\face_animate\1_00044.png"/>
+    <Image id="ai_face_animate_45"             path="common\face_animate\1_00045.png"/>
+    <Image id="ai_face_animate_46"             path="common\face_animate\1_00046.png"/>
+    <Image id="ai_face_animate_47"             path="common\face_animate\1_00047.png"/>
+    <Image id="ai_face_animate_48"             path="common\face_animate\1_00048.png"/>
+    <Image id="ai_face_animate_49"             path="common\face_animate\1_00049.png"/>
+
+    <Image id="ai_face_animate_50"             path="common\face_animate\1_00050.png"/>
+    <Image id="ai_face_animate_51"             path="common\face_animate\1_00051.png"/>
+    <Image id="ai_face_animate_52"             path="common\face_animate\1_00052.png"/>
+    <Image id="ai_face_animate_53"             path="common\face_animate\1_00053.png"/>
+    <Image id="ai_face_animate_54"             path="common\face_animate\1_00054.png"/>
+    <Image id="ai_face_animate_55"             path="common\face_animate\1_00055.png"/>
+    <Image id="ai_face_animate_56"             path="common\face_animate\1_00056.png"/>
+    <Image id="ai_face_animate_57"             path="common\face_animate\1_00057.png"/>
+    <Image id="ai_face_animate_58"             path="common\face_animate\1_00058.png"/>
+    <Image id="ai_face_animate_59"             path="common\face_animate\1_00059.png"/>
+
+    <Image id="ai_face_animate_60"             path="common\face_animate\1_00060.png"/>
+    <Image id="ai_face_animate_61"             path="common\face_animate\1_00061.png"/>
+    <Image id="ai_face_animate_62"             path="common\face_animate\1_00062.png"/>
+    <Image id="ai_face_animate_63"             path="common\face_animate\1_00063.png"/>
+    <Image id="ai_face_animate_64"             path="common\face_animate\1_00064.png"/>
+    <Image id="ai_face_animate_65"             path="common\face_animate\1_00065.png"/>
+    <Image id="ai_face_animate_66"             path="common\face_animate\1_00066.png"/>
+    <Image id="ai_face_animate_67"             path="common\face_animate\1_00067.png"/>
+    <Image id="ai_face_animate_68"             path="common\face_animate\1_00068.png"/>
+    <Image id="ai_face_animate_69"             path="common\face_animate\1_00069.png"/>
+
+    <Image id="ai_face_animate_70"             path="common\face_animate\1_00070.png"/>
+    <Image id="ai_face_animate_71"             path="common\face_animate\1_00071.png"/>
+    <Image id="ai_face_animate_72"             path="common\face_animate\1_00072.png"/>
+    <Image id="ai_face_animate_73"             path="common\face_animate\1_00073.png"/>
+    <Image id="ai_face_animate_74"             path="common\face_animate\1_00074.png"/>
 
   </Image>
 

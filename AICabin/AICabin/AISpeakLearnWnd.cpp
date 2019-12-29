@@ -9,35 +9,23 @@
 #include "AIActivityWnd.h"
 #include "AICabinWnd.h"
 #include "Application.h"
+#include "SpeechSynthControl.h"
 
-#define	SPEAK_LEARN_TIMERID			1001
 #define SPEAK_RECORD_TIMERID		2001
-#define SPEAK_RECORD_INTERVAL		5000		//语音识别5秒
+#define SPEAK_RECORD_INTERVAL		3000		//语音识别4秒
 
+#define	SPEAK_LEARN_TIMERID			2002 //涨条定时器
 #define SPEAK_EVERY_TIME            100 //定时器每次间隔
-#define SPEAK_TOTAL_TIMES           50  //总次数（与上面字段相乘等于总时间）
+#define SPEAK_TOTAL_TIMES           25  //总次数（与上面字段相乘等于总时间）
 
 CAISpeakLearnWnd::CAISpeakLearnWnd()
 {
     m_vecExample.push_back(_T("Happy"));
-    m_vecExample.push_back(_T("Excited"));
-    m_vecExample.push_back(_T("Surprised"));
+    m_vecExample.push_back(_T("Surprise"));
     m_vecExample.push_back(_T("Sad"));
     m_vecExample.push_back(_T("Angry"));
 
-    m_nTotalTimeWidth = 0;//涨条总长度
-    m_nEveryTimeWidth = 0;//每次涨条长度
-    m_nCurTimes = 0;//当前次数
     m_rc = { 0, 0, 0, 0 };
-
-    m_pBtnCardText = nullptr;
-    m_pBtnSpeakLearnRecord = nullptr;
-    m_pBtnSpeakLearnRecording = nullptr;
-    m_pBtnSpeakJump = nullptr;
-    m_pBtnSpeakReadAgain = nullptr;
-    m_pBtnSpeakTimesTips = nullptr;
-    m_pLayoutSpeakLearnTime = nullptr;
-
 }
 
 
@@ -85,6 +73,10 @@ void CAISpeakLearnWnd::OnCreate()
     m_pBtnSpeakJump = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_jump")));
     m_pBtnSpeakReadAgain = dynamic_cast<CButtonUI*> (FindControl(_T("btn_speak_read_again")));
     m_pBtnSpeakTimesTips = dynamic_cast<CAutoSizeButtonUI*> (FindControl(_T("speak_times_tips")));
+    m_pCtrlSpreadOne = dynamic_cast<CControlUI*> (FindControl(_T("ctrl_error_spread_one")));
+    m_pCtrlSpreadTwo = dynamic_cast<CControlUI*> (FindControl(_T("ctrl_error_spread_two")));
+    m_pLabelSpeakTitle = dynamic_cast<CAutoSizeButtonUI*> (FindControl(_T("LabelSpeakTitle")));  
+    m_pLayoutSpeakLearnCard = dynamic_cast<CLayoutUI*> (FindControl(_T("SpeakLearnCardLayout")));
 
 	SetSpeakFailLayoutVisible(false);
 
@@ -101,6 +93,7 @@ void CAISpeakLearnWnd::OnCreate()
 
     //清空已读记录
     m_mapHaveRead.clear();
+    time(&m_tBeginTime);
 
 	//获取vec随机数
 	int nIndex = CommonUtil::ToolRandInt(0, m_vecExample.size() - 1);
@@ -118,6 +111,8 @@ void CAISpeakLearnWnd::OnCreate()
 	}
 
     CApplication::GetInstance()->m_pAISpeakLearnWnd = this;
+
+    SpeechTitle();
 }
 
 void CAISpeakLearnWnd::OnClose()
@@ -137,15 +132,13 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 
 			wstring strMstUnicodeTmp = pSpeakResult->strMsgUnicode;
-			wstring strSpeakQuestionTmp = m_strSpeakQuestion;
+			wstring strSpeakQuestionTmp = m_strSpeakQuestion;  
 
 			transform(strMstUnicodeTmp.begin(), strMstUnicodeTmp.end(), strMstUnicodeTmp.begin(), ::tolower);
 			transform(strSpeakQuestionTmp.begin(), strSpeakQuestionTmp.end(), strSpeakQuestionTmp.begin(), ::tolower);
 
-			wstring::size_type nPos = strMstUnicodeTmp.find(strSpeakQuestionTmp);
-
-			if (nPos == wstring::npos)
-			{
+            if (!CheckSpeakQuestionAccRate(strMstUnicodeTmp, strSpeakQuestionTmp))
+            {
 				delete pSpeakResult;
 				break;
 			}
@@ -160,6 +153,7 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			{
 				pAIFaceLearnWnd->CreateWnd(GetParent(GetHWND()));
 				pAIFaceLearnWnd->SetFaceQuestion(m_strSpeakQuestion, true);
+				//pAIFaceLearnWnd->BeginFace();
 				pAIFaceLearnWnd->ShowWindow();
 			}
 
@@ -182,6 +176,7 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             {
                 pAIFaceLearnWnd->CreateWnd(GetParent(GetHWND()));
                 pAIFaceLearnWnd->SetFaceQuestion(m_strSpeakQuestion,false);
+				//pAIFaceLearnWnd->BeginFace();
                 pAIFaceLearnWnd->ShowWindow();
             }
 
@@ -198,6 +193,8 @@ LRESULT CAISpeakLearnWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 void CAISpeakLearnWnd::StartNewRecord()
 {
+    SpeechTitle();
+
     KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
     m_nSpeakCurTimes = 1;
     OnEventReadJump(nullptr);
@@ -221,8 +218,13 @@ bool CAISpeakLearnWnd::OnEventLeave(TNotifyUI* pTNotify)
 
 bool CAISpeakLearnWnd::OnEventReturn(TNotifyUI* pTNotify)
 {
-    //返回到上一界面
+    //关闭学习卡片窗口
     CloseWindow();
+
+    //跳到活动界面
+    if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIActivityWnd)->ShowWindowData();
+
     return true;
 }
 
@@ -236,18 +238,17 @@ bool CAISpeakLearnWnd::OnEventSpeakLearnRecord(TNotifyUI* pTNotify)
         m_pBtnSpeakLearnRecording->SetVisible(true);
 
     if (m_pLayoutSpeakLearnTime)
-    {
-        RECT rc = m_rc;
-        rc.right = rc.left;
-        m_pLayoutSpeakLearnTime->SetRect(rc);
+    { 
+        m_pLayoutSpeakLearnTime->SetRect(m_rc);
         m_pLayoutSpeakLearnTime->SetVisible(true);
     }
-    m_nCurTimes = 0;
-    SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, SPEAK_EVERY_TIME);
 
 	//begin record
 	CSpeechRecordControl::GetInstance()->ControlSpeechRecoStart();
 	CSpeechRecordControl::GetInstance()->SetMsgHwnd(GetHWND());
+
+    m_nCurTimes = 0;
+    SetTimer(GetRoot(), SPEAK_LEARN_TIMERID, SPEAK_EVERY_TIME);
 	SetTimer(GetRoot(), SPEAK_RECORD_TIMERID, SPEAK_RECORD_INTERVAL);
 
     return true;
@@ -257,6 +258,16 @@ bool CAISpeakLearnWnd::OnEventReadJump(TNotifyUI* pTNotify)
 {
     //下一个
 	SetSpeakFailLayoutVisible(false);
+
+    SaveHaveReadData();
+    GetNewSpeakQuestion();
+
+    if (m_pBtnCardText)
+    {
+        m_pBtnCardText->SetText(m_strSpeakQuestion.c_str());
+        m_pBtnCardText->Invalidate();
+    }
+
 
     if (m_pBtnSpeakLearnRecording)
         m_pBtnSpeakLearnRecording->SetVisible(false);
@@ -295,15 +306,11 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
         case SPEAK_LEARN_TIMERID:
         {
             RECT rc = m_rc;
-            rc.right = rc.left + m_nCurTimes * m_nEveryTimeWidth;
-            if (rc.right > m_rc.right || m_nCurTimes > SPEAK_TOTAL_TIMES)
+            rc.right -= m_nCurTimes * m_nEveryTimeWidth;
+            if (rc.right < rc.left || m_nCurTimes > SPEAK_TOTAL_TIMES)
             {
 				if (m_pLayoutSpeakLearnTime)
-				{
-					m_pLayoutSpeakLearnTime->SetRect(m_rc);
-					m_pLayoutSpeakLearnTime->OnlyResizeChild();
-					m_pLayoutSpeakLearnTime->Invalidate();
-				}
+					m_pLayoutSpeakLearnTime->SetVisible(false);
 
 				KillTimer(GetRoot(), SPEAK_LEARN_TIMERID);
                 return true;
@@ -313,7 +320,7 @@ bool CAISpeakLearnWnd::OnCheckRecordTime(TEventUI &evt)
             {
                 m_pLayoutSpeakLearnTime->SetRect(rc);
                 m_pLayoutSpeakLearnTime->OnlyResizeChild();
-                m_pLayoutSpeakLearnTime->Invalidate();
+                m_pLayoutSpeakLearnTime->GetParent()->Invalidate();
             }
 
             m_nCurTimes++;
@@ -380,6 +387,30 @@ void CAISpeakLearnWnd::SetSpeakFailLayoutVisible(bool bVisible)
 
 	if (m_pBtnSpeakReadAgain)
 		m_pBtnSpeakReadAgain->SetVisible(bVisible);
+
+    if (m_pCtrlSpreadOne)
+        m_pCtrlSpreadOne->SetVisible(bVisible);
+
+    if (m_pCtrlSpreadTwo)
+        m_pCtrlSpreadTwo->SetVisible(bVisible);
+
+    if (m_pLabelSpeakTitle)
+    {
+        if (bVisible)
+            m_pLabelSpeakTitle->SetText(I18NSTR(_T("#StrSpeakTitleError")));
+        else 
+            m_pLabelSpeakTitle->SetText(I18NSTR(_T("#StrSpeakLearnTitle")));
+    } 
+
+    if (m_pLayoutSpeakLearnCard)
+    {
+        if (bVisible)
+            m_pLayoutSpeakLearnCard->SetAttribute(_T("bk.image"), _T("#ai_speak_learn_card_error"));
+        else
+            m_pLayoutSpeakLearnCard->SetAttribute(_T("bk.image"), _T("#ai_speak_learn_card"));
+
+        m_pLayoutSpeakLearnCard->GetParent()->Invalidate();
+    }
 }
 
 void CAISpeakLearnWnd::SaveHaveReadData()
@@ -393,4 +424,70 @@ void CAISpeakLearnWnd::SaveHaveReadData()
         m_mapHaveRead.insert(pair<std::wstring, int>(m_strSpeakQuestion, 1));
         return;
     }
+}
+
+void CAISpeakLearnWnd::GetNewSpeakQuestion()
+{
+    time(&m_tBeginTime);
+
+    if (m_mapHaveRead.size() >= m_vecExample.size())
+    {
+        m_mapHaveRead.clear();
+
+        //获取vec随机数
+        int nIndex = CommonUtil::ToolRandInt(0, m_vecExample.size() - 1);
+        if (nIndex < m_vecExample.size())
+            m_strSpeakQuestion = m_vecExample[nIndex];
+
+        return;
+    }      
+
+    for (int i = 0; i < m_vecExample.size(); i++)
+    {
+        map<std::wstring, int>::iterator iter = m_mapHaveRead.find(m_vecExample[i]);
+        if (iter == m_mapHaveRead.end())
+        {
+            m_strSpeakQuestion = m_vecExample[i];     
+            return;
+        }
+    }
+}
+
+bool CAISpeakLearnWnd::CheckSpeakQuestionAccRate(const wstring& strResult, const wstring& strSrc)
+{
+    wstring::size_type nPos = strResult.find(strSrc);
+    if (nPos != wstring::npos)
+        return true;
+
+    map<wchar_t, int> mapChar;//不重复字母集合
+    map<wchar_t, int>::iterator iter;
+    for (size_t i = 0; i < strSrc.length(); i++)
+    {
+        iter = mapChar.find(strSrc.at(i));
+        if (iter == mapChar.end())
+            mapChar.insert(pair<wchar_t, int>(strSrc.at(i), 1));
+    }
+    
+    int nCounts = 0;
+    iter = mapChar.begin();
+    while (iter != mapChar.end())
+    {
+        wstring::size_type nPos = strResult.find(iter->first);
+        if (nPos != wstring::npos)
+            nCounts++;
+
+        iter++;
+    }
+
+    float fHalf = (int)mapChar.size() / 2.0f;
+    if (nCounts - fHalf > -0.0001)
+        return true;
+
+    return false;
+}
+
+void CAISpeakLearnWnd::SpeechTitle()
+{
+    wstring strEnd = I18NSTR(_T("#StrSpeakLearnTitle"));
+    CSpeechSynthControl::GetInstance()->ControlSpeechSynthCall(strEnd);//语音合成播放
 }

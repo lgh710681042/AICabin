@@ -35,7 +35,7 @@ protected:
 
 public:
     void                StartNewRecord();//开始新的卡片识别
-
+    time_t              GetBeginTime() { return m_tBeginTime; }
 private:
     bool				OnEventLeave(TNotifyUI* pTNotify); // 离开响应事件
     bool				OnEventReturn(TNotifyUI* pTNotify); // 返回响应事件
@@ -46,23 +46,31 @@ private:
     bool                OnCheckRecordTime(TEventUI &evt);//涨条定时器
     void                ShowSpeakFailResult();//显示朗结果
 
-	void				SetSpeakFailLayoutVisible(bool bVisible);		//识别失败layout显示隐藏
+	void				SetSpeakFailLayoutVisible(bool bVisible);//识别失败layout显示隐藏
     void                SaveHaveReadData();//记录已经读过的单词
+    void                GetNewSpeakQuestion();//轮转一个新卡片
+    bool                CheckSpeakQuestionAccRate(const wstring& strResult, const wstring& strSrc);//验证准确率
+    void                SpeechTitle();//语音播放标题
 private:
     vector<std::wstring> m_vecExample;
     map<std::wstring, int> m_mapHaveRead;
-    int m_nTotalTimeWidth;//涨条总长度
-    int m_nEveryTimeWidth;//每次涨条长度
-    int m_nCurTimes;//当前次数
+    int m_nTotalTimeWidth = 0;//涨条总长度
+    int m_nEveryTimeWidth = 0;//每次涨条长度
+    int m_nCurTimes = 0;//当前次数
     RECT m_rc;
+    time_t m_tBeginTime = 0;//开始时间
 
-    CAutoSizeButtonUI*  m_pBtnCardText;
-    CButtonUI*          m_pBtnSpeakLearnRecord;
-	CAnimationUI*       m_pBtnSpeakLearnRecording;
-    CButtonUI*          m_pBtnSpeakJump;
-    CButtonUI*          m_pBtnSpeakReadAgain;
-    CAutoSizeButtonUI*  m_pBtnSpeakTimesTips;
-    CLayoutUI*          m_pLayoutSpeakLearnTime;
+    CAutoSizeButtonUI*  m_pBtnCardText = nullptr;
+    CButtonUI*          m_pBtnSpeakLearnRecord = nullptr;
+    CAnimationUI*       m_pBtnSpeakLearnRecording = nullptr;
+    CButtonUI*          m_pBtnSpeakJump = nullptr;
+    CButtonUI*          m_pBtnSpeakReadAgain = nullptr;
+    CAutoSizeButtonUI*  m_pBtnSpeakTimesTips = nullptr;
+    CLayoutUI*          m_pLayoutSpeakLearnTime = nullptr;
+    CLayoutUI*          m_pLayoutSpeakLearnCard = nullptr;
+    CControlUI*         m_pCtrlSpreadOne = nullptr;
+    CControlUI*         m_pCtrlSpreadTwo = nullptr;
+    CAutoSizeButtonUI*  m_pLabelSpeakTitle = nullptr;
 
 	int m_nSpeakTotalTimes = 3;				//speak 总次数
 	int m_nSpeakCurTimes = 1;				//speak 当前次数

@@ -20,6 +20,10 @@ public:
 
 	bool			ControlSpeechRecoStop();
 
+	bool			ControlSpeechRecoStartVad();
+
+	bool			ControlSpeechRecoStopVad();
+
 	void			SetMsgHwnd(HWND hMsgWnd){ m_hMsgWnd = hMsgWnd; };
 
 	HWND			GetMsgHwnd(){ return m_hMsgWnd; }

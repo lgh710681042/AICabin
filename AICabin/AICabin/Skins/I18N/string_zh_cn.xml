@@ -99,9 +99,9 @@
     <String id="StrActivityOne">活动一</String>
     <String id="StrActivityTwo">活动二</String>
     <String id="StrActivityThree">活动三</String>
-    <String id="StrActivityityContent1">学习身体部位</String>
-    <String id="StrTipActivityContent2">听说读写与理解</String>
-    <String id="StrTipActivityContent3">VR与AI</String>
+    <String id="StrActivityityContent1">数字沙盘</String>
+    <String id="StrTipActivityContent2">英文学习 </String>
+    <String id="StrTipActivityContent3">VR体验</String>
     <String id="StrLeave">离 开</String>
     <String id="StrAchievement">您的成绩</String>
     <String id="StrAccuracyRate">正确率：</String>
@@ -133,5 +133,10 @@
     <String id="StrFaceViewResult">查看成绩</String>
     <String id="StrFaceRetry">重新识别</String>
     <String id="StrFaceNoRetry">不了</String>
+    
+    <String id="StrFaceNotGoodViewResult">不用灰心，先看看本次的成绩</String>
+    <String id="StrFaceSuccess">恭喜您，回答正确</String>
+    <String id="StrSpeakTitleError">哎呀~回答错误啦</String>
+    <String id="StrSpeakTitleSure">恭喜你~回答正确</String>
     </String>
 </skin>

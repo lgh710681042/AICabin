@@ -6,7 +6,10 @@
   <Style>
     <!--活动界面-->
     <Style id="AIFaceLearnStyle">
-      <Layout id="AIFaceLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_face_bg" showhscroll="0">
+      <Layout id="layout_face" pos="LT|480,240,960,540" style="Picture" bk.image="#ai_face_bg" bk.cache="0">
+      </Layout>
+
+      <Layout id="AIFaceLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_face_bg_ex" showhscroll="0">
         <AutoSizeButton id="btn_face_common_title" 
                         style="Label" 
                         pos="LT|-1,125,1920,75" 
@@ -20,13 +23,15 @@
           <AutoSizeButton id="btn_face_title_top" style="Label" pos="LTRB|0,0,0,82" text="#StrFaceLearnTitleTop" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
           <AutoSizeButton id="btn_face_title_bottom" style="Label" pos="LTRB|0,65,0,0" text="#StrFaceLearnCommonTitle" txt.font="font50" txt.textcolor="#N01" txt.halign="center"/>
         </Layout>
-
-        <Layout pos="LTRB|649,277,517,173" style="Picture" bk.image="#ai_face_decorate">
-          <Layout pos="LT|36,18,550,550" style="Picture" bk.image="#ai_face_recongnition">
+     
+        <Layout pos="LT|649,249,754,630" style="Picture" bk.image="#ai_face_decorate">
+          <Layout id="layout_face_recongnition_id" pos="LT|36,18,550,550" style="Picture" bk.image="#ai_face_recongnition_first">
             
           </Layout>
         </Layout>
 
+        <Control id="AIFaceAnimateControl" pos="LT|-1,127,850,850" style="Picture" bk.image="#ai_face_animate_0" visible="0"/>
+        
         <Button id="btn_face_begin" pos="LT|806,886,310,129" style="ImageButton"
                 bk.image="#ai_btn_face_four_nor"
                 bk_over.image="#ai_btn_face_four_nor"
@@ -37,9 +42,9 @@
                 bk.image="#ai_btn_face_four_nor"
                 bk_over.image="#ai_btn_face_four_nor"
                 bk_down.image="#ai_btn_face_four_click"
-                text="#StrFaceViewResult"/>
+                text="#StrFaceViewResult" visible="0"/>
 
-        <Layout id="AIFaceFailLayout" pos="LTRB|656,830,655,65"  visible="0">
+        <Layout id="AIFaceFailLayout" pos="LTRB|656,830,655,65"  visible="0" showhscroll="0" VScroll="0">
           <AutoSizeButton id="btn_face_title_Retry" style="Label" pos="LT|-1,0,610,35" text="#StrSpeakNotGood" txt.font="font35" txt.textcolor="#N01" txt.halign="center"/>
 
           <Button id="btn_face_no_retry" pos="LT|0,40,249,129" style="ImageButton"

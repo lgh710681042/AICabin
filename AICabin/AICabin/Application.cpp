@@ -18,6 +18,7 @@
 CApplication::CApplication()
 {
 	InitializeCriticalSection(&m_ControlLock);
+	InitializeCriticalSection(&m_ControlLockFace);
 }
 
 
@@ -30,6 +31,7 @@ CApplication::~CApplication()
 	}
 
 	DeleteCriticalSection(&m_ControlLock);
+	DeleteCriticalSection(&m_ControlLockFace);
 }
 
 bool CApplication::Initialize(HINSTANCE hInstance, LPTSTR lpCmdLine)
@@ -62,23 +64,25 @@ bool CApplication::Run()
 		m_hMsgWnd = m_pMainWnd->CreateWnd();
 	}
 
+	CAICabinWnd* pAICabinWnd = new CAICabinWnd;
+	if (!pAICabinWnd)
+		return false;
+
+	if (!pAICabinWnd->CreateWnd())
+		return false;
+
+	pAICabinWnd->SetAutoDel(true);
+
+	pAICabinWnd->ShowWindow(SW_SHOW, false);
+
+	pAICabinWnd->SetFullScreen(true);
+	pAICabinWnd->HideAIHelloLayout();
 	OpenAICabin();
-	//CAICabinWnd* pAICabinWnd = new CAICabinWnd;
-	//if (!pAICabinWnd)
-	//	return false;
-
-	//if (!pAICabinWnd->CreateWnd())
-	//	return false;
-
-	//pAICabinWnd->SetAutoDel(true);
-
-	////pAICabinWnd->CenterWindow();
-	//pAICabinWnd->ShowWindow();
-
-	//pAICabinWnd->SetFullScreen(true);
 
 	//message loop
 	m_pMainWnd->LoopMessage();
+
+	//LeaveAICabin(true);
 
 	return true;
 }
@@ -114,22 +118,34 @@ bool CApplication::OpenAICabin()
 
 	//启动线程开始轮询
 	std::thread t([this]{
+
+        LeaveAICabin();
+
 		do
 		{
 			::Sleep(1000);
 
 			CHttpRequestDataModel Model;
 			Model.strHost = "ai-learning-box-service.sdp.101.com";
+
+#ifdef _DEBUG
+			Model.strUrl = "/v0.1/visitor/opening_infos?cabin_code=ai_learning_box2";
+#else
 			Model.strUrl = "/v0.1/visitor/opening_infos?cabin_code=ai_learning_box";
+#endif
+			
 			Model.strMethod = "PUT";
-			Model.strHeader = "Accept: application/json\r\nContent-Type: application/json\r\nsdp-app-id:44cebc7f-7b35-4e4d-95d0-3c7af9db955e";
+			Model.strHeader = "Content-Type: application/json\r\nsdp-app-id:44cebc7f-7b35-4e4d-95d0-3c7af9db955e";
 			Model.nPort = 443;
 
+			wstring strUnicodeTmp = _T("{\"status\":1}");
+			Model.strPost = CommonUtil::UnicodeToUtf8(strUnicodeTmp.c_str());
+
 			string strData;
-#ifdef _DEBUG
-			wstring strDataUnicode = _T("{\"id\":1,\"user_id\":\"705301\",\"user_name\":\"林贵华\",\"cabin_code\":\"ai_learning_box\",\"status\":1,\"create_time\":1577153025000,\"update_time\":1577153025000}");
-			strData = CommonUtil::UnicodeToUtf8(strDataUnicode.c_str());
-#else
+//#ifdef _DEBUG
+//			wstring strDataUnicode = _T("{\"id\":1,\"user_id\":\"705301\",\"user_name\":\"林贵华\",\"cabin_code\":\"ai_learning_box\",\"status\":1,\"create_time\":1577153025000,\"update_time\":1577153025000}");
+//			strData = CommonUtil::UnicodeToUtf8(strDataUnicode.c_str());
+//#else
 			DWORD code = NDhttp_Wrapper::Excute(&Model, strData);
 			if (code != 0)
 			{
@@ -141,7 +157,7 @@ bool CApplication::OpenAICabin()
 			}
 
 			wstring strUnicode = CommonUtil::Utf8ToUnicode(strData.c_str());
-#endif
+
 			do 
 			{
 				Document document;
@@ -169,6 +185,52 @@ bool CApplication::OpenAICabin()
 	});
 
 	t.detach();
+
+	return true;
+}
+
+bool CApplication::LeaveAICabin(bool bSync /*= false*/)
+{
+	std::thread t([this]{
+
+		CHttpRequestDataModel Model;
+		Model.strHost = "ai-learning-box-service.sdp.101.com";
+
+#ifdef _DEBUG
+		Model.strUrl = "/v0.1/visitor/opening_infos?cabin_code=ai_learning_box2";
+#else
+		Model.strUrl = "/v0.1/visitor/opening_infos?cabin_code=ai_learning_box";
+#endif
+
+		Model.strMethod = "PUT";
+		Model.strHeader = "Content-Type: application/json\r\nsdp-app-id:44cebc7f-7b35-4e4d-95d0-3c7af9db955e";
+		Model.nPort = 443;
+
+		wstring strUnicodeTmp = _T("{\"status\":2}");
+		Model.strPost = CommonUtil::UnicodeToUtf8(strUnicodeTmp.c_str());
+
+		string strData;
+		DWORD code = NDhttp_Wrapper::Excute(&Model, strData);
+
+		if (code != 0)
+		{
+			logwrapper::OutputInfo("{} error code:{}", __FUNCTION__, code);
+		}
+		else
+		{
+			wstring strUnicode = CommonUtil::Utf8ToUnicode(strData.c_str());
+			logwrapper::OutputInfo("{} strData:{}", __FUNCTION__, strData);
+		}
+	});
+
+	if (bSync)
+	{
+		t.join();
+	}
+	else
+	{
+		t.detach();
+	}
 
 	return true;
 }

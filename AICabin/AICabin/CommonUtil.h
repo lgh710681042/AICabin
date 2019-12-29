@@ -3,6 +3,7 @@
 #define WM_AICABIN_OPEN		WM_USER + 101
 #define WM_SPEAK_RESULT		WM_USER + 102
 #define WM_FACE_HBITMAP		WM_USER + 103
+#define WM_FACE_AUDIO_CALL_END	WM_USER + 104
 
 typedef struct AutoLock
 {
@@ -59,6 +60,12 @@ namespace CommonUtil
 	wstring
 		GetLeaveMp3Path();
 
+    wstring
+        GetCallMp3Path();
+
 	int
 		ToolRandInt(int min, int max);
+
+	wstring
+		GetFaceImagePath();
 }

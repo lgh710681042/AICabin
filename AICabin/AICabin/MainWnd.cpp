@@ -136,6 +136,7 @@ void CMainWnd::HandAICabinOpen(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 			return;
 
 		m_pAICabinWnd->SetAutoDel(true);
+		CApplication::GetInstance()->SetMainUIHwnd(m_pAICabinWnd->GetHWND());
 	}
 
 	if (m_pAICabinWnd == nullptr)
@@ -145,7 +146,8 @@ void CMainWnd::HandAICabinOpen(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 	//ÓïÒôºÏ³É²¥·Å
 	CSpeechSynthControl::GetInstance()->ControlSpeechSynthStartEnter(strTipsStart);
 
-	m_pAICabinWnd->ShowWindow();
+	m_pAICabinWnd->ShowBeginLayout();
+	m_pAICabinWnd->ShowWindow(SW_SHOW, true);
 	m_pAICabinWnd->SetFullScreen(true);
 }
 

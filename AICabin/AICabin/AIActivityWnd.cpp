@@ -5,6 +5,7 @@
 #include "AISpeakLearnWnd.h"
 #include "AICabinWnd.h"
 #include "Application.h"
+#include "SpeechSynthControl.h"
 
 CAIActivityWnd::CAIActivityWnd()
 {
@@ -44,8 +45,8 @@ void CAIActivityWnd::OnCreate()
 	__super::OnCreate();
 
     CLayoutUI *pLayActivityTwo = dynamic_cast<CLayoutUI*>(FindControl(_T("activity_two_layout")));
-    if (pLayActivityTwo)
-        pLayActivityTwo->OnEvent += MakeDelegate(this, &CAIActivityWnd::OnLayoutListenReadEvent);
+    /*if (pLayActivityTwo)
+        pLayActivityTwo->OnEvent += MakeDelegate(this, &CAIActivityWnd::OnLayoutListenReadEvent);*/
 
     /*CButtonUI *pBtnReturnLeft = dynamic_cast<CButtonUI*>(FindControl(_T("btn_left_panel_return")));
     if (pBtnReturnLeft)
@@ -62,6 +63,8 @@ void CAIActivityWnd::OnCreate()
 		m_pAILeftBtnPanelUnExpend->SetVisible(true);
 	}
 	
+    SpeechTitle();
+
     CApplication::GetInstance()->m_pAIActivityWnd = this;
 }
 
@@ -90,6 +93,18 @@ bool CAIActivityWnd::OnEventLeave(TNotifyUI* pTNotify)
     return true;
 }
 
+bool CAIActivityWnd::OnBtnactivityTwoLayout(TNotifyUI* pTNotify)
+{
+	CAISpeakLearnWnd* pAISpeakLearnWnd = new CAISpeakLearnWnd;
+	if (pAISpeakLearnWnd)
+	{
+		pAISpeakLearnWnd->CreateWnd(CApplication::GetInstance()->GetMainUIHwnd());
+		pAISpeakLearnWnd->ShowWindow();
+	}
+
+	return true;
+}
+
 bool CAIActivityWnd::OnLayoutBodyPartsEvent(TEventUI& evt)
 {
     return true;
@@ -103,7 +118,7 @@ bool CAIActivityWnd::OnLayoutListenReadEvent(TEventUI& evt)
     CAISpeakLearnWnd* pAISpeakLearnWnd = new CAISpeakLearnWnd;
     if (pAISpeakLearnWnd)
     {
-        pAISpeakLearnWnd->CreateWnd(GetHWND());
+        pAISpeakLearnWnd->CreateWnd(CApplication::GetInstance()->GetMainUIHwnd());
         pAISpeakLearnWnd->ShowWindow();
     }
 
@@ -113,4 +128,16 @@ bool CAIActivityWnd::OnLayoutListenReadEvent(TEventUI& evt)
 bool CAIActivityWnd::OnLayoutVrAiEvent(TEventUI& evt)
 {
     return true;
+}
+
+void  CAIActivityWnd::ShowWindowData()
+{
+    ShowWindow();
+    SpeechTitle();
+}
+
+void CAIActivityWnd::SpeechTitle()
+{
+    wstring strEnd = I18NSTR(_T("#StrTipActivity"));
+    CSpeechSynthControl::GetInstance()->ControlSpeechSynthCall(strEnd);//”Ô“Ù∫œ≥…≤•∑≈
 }

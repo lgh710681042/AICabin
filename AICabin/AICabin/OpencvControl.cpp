@@ -26,6 +26,7 @@ void COpencvControl::Init()
 bool COpencvControl::BeginFace(HWND hMsgWnd)
 {
 	AutoLock lock(&m_ControlLock);
+	m_bEndFace = false;
 
 	m_hMsgWnd = hMsgWnd;
 
@@ -36,29 +37,63 @@ bool COpencvControl::BeginFace(HWND hMsgWnd)
 
 	if (m_pFaceExpress)
 	{
-		m_pFaceExpress->init("");
-		cv::namedWindow("face_detect", cv::WINDOW_AUTOSIZE);
+		m_pFaceExpress->init("", 220, 60, 420, 420);
+		//cv::namedWindow("face_detect", cv::WINDOW_AUTOSIZE);
 
 		std::thread t([this]{
-			AutoLock lock(&m_ControlLock);
-			cv::Mat img_decode;
-			
 			do 
 			{
 				::Sleep(100);
-				img_decode = m_pFaceExpress->getImg();
-				if (img_decode.empty())
+
+				{
+					AutoLock lock(&m_ControlLock);
+					if (m_pFaceExpress)
+					{
+						m_Imgdecode = m_pFaceExpress->getImg();
+						/*float im_scale = 2.0f;
+						cv::resize(l_Imgdecode, l_Imgdecode, cv::Size(int(l_Imgdecode.cols*im_scale), int(l_Imgdecode.rows*im_scale)));
+						cv::Rect bbox = cv::Rect(960/2, 540/2, 960,540);
+						m_Imgdecode = l_Imgdecode(bbox);*/
+
+					}
+				}
+
+				if (m_Imgdecode.empty())
 					continue;
+				
+				cv::imwrite(CommonUtil::UnicodeToUtf8(CommonUtil::GetFaceImagePath().c_str()), m_Imgdecode);
 
-				HBITMAP hBitMap = MatImage2CBitmap(::GetDC(NULL), img_decode);
+#ifdef _DEBUG
+				//cv::imshow("face_detect", m_Imgdecode);
+#endif
 
-				SaveBitmapToFile(hBitMap, L"F:\\1.bmp");
+				{
+					AutoLock lock(&m_ControlLock);
+					if (m_pFaceExpress 
+						&& m_bBeginFaceExpRecognition)
+					{
+						string strExp = m_pFaceExpress->getExpression();
 
-				cv::imshow("face_detect", img_decode);
+						logwrapper::OutputInfo("{} strExp result:{}", __FUNCTION__, strExp);
 
-				OutputDebugStringA(m_pFaceExpress->getExpression().c_str());
+						string strExpTmp = strExp;
+						transform(strExpTmp.begin(), strExpTmp.end(), strExpTmp.begin(), ::tolower);
 
-			} while (true);
+						auto ele = m_mapExpress.find(strExpTmp);
+						if (ele != m_mapExpress.end())
+						{
+							ele->second++;
+						}
+						else
+						{
+							m_mapExpress[strExpTmp] = 1;
+						}
+					}
+				}
+
+				::PostMessage(m_hMsgWnd, WM_FACE_HBITMAP, NULL, NULL);
+
+			} while (!m_bEndFace);
 		});
 
 		t.detach();
@@ -69,11 +104,18 @@ bool COpencvControl::BeginFace(HWND hMsgWnd)
 
 /*!
 	人脸表情识别
-	\n nTimes 识别多少秒，默认5s
 */
-bool COpencvControl::BeginFaceExpRecognition(int nTimes)
+bool COpencvControl::BeginFaceExpRecognition()
 {
-	AutoLock lock(&m_ControlLock);
+	m_bBeginFaceExpRecognition = true;
+	m_mapExpress.clear();
+
+	return true;
+}
+
+bool COpencvControl::EndFaceExpRecognition()
+{
+	m_bBeginFaceExpRecognition = false;
 
 	return true;
 }
@@ -90,9 +132,16 @@ bool COpencvControl::EndFace()
 
 		delete m_pFaceExpress;
 		m_pFaceExpress = nullptr;
+
+		m_bEndFace = true;
 	}
 
 	return true;
+}
+
+map<string, int> COpencvControl::GetExpress()
+{
+	return m_mapExpress;
 }
 
 int GetSuiteableWidth(const int prewidth)
@@ -276,4 +325,35 @@ void COpencvControl::SaveBitmapToFile(HBITMAP hBitmap, TCHAR* szfilename)
 	GlobalUnlock(hdib);
 	GlobalFree(hdib);
 	CloseHandle(fh);
+}
+
+void COpencvControl::CopyBitsData(BYTE* bOut, const cv::Mat imgTmp)
+{
+
+	int bmp_w = imgTmp.cols, bmp_h = imgTmp.rows;
+	int nchannels = imgTmp.channels();
+	int bpp = (imgTmp.depth() + 1)*nchannels;
+
+	char *pBits = (char *)bOut;
+	int pixelBytes = imgTmp.channels()*(imgTmp.depth() + 1); // 计算一个像素多少个字节
+
+	if (bmp_w % 4 == 0)
+	{
+		memcpy(pBits, imgTmp.data, pixelBytes*bmp_w*bmp_h);
+	}
+	else
+	{
+		// 原始图像宽度不是 4 的倍数，将实际图片数据一行一行拷贝过去 
+		int ntempW = GetSuiteableWidth(bmp_w);
+		for (size_t i = 0; i < bmp_h; i++)
+		{
+			memcpy(pBits + pixelBytes * ntempW * i, imgTmp.data + pixelBytes * bmp_w * i, pixelBytes*bmp_w);
+		}
+	}
+
+	for (size_t i2 = 0; i2 < pixelBytes*bmp_w*bmp_h; i2+=3)
+	{
+		*(pBits + i2) = 255;
+	}
+
 }

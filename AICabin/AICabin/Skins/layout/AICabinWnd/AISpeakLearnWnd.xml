@@ -7,11 +7,13 @@
     <!--活动界面-->
     <Style id="AISpeakLearnStyle">
       <Layout id="AISpeakLearnLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_speak_learn_bg">
-        <AutoSizeButton style="Label" pos="LT|-1,124,785,68" text="#StrSpeakLearnTitle" txt.font="font70" txt.textcolor="#N01" txt.halign="center" />
-
+        <AutoSizeButton id="LabelSpeakTitle" style="Label" pos="LT|-1,124,785,68" text="#StrSpeakLearnTitle" txt.font="font70" txt.textcolor="#N01" txt.halign="center" />
+        <Control id="ctrl_error_spread_one" pos="LT|-1,-1,1002,462" style="Picture" bk.image="#ai_speak_learn_err_spread_one" visible="0"/>
+        <Control id="ctrl_error_spread_two" pos="LT|-1,-1,1142,602" style="Picture" bk.image="#ai_speak_learn_err_spread_two" visible="0"/>
+        
         <Layout id="SpeakLearnCardLayout" pos="LTRB|471,321,431,251" style="Picture" bk.image="#ai_speak_learn_card">
           
-        </Layout>
+        </Layout>   
         <Layout id="SpeakLearnTimeLayout" pos="LT|518,368,880,341" style="Picture" bk.image="#ai_speak_learn_time" visible="1">
           
         </Layout>

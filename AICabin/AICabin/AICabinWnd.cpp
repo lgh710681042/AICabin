@@ -11,15 +11,24 @@
 #include "SpeechSynthControl.h"
 
 #define SHOW_ACTIVITY_TIMER			1001
-#ifdef _DEBUG
-#define SHOW_ACTIVITY_INTERVAL		1000
-#else
-#define SHOW_ACTIVITY_INTERVAL		8000
-#endif
+//#ifdef _DEBUG
+//#define SHOW_ACTIVITY_INTERVAL		1000
+//#else
+#define SHOW_ACTIVITY_INTERVAL		5000
+//#endif
 
 
-#define TIMER_EARTH_ID			1003					// 转动定时器
-#define TIMER_EARTH_TIME		50						// 每66ms切换图片
+//离开界面到欢迎界面定时器
+#define SHOW_RE_WELCOME_TIMER		1002
+#define SHOW_RE_WELCOME_INTERVAL	7000
+
+//圆圈转动定时器
+#define TIMER_EARTH_ID			    1003	// 转动定时器
+#define TIMER_EARTH_TIME		    50		// 每66ms切换图片
+
+//离开界面到待机页面
+#define END_TO_WAIT_TIMER		    1004
+#define END_TO_WAIT_INTERVAL		10000
 
 CAICabinWnd::CAICabinWnd()
 {
@@ -157,6 +166,23 @@ bool CAICabinWnd::OnTimer(TEventUI& event)
 
 			m_nCurFrame++;
 		}
+		else if (event.wParam == SHOW_RE_WELCOME_TIMER)
+		{
+			KillTimer(GetRoot(), SHOW_RE_WELCOME_TIMER);
+
+			CApplication::GetInstance()->SetRequest(true);
+			CApplication::GetInstance()->OpenAICabin();
+		}
+        else if (event.wParam == END_TO_WAIT_TIMER)
+        {
+            KillTimer(GetRoot(), END_TO_WAIT_TIMER);
+
+            if (m_pButtonTipsStart)
+                m_pButtonTipsStart->SetVisible(false);
+
+            if (m_pButtonTipsEnd)
+                m_pButtonTipsEnd->SetVisible(false);
+        }
 	}
 
 	return true;
@@ -168,17 +194,17 @@ void CAICabinWnd::OnCreate()
 	__super::OnCreate();
 
 	m_pButtonTipsStart = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_start")));
+    if (m_pButtonTipsStart)
+        m_pButtonTipsStart->SetVisible(true);
+
 	m_pAnimateControl = this->FindControl(_T("AIAnimateControl"));
     m_pButtonTipsEnd = dynamic_cast<CButtonUI*>(this->FindControl(_T("text_tips_end")));
+    if (m_pButtonTipsEnd)
+        m_pButtonTipsEnd->SetVisible(false);
 
     m_pLayHello = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIHelloLayout")));
     if (m_pLayHello)
-        m_pLayHello->SetVisible(true);
-
-    m_pLayEnd = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIEndLayout")));
-    if (m_pLayEnd)
-        m_pLayEnd->SetVisible(false);
-
+        m_pLayHello->SetAttribute(_T("bk.image"), _T("#ai_hello_bg"));
 
 	GetRoot()->OnEvent += MakeDelegate(this, &CAICabinWnd::OnTimer);
 
@@ -191,14 +217,15 @@ void CAICabinWnd::OnClose()
     CApplication::GetInstance()->m_pAICabinWnd = nullptr;
 }
 
-bool CAICabinWnd::ShowWindow(int nCmdShow /*= SW_SHOW*/)
+bool CAICabinWnd::ShowWindow(int nCmdShow /*= SW_SHOW*/, bool bActivity /*= false*/)
 {
 	bool bResult = __super::ShowWindow(nCmdShow);
 
 	if (nCmdShow != SW_SHOW)
 		return bResult;
 
-	this->SetTimer(GetRoot(), SHOW_ACTIVITY_TIMER, SHOW_ACTIVITY_INTERVAL);
+	if (bActivity)
+		this->SetTimer(GetRoot(), SHOW_ACTIVITY_TIMER, SHOW_ACTIVITY_INTERVAL);
 
 	this->SetTimer(GetRoot(), TIMER_EARTH_ID, TIMER_EARTH_TIME);
 
@@ -225,57 +252,15 @@ LRESULT CAICabinWnd::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		}
-/*        case VK_F6:
-        {
-            CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
-            if (pAIViewResultsWnd)
-            {
-                pAIViewResultsWnd->SetPercentage(0, 30);
-                pAIViewResultsWnd->CreateWnd(GetHWND());
-                pAIViewResultsWnd->ShowWindow();
-            }
-            break;
-        }
-        case VK_F7:
-        {
-            CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
-            if (pAIViewResultsWnd)
-            {
-                pAIViewResultsWnd->SetPercentage(35, 70);
-                pAIViewResultsWnd->CreateWnd(GetHWND());
-                pAIViewResultsWnd->ShowWindow();
-            }
-            break;
-        }
-        case VK_F8:
-        {
-            CAIViewResultsWnd* pAIViewResultsWnd = new CAIViewResultsWnd;
-            if (pAIViewResultsWnd)
-            {
-                pAIViewResultsWnd->SetPercentage(100, 99);
-                pAIViewResultsWnd->CreateWnd(GetHWND());
-                pAIViewResultsWnd->ShowWindow();
-            }
-            break;
-        }
-		case VK_F9:
-		{
-			CAISpeakLearnWnd* pAISpeakLearnWnd = new CAISpeakLearnWnd;
-			if (pAISpeakLearnWnd)
-			{
-				pAISpeakLearnWnd->CreateWnd(GetHWND());
-				pAISpeakLearnWnd->ShowWindow();
-			}
-			break;
-		}*/
 		case VK_F4:
 		{
 			CAIFaceLearnWnd* pAIFaceLearnWnd = new CAIFaceLearnWnd;
 			if (pAIFaceLearnWnd)
 			{
 				pAIFaceLearnWnd->CreateWnd(GetHWND());
+				pAIFaceLearnWnd->SetFaceQuestion(_T("happy"), true);
 				pAIFaceLearnWnd->ShowWindow();
-				//pAIFaceLearnWnd->BeginFace();
+				pAIFaceLearnWnd->BeginFace();
 			}
 			break;
 		}
@@ -294,24 +279,73 @@ void CAICabinWnd::SwitchLayout()
 
 void CAICabinWnd::ShowEndLayout()
 {
-    m_pLayHello = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIHelloLayout")));
-    if (m_pLayHello)
-        m_pLayHello->SetVisible(false);
-
-    m_pLayEnd = dynamic_cast<CLayoutUI*>(this->FindControl(_T("AIEndLayout")));
-    if (m_pLayEnd)
-        m_pLayEnd->SetVisible(true);
-
-    WCHAR szBuf[1024];
-    _stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrTipEnd")), CApplication::GetInstance()->GetUserNameW().c_str());
-    if (m_pButtonTipsEnd)
+    if (m_pButtonTipsStart)
     {
-        m_pButtonTipsEnd->SetText(szBuf);
-        m_pButtonTipsEnd->Invalidate();
+        m_pButtonTipsStart->SetVisible(true);
+        m_pButtonTipsStart->SetText(I18NSTR(_T("#StrTipEndNow")));
+        m_pButtonTipsStart->Invalidate();
     }
 
-	wstring strEnd = I18NSTR(_T("#StrTipEndNow")) + wstring(szBuf);
+    WCHAR szBuf[1024];
+    _stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrTipEnd")), CApplication::GetInstance()->GetUserName().c_str());
+    if (m_pButtonTipsEnd)
+    {
+        m_pButtonTipsEnd->SetVisible(true);
+        m_pButtonTipsEnd->SetText(szBuf);
+        m_pButtonTipsEnd->Invalidate();    
+    }
 
+    if (m_pLayHello)
+    {
+        m_pLayHello->SetAttribute(_T("bk.image"), _T("#ai_end_bg"));
+        m_pLayHello->GetParent()->Invalidate();
+    }
+
+    KillTimer(GetRoot(), TIMER_EARTH_ID);
+    this->SetTimer(GetRoot(), TIMER_EARTH_ID, TIMER_EARTH_TIME);//光圈动效
+
+	wstring strEnd = I18NSTR(_T("#StrTipEndNow")) + wstring(szBuf);
 	//语音合成播放
 	CSpeechSynthControl::GetInstance()->ControlSpeechSynthStartLeave(strEnd);
+
+	this->SetTimer(GetRoot(), SHOW_RE_WELCOME_TIMER, SHOW_RE_WELCOME_INTERVAL);
+	this->SetTimer(GetRoot(), END_TO_WAIT_TIMER, END_TO_WAIT_INTERVAL);
+
+	//通知服务端，已退出学习舱
+	//CApplication::GetInstance()->LeaveAICabin();
 }
+
+void CAICabinWnd::ShowBeginLayout()
+{
+    KillTimer(GetRoot(), SHOW_RE_WELCOME_TIMER);
+    KillTimer(GetRoot(), END_TO_WAIT_TIMER);
+
+    if (m_pButtonTipsEnd)
+        m_pButtonTipsEnd->SetVisible(false);
+
+	WCHAR szBuf[1024];
+	_stprintf_s(szBuf, _countof(szBuf), I18NSTR(_T("#StrTipStart")), CApplication::GetInstance()->GetUserName().c_str());
+
+	if (m_pButtonTipsStart)
+	{
+        m_pButtonTipsStart->SetVisible(true);
+		m_pButtonTipsStart->SetText(szBuf);
+		m_pButtonTipsStart->Invalidate();
+	}
+
+    if (m_pLayHello)
+    {
+        m_pLayHello->SetAttribute(_T("bk.image"), _T("#ai_hello_bg"));
+        m_pLayHello->GetParent()->Invalidate();
+    }
+}
+
+void CAICabinWnd::HideAIHelloLayout()
+{
+	if (m_pButtonTipsStart)
+		m_pButtonTipsStart->SetVisible(false);
+
+	if (m_pButtonTipsEnd)
+		m_pButtonTipsEnd->SetVisible(false);
+}
+

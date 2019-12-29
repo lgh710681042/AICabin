@@ -77,8 +77,20 @@ void CAIViewResultsWnd::OnClose()
 
 bool CAIViewResultsWnd::OnEventReturn(TNotifyUI* pTNotify)
 {
-    //返回到上一界面
+    //关闭查看成绩窗口
     CloseWindow();
+
+    //关闭人脸表情窗口
+    if (CApplication::GetInstance()->m_pAIFaceLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIFaceLearnWnd)->CloseWindow();
+
+    //关闭学习卡片窗口
+    if (CApplication::GetInstance()->m_pAISpeakLearnWnd != nullptr)
+        (CApplication::GetInstance()->m_pAISpeakLearnWnd)->CloseWindow();
+
+    //跳到活动界面
+    if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
+        (CApplication::GetInstance()->m_pAIActivityWnd)->ShowWindowData();
     return true;
 }
 
@@ -121,7 +133,7 @@ bool CAIViewResultsWnd::OnEventNo(TNotifyUI* pTNotify)
 
     //跳到活动界面
     if (CApplication::GetInstance()->m_pAIActivityWnd != nullptr)
-        (CApplication::GetInstance()->m_pAIActivityWnd)->ShowWindow();
+        (CApplication::GetInstance()->m_pAIActivityWnd)->ShowWindowData();
 
     return true;
 }

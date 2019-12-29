@@ -6,12 +6,19 @@
 
 void __stdcall onResult(int nCode, char *strMsg)
 {
+	logwrapper::OutputInfo("{} nCode: {}", __FUNCTION__, nCode);
+
+	if (strMsg)
+	{
+		logwrapper::OutputInfo("{} strMsg1: {}", __FUNCTION__, strMsg);
+	}
+
 	if ( nCode == 0 
 		&& strMsg)
 	{
 		wstring strMsgUnicode = CommonUtil::Utf8ToUnicode(strMsg);
 
-		logwrapper::OutputInfo("{} strMsg: {}", __FUNCTION__, strMsg);
+		logwrapper::OutputInfo("{} strMsg2: {}", __FUNCTION__, strMsg);
 
 		SpeakResultStruct* pSpeakResult = new SpeakResultStruct;
 		pSpeakResult->nCode = nCode;
@@ -66,4 +73,16 @@ bool CSpeechRecordControl::ControlSpeechRecoStart()
 bool CSpeechRecordControl::ControlSpeechRecoStop()
 {
 	return CSpeechTechControl::GetInstance()->SpeechRecoStop(m_pEngine);
+}
+
+bool CSpeechRecordControl::ControlSpeechRecoStartVad()
+{
+	bool bResult = CSpeechTechControl::GetInstance()->SpeechRecoStartVad(m_pEngine);
+
+	return bResult;
+}
+
+bool CSpeechRecordControl::ControlSpeechRecoStopVad()
+{
+	return CSpeechTechControl::GetInstance()->SpeechRecoStopVad(m_pEngine);
 }

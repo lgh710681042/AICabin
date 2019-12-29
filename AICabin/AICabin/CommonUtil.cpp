@@ -159,12 +159,36 @@ namespace CommonUtil
 		return strDir + _T("\\leave.mp3");
 	}
 
+    std::wstring GetCallMp3Path()
+    {
+        wstring strDir = GetSystemAppDataFolder() + _T("\\AICabin");
+
+        if (!IsDirExist(strDir))
+        {
+            CreateDirectories(strDir);
+        }
+
+        return strDir + _T("\\call.mp3");
+    } 
+
 	int ToolRandInt(int min, int max)
 	{
 		srand((unsigned)time(NULL));
 		int r = rand() % (max - min + 1) + min;
 
 		return r;
+	}
+
+	std::wstring GetFaceImagePath()
+	{
+		wstring strDir = GetSystemAppDataFolder() + _T("\\AICabin");
+
+		if (!IsDirExist(strDir))
+		{
+			CreateDirectories(strDir);
+		}
+
+		return strDir + _T("\\face.png");
 	}
 
 }

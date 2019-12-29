@@ -7,37 +7,11 @@
   <Style>
     <!--初始界面-->
     <Style id="AIHelloLayoutStyle">
-      <!--开始界面-->
-      <Layout id="AIHelloLayout" pos="LTRB|0,0,0,0" mode="vertfill" style="Picture" bk.image="#ai_hello_bg" visible="1">
-        <Control pos="LTRT|0,0,0,180"/>
-        <Layout mode="vertfill" pos="LTRT|0,0,0,395">
-          <!--<Control id="" pos="LT|-1,-1,392,395" style="Picture" bk.image="#ai_paint"/>-->
-          <XML id="AIAnimateControlStyle" />
-        </Layout>
-        <Control pos="LTRT|0,0,0,30"/>
-        <Layout mode="vertfill" pos="LTRT|100,0,100,77">
-          <AutoSizeButton id="text_tips_start" style="Label" pos="LT|-1,-1,1000,77" maxwidth="1400" text="#StrTipStart" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
-        </Layout>
-
-        <Control />
-      </Layout>
-
-      <!--结束界面-->
-      <Layout id="AIEndLayout" pos="LTRB|0,0,0,0" mode="vertfill" style="Picture" bk.image="#ai_end_bg" visible="0">
-        <Control pos="LTRT|0,0,0,180"/>
-        <Layout mode="vertfill" pos="LTRT|0,0,0,395">
-          <Control pos="LT|-1,-1,392,395" style="Picture" bk.image="#ai_paint"/>
-        </Layout>
-        <Control pos="LTRT|0,0,0,30"/>
-        <Layout mode="vertfill" pos="LTRT|100,0,100,199">
-          <AutoSizeButton style="Label" pos="LT|-1,-1,1000,77" maxwidth="1400" text="#StrTipEndNow" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
-          <Control pos="LTRT|0,0,0,45"/>
-          <AutoSizeButton id="text_tips_end" style="Label" pos="LT|-1,-1,1200,77" maxwidth="1200" text="#StrTipEnd" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
-        </Layout>
-
-        <Control />
-      </Layout>
-      
+      <Layout id="AIHelloLayout" pos="LTRB|0,0,0,0" style="Picture" bk.image="#ai_hello_bg" >
+        <Control id="AIAnimateControl" pos="LT|-1,180,392,395" style="Picture" bk.image="#ai_paint"/>
+        <AutoSizeButton id="text_tips_start" style="Label" pos="LT|-1,605,1000,77" maxwidth="1400" text="#StrTipStart" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+        <AutoSizeButton id="text_tips_end" style="Label" pos="LT|-1,727,1200,77" maxwidth="1200" text="#StrTipEnd" txt.font="font70" txt.textcolor="#N01" txt.halign="center"/>
+      </Layout>    
     </Style>
 
     <Style id="AIAnimateControlStyle">

@@ -15,9 +15,13 @@ public:
 
 	wstring				SetTipsStart(wstring& strUserName);
 
-	virtual bool		ShowWindow(int nCmdShow = SW_SHOW);
+	virtual bool		ShowWindow(int nCmdShow = SW_SHOW, bool bActivity = false);
 
     void                ShowEndLayout();//œ‘ æΩ· ¯layout
+
+	void				ShowBeginLayout();
+
+	void				HideAIHelloLayout();
 
 protected:
 	bool					OnTimer(TEventUI& event);
@@ -51,6 +55,5 @@ private:
 	CControlUI*             m_pAnimateControl = nullptr;
     CButtonUI*              m_pButtonTipsEnd = nullptr;
     CLayoutUI*              m_pLayHello = nullptr;
-    CLayoutUI*              m_pLayEnd = nullptr;
 };
 
