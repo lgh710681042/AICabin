@@ -90,6 +90,9 @@
     <ClInclude Include="qFaceExpression.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="WMPPlayer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -150,6 +153,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="qFaceExpression.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WMPPlayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

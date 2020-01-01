@@ -20,6 +20,8 @@
 #include <atlbase.h>
 #include <atlcom.h>
 #include <shobjidl.h>
+#include <atlbase.h>
+#include <atlwin.h>
 
 // TODO:  在此处引用程序需要的其他头文件
 #include "DirectUI.h"

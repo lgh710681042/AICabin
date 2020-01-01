@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Singleton.h"
 #include "CommonUtil.h"
+#include "WMPPlayer.h"
 #include "SpeechTechControl.h"
 #include "SpeechSynthControl.h"
 
@@ -13,6 +14,7 @@ void __stdcall onSynthResultEnter(int nCode, char *strMsg)
 		WCHAR szCommand[256] = { 0 };
 		GetShortPathName(strMp3.c_str(), szShortPath, sizeof(szShortPath));
 
+		//bool b = CWMPPlayerControl::GetInstance()->Play(wstring(szShortPath));
 		wsprintf(szCommand, L"open \"%s\" alias song", szShortPath);
 		mciSendString(szCommand, nullptr, 0, nullptr);
 		mciSendString(L"play song", nullptr, 0, nullptr);

@@ -143,10 +143,10 @@ bool CApplication::OpenAICabin()
 
 			string strData;
 //#ifdef _DEBUG
-//			wstring strDataUnicode = _T("{\"id\":1,\"user_id\":\"705301\",\"user_name\":\"林贵华\",\"cabin_code\":\"ai_learning_box\",\"status\":1,\"create_time\":1577153025000,\"update_time\":1577153025000}");
-//			strData = CommonUtil::UnicodeToUtf8(strDataUnicode.c_str());
+			wstring strDataUnicode = _T("{\"id\":1,\"user_id\":\"705301\",\"user_name\":\"林贵华\",\"cabin_code\":\"ai_learning_box\",\"status\":1,\"create_time\":1577153025000,\"update_time\":1577153025000}");
+			strData = CommonUtil::UnicodeToUtf8(strDataUnicode.c_str());
 //#else
-			DWORD code = NDhttp_Wrapper::Excute(&Model, strData);
+			/*DWORD code = NDhttp_Wrapper::Excute(&Model, strData);
 			if (code != 0)
 			{
 				logwrapper::OutputInfo("{} error code:{}",
@@ -154,7 +154,7 @@ bool CApplication::OpenAICabin()
 					code);
 
 				continue;
-			}
+			}*/
 
 			wstring strUnicode = CommonUtil::Utf8ToUnicode(strData.c_str());
 
